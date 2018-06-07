@@ -1,0 +1,39 @@
+***Nueva forma con docker-compose... estando en el mismo directorio donde está el docker-compose.yml***
+docker-compose -p dsocial up -d
+docker-compose -p dsocial down
+
+*** Para iniciar el docker-compose con ambiente DEV ***
+docker-compose -p dsocial -f docker-compose.yml -f docker-compose-dev.yml up -d
+
+*** Para iniciar el docker-composer con ambiente PROD
+
+
+*** Para entrar dentro de la imagen***
+docker exec -ti dsocial_miphp_1 bash
+
+
+
+*** Para generar la imagen php_common***
+docker build -t php_common:0.3.0 .
+
+*** Para generar los contenedores linkeados ***
+docker run --name mimysql -v /var/lib/mysql/common:/var/lib/mysql -p 127.0.0.1:3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql && docker run --name miphp --link mimysql:mysql -v /var/www/html:/var/www/html -p 127.0.0.1:80:80 -d php_common
+
+*** Borrar una imagen ***
+docker rmi (id)
+
+*** Borrar un contendor forzado ***
+docker rm (nombre del contenedor) -f
+
+*** Pasos para crear un virtual host con docker ***
+1- Configurar el dockerfile y su host de (sites-available)
+2- Regenerar la imagen php_common
+3- Crear los contenedor miphp y mimysql
+4- agregar los servername en el host local (/etc/hosts)
+
+*** Borrar todos los contenedores ***
+docker rm $(docker ps -a -q)
+
+
+
+
