@@ -1,21 +1,4 @@
-<p align="center">
-    <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
-    </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
-    <br>
-</p>
 
-Yii 2 Basic Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-rapidly creating small projects.
-
-The template contains the basic features including user login/logout and a contact page.
-It includes all commonly used configurations that would allow you to focus on adding new
-features to your application.
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
 
 DIRECTORY STRUCTURE
 -------------------
@@ -43,66 +26,55 @@ The minimum requirement by this project template that your Web server supports P
 INSTALLATION
 ------------
 
-### Install via Composer
+### Install via Docker
 
-If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
-at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
+Antes que nada debemos generar la imagen con el Dockerfile, para ello, abrimos la siguiente carpera "desarrolloPRIL/docker/dockerfile donde esta el dockerfile
+y abrimos una terminal
 
-You can then install this project template using the following command:
+	docker build -t pril_php:0.1 .
 
-~~~
-php composer.phar create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
-~~~
-
-Now you should be able to access the application through the following URL, assuming `basic` is the directory
-directly under the Web root.
-
-~~~
-http://localhost/basic/web/
-~~~
-
-### Install from an Archive File
-
-Extract the archive file downloaded from [yiiframework.com](http://www.yiiframework.com/download/) to
-a directory named `basic` that is directly under the Web root.
-
-Set cookie validation key in `config/web.php` file to some random secret string:
-
-```php
-'request' => [
-    // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-    'cookieValidationKey' => '<secret random string goes here>',
-],
-```
-
-You can then access the application through the following URL:
-
-~~~
-http://localhost/basic/web/
-~~~
-
-
-### Install with Docker
-
-Update your vendor packages
-
-    docker-compose run --rm php composer update --prefer-dist
+Luego de crear la imagen de php, debemos crear y arrancar los contenedores que son necesario para el ambiente del sistema.
     
-Run the installation triggers (creating cookie validation code)
+   	*Levantamos/Creamos los contenedores
+		
+		-ambiente prod
+		docker-compose -p app -f docker-compose.yml -f docker-compose-prod.yml up -d 
+		
+		-ambiente dev
+		docker-compose -p app -f docker-compose.yml -f docker-compose-dev.yml up -d 
 
-    docker-compose run --rm php composer install    
-    
-Start the container
+	*Borramos los contenedores (borra los contenedores)
 
-    docker-compose up -d
-    
-You can then access the application through the following URL:
+		docker-compose -p app down
 
-    http://127.0.0.1:8000
+******************Ahora debemos importar el sql inicial del sistema******************
+Creamos el esquema de la bd desde docker
+        (PROD)
+	docker exec -i app_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
+         
+        (DEV)
+	docker exec -i dsocial_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
 
-**NOTES:** 
-- Minimum required Docker engine version `17.04` for development (see [Performance tuning for volume mounts](https://docs.docker.com/docker-for-mac/osxfs-caching/))
-- The default configuration uses a host-volume in your home directory `.docker-composer` for composer caches
+Importamos el sql inicial que se encuentra en /desarrolloPRIL/bd_inicial
+
+	docker exec -i app_mimysql_1 mysql -u root -p pril < bd_inicial.sql
+
+Realizar los pasos en el siguiente orden:
+
+1- Ahora debemos ejecutar el comando composer install. Como tenemos php en un contenedor debemos ejecutar el mismo comando dentro del contenedor. Para ello debemos 
+entrar al contenedor con el siguiente comando: 
+	docker exec -ti app_prilphp_1 bash. 
+Luego ir a la carpeta de la aplicación desde la terminal y correr el comando : 
+	composer install
+
+2- Por ultimo corremos las migraciones que tiene el proyecto
+
+    php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
+
+    php yii migrate/up --migrationPath=@yii/rbac/migrations
+
+    php yii migrate/up
+
 
 
 CONFIGURATION
