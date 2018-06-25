@@ -28,13 +28,20 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
-    /*
+    
     'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
+        'batch' => [
+            'class' => 'schmunk42\giiant\commands\BatchController',
+            'overwrite' => true,
+            'modelNamespace' => 'app\\modules\\crud\\models',
+            'crudTidyOutput' => true,
+        ]
     ],
-    */
+    
+    'modules' => [
+        'rbac' => 'dektrium\rbac\RbacConsoleModule',
+    ],
+
 ];
 
 if (YII_ENV_DEV) {

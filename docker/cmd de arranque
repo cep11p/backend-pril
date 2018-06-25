@@ -3,7 +3,8 @@ docker-compose -p dsocial up -d
 docker-compose -p dsocial down
 
 *** Para iniciar el docker-compose con ambiente DEV ***
-docker-compose -p dsocial -f docker-compose.yml -f docker-compose-dev.yml up -d
+docker-compose -p app -f docker-compose.yml -f docker-compose-dev.yml up -d
+
 
 *** Para iniciar el docker-composer con ambiente PROD
 

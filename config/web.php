@@ -8,6 +8,7 @@ $config = [
     'name' => 'PRIL',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language'=>'es',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -16,14 +17,29 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '6zMHJ-tct8vLqga062EgpIylzJykgSFZ',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
+        
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages', // if advanced application, set @frontend/messages
+                    'sourceLanguage' => 'es_ES',
+                    'fileMap' => [
+                        //'main' => 'main.php',
+                    ],
+                ],
+            ],
+            
+        ],
+        
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
+        
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -44,14 +60,31 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                [   'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/accion', 
+                ],
             ],
         ],
-        */
+        
+    ],
+    
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableConfirmation'=>false,
+            'admins'=>['admin']
+        ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
+        
+        'api' => [
+            'class' => 'app\modules\api\Api',
+        ],
     ],
     'params' => $params,
 ];
@@ -68,8 +101,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*'],
     ];
 }
 

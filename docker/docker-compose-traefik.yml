@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  prilphp:
+    image:  pril_php:0.1
+    labels:
+     - "traefik.backend=prilphp"
+     - "traefik.frontend.rule=Host:api.pril.local"
+     - "traefik.port=80"
+    volumes:
+      - /var/www/html:/var/www/html
+    networks:
+      red:
+  mimysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+     MYSQL_ROOT_PASSWORD: root
+    volumes:
+     - /dbdata:/var/lib/mysql
+    networks:
+      red:
+  proxy:
+    image: traefik:1.3.5
+    restart: always
+    command: --web --docker --docker.domain=api.pril.local
+    networks:
+      red:
+    ports:
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/proxy/traefik.toml:/etc/traefik/traefik.toml
+      - ./config/certs:/etc/traefik/acme
+    networks:
+      red:
+networks:
+ red:
+
