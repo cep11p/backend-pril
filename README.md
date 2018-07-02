@@ -28,10 +28,15 @@ INSTALLATION
 
 ### Install via Docker
 
-Antes que nada debemos generar la imagen con el Dockerfile, para ello, abrimos la siguiente carpera "desarrolloPRIL/docker/dockerfile donde esta el dockerfile
-y abrimos una terminal
+Antes que nada debemos generar las imagenes de php con el Dockerfile, para ello, 
 
-	docker build -t pril_php:0.1 .
+	*abrimos la siguiente carpera "desarrolloPRIL/docker/dockerfile/pril y corremos el siguiente comando
+
+		docker build -t pril_php:0.1 .
+
+	*abrimos la siguiente carpera "desarrolloPRIL/docker/dockerfile/registral y corremos el siguiente comando
+
+		docker build -t registral_php:0.1 .
 
 Luego de crear la imagen de php, debemos crear y arrancar los contenedores que son necesario para el ambiente del sistema.
     
@@ -53,7 +58,7 @@ Creamos el esquema de la bd desde docker
 	docker exec -i app_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
          
         (DEV)
-	docker exec -i dsocial_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
+	docker exec -i app_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
 
 Importamos el sql inicial que se encuentra en /desarrolloPRIL/bd_inicial
 
