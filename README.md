@@ -72,15 +72,6 @@ entrar al contenedor con el siguiente comando:
 Luego ir a la carpeta de la aplicación desde la terminal y correr el comando : 
 	composer install
 
-2- Por ultimo corremos las migraciones que tiene el proyecto
-
-    php yii migrate --migrationPath=@bedezign/yii2/audit/migrations
-
-    php yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
-
-    php yii migrate/up --migrationPath=@yii/rbac/migrations
-
-    php yii migrate/up
 
 
 
