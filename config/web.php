@@ -42,7 +42,9 @@ $config = [
         
         'errorHandler' => [
             'errorAction' => 'site/error',
+            'class' => '\bedezign\yii2\audit\components\web\ErrorHandler',
         ],
+        
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -81,6 +83,13 @@ $config = [
             'admins'=>['admin']
         ],
         'rbac' => 'dektrium\rbac\RbacWebModule',
+        
+        "audit"=>[
+            "class"=>"bedezign\yii2\audit\Audit",
+            'accessIps'=>null,
+            'accessUsers'=>null,
+            'accessRoles'=>null
+        ],
         
         'api' => [
             'class' => 'app\modules\api\Api',
