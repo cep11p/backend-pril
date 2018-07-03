@@ -20,6 +20,7 @@ use Yii;
  * @property string $deseo_lugar_entrenamiento
  * @property string $deseo_actividad
  * @property string $fecha_presentacion
+ * @property integer $personaid
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property string $aliasModel
@@ -43,8 +44,8 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['legajo', 'fecha_ingreso', 'fecha_presentacion'], 'required'],
-            [['calificacion'], 'integer'],
+            [['legajo', 'fecha_ingreso', 'fecha_presentacion', 'personaid'], 'required'],
+            [['calificacion', 'personaid'], 'integer'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
             [['oficio', 'profesion', 'origen'], 'string', 'max' => 200],
@@ -69,6 +70,7 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             'deseo_lugar_entrenamiento' => 'Deseo Lugar Entrenamiento',
             'deseo_actividad' => 'Deseo Actividad',
             'fecha_presentacion' => 'Fecha Presentacion',
+            'personaid' => 'Personaid',
         ];
     }
 
