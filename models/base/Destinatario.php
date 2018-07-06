@@ -21,6 +21,9 @@ use Yii;
  * @property string $deseo_actividad
  * @property string $fecha_presentacion
  * @property integer $personaid
+ * @property string $banco_cbu
+ * @property string $banco_nombre
+ * @property string $banco_palabra_clave
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property string $aliasModel
@@ -48,7 +51,7 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             [['calificacion', 'personaid'], 'integer'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
-            [['oficio', 'profesion', 'origen'], 'string', 'max' => 200],
+            [['oficio', 'profesion', 'origen', 'banco_cbu', 'banco_nombre', 'banco_palabra_clave'], 'string', 'max' => 200],
             [['legajo'], 'string', 'max' => 45]
         ];
     }
@@ -71,6 +74,9 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             'deseo_actividad' => 'Deseo Actividad',
             'fecha_presentacion' => 'Fecha Presentacion',
             'personaid' => 'Personaid',
+            'banco_cbu' => 'Banco Cbu',
+            'banco_nombre' => 'Banco Nombre',
+            'banco_palabra_clave' => 'Banco Palabra Clave',
         ];
     }
 
