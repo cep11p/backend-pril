@@ -23,7 +23,8 @@ use Yii;
  * @property integer $personaid
  * @property string $banco_cbu
  * @property string $banco_nombre
- * @property string $banco_palabra_clave
+ * @property string $banco_alias
+ * @property integer $experiencia_laboral
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property string $aliasModel
@@ -48,10 +49,10 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     {
         return [
             [['legajo', 'fecha_ingreso', 'fecha_presentacion', 'personaid'], 'required'],
-            [['calificacion', 'personaid'], 'integer'],
+            [['calificacion', 'personaid', 'experiencia_laboral'], 'integer'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
-            [['oficio', 'profesion', 'origen', 'banco_cbu', 'banco_nombre', 'banco_palabra_clave'], 'string', 'max' => 200],
+            [['oficio', 'profesion', 'origen', 'banco_cbu', 'banco_nombre', 'banco_alias'], 'string', 'max' => 200],
             [['legajo'], 'string', 'max' => 45]
         ];
     }
@@ -76,7 +77,8 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             'personaid' => 'Personaid',
             'banco_cbu' => 'Banco Cbu',
             'banco_nombre' => 'Banco Nombre',
-            'banco_palabra_clave' => 'Banco Palabra Clave',
+            'banco_alias' => 'Banco Alias',
+            'experiencia_laboral' => 'Experiencia Laboral',
         ];
     }
 
