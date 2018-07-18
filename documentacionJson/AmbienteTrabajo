@@ -1,17 +1,96 @@
-**** Para crear un Ambiente de trabajo ****
-http://api.pril.local/api/ambiente-trabajo method POST
-http://api.pril.local/api/ambiente-trabajo/{$id} method PUT
+**** Para mostrar listado ****
+@url http://api.pril.local/api/ambiente-trabajo 
+@method GET
+{
+	"total_filtrado":2,
+	"total_general":123,
+	"coleccion":{
+		[
+			{
+		    		"id": 2,
+		    		"nombre": "Panaderia San Fernando",
+		    		"calificacion": 7,
+		    		"legajo": "asb123/7",
+		    		"observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+		    		"cuit":20123456789,
+		    		"actividad": "Vende facturas, tortas y variedades de panes",
+		    		"tipo_ambiente_trabajoid": 1,
+		    		"lugarid": 2,
+	    			"personaid": 1 //puede ser null
+			},
+			{
+		    		"id": 2,
+		    		"nombre": "Panaderia San Fernando",
+		    		"calificacion": 7,
+		    		"legajo": "asb123/7",
+		    		"observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+		    		"cuit":20123456789,
+		    		"actividad": "Vende facturas, tortas y variedades de panes",
+		    		"tipo_ambiente_trabajoid": 1,
+		    		"lugarid": 2,
+	    			"personaid": 1 //puede ser null
+			},
+		]    
+	}
+}
 
+**** Para crear****
+@url http://api.pril.local/api/ambiente-trabajo 
+@method POST
+{
+	    "nombre": "Panaderia San Fernando",
+	    "calificacion": 7,
+	    "legajo": "asb123/7",
+	    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+	    "cuit":20123456789,
+	    "actividad": "Vende facturas, tortas y variedades de panes",
+	    "tipo_ambiente_trabajoid": 1,
+	    "lugarid": 2,
+	    "personaid": 1 //puede ser null
+		
+}
+
+**** Para modificar ****
+@url http://api.pril.local/api/ambiente-trabajo/{$id} 
+@method PUT
 {
 	    "id": 2,
-	    "nombre": "Romina",
-	    "calificacion": "Rodríguez",
-	    "legajo": "29890098",
-	    "observacion":"1980-12-12",
-	    "cuit":"rominochi",
-	    "actividad": "2920430690",
-	    "tipo_ambiente_trabajoid": "2920412127",
-	    "lugarid": 1,
-	    "personaid": 1
+	    "nombre": "Panaderia San Fernando",
+	    "calificacion": 7,
+	    "legajo": "asb123/7",
+	    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+	    "cuit":20123456789,
+	    "actividad": "Vende facturas, tortas y variedades de panes",
+	    "tipo_ambiente_trabajoid": 1,
+	    "lugarid": 2,
+	    "personaid": 1 //puede ser null
 		
+}
+
+
+****** Mostrado particular *******
+@url http://api.pril.local/api/ambiente-trabajo/{$id} 
+@method GET
+@return 
+{
+
+	'id': 1,
+	'nombre': Panaderia San Fernando
+	'tipo_ambiente_trabajo':{
+		'nombre': "Empleador privado",
+	},		
+	'direccion' : "Rivadavia 765",
+	'actividad' : "Vende facturas, tortas y variedades de panes",
+	'cuit' : 12345678769,
+	'representante' : "Rodriguez Raul" 
+}
+
+****** Para borrar *****
+@url http://api.pril.local/api/ambiente-trabajo/{$id} 
+@method Delete
+@return arrayJson
+{
+	'success': TRUE,
+	'msj': 'Se ha borrado un ambiente de trabajo'
+
 }
