@@ -29,7 +29,14 @@
 			"banco_cbu": "54321987654",
 			"banco_nombre": "Patagonia",
 			"banco_alias": "CAMION-RODILLO-RUEDA",
-			"observacion": "Una observacion"
+			"observacion": "Una observacion",
+			"estudios": [{
+				"nivel_educativoid":4,
+				"titulo":"tecnico en desarrollo web",
+				"completo":1,
+				"en_curso":0,
+				"fecha":"2014-12-20"
+			}]
 			},
 			{
 			"id": 2,
@@ -53,7 +60,14 @@
 			"banco_cbu": "54321987654",
 			"banco_nombre": "Patagonia",
 			"banco_alias": "CAMION-LIJA-RUEDA",
-			"observacion": "Una observacion"
+			"observacion": "Una observacion",
+			"estudios": [{
+				"nivel_educativoid":4,
+				"titulo":"tecnico en desarrollo web",
+				"completo":1,
+				"en_curso":0,
+				"fecha":"2014-12-20"
+			}]
 			}
 		]    
 	}
@@ -99,7 +113,14 @@
 		"altura":"321",
 		"piso":"",
 		"depto:"",
-		"localidadid":1
+		"localidadid":1,
+		"estudios": [{
+			"nivel_educativoid":4,
+			"titulo":"tecnico en desarrollo web",
+			"completo":1,
+			"en_curso":0,
+			"fecha":"2014-12-20"
+		}],
 
 	}
 }
@@ -147,6 +168,13 @@
 		"piso":"",
 		"depto:"",
 		"localidadid":1
+		"estudios": [{
+			"nivel_educativoid":4,
+			"titulo":"tecnico en desarrollo web",
+			"completo":1,
+			"en_curso":0,
+			"fecha":"2014-12-20"
+		}],
 
 	}
 		
@@ -186,7 +214,15 @@
 	"banco_cbu": "54321987654",
 	"banco_nombre": "Patagonia",
 	"banco_alias": "CAMION-RODILLO-RUEDA",
-	"observacion": "Una observacion"
+	"observacion": "Una observacion",
+	"estudios": [{
+		"id": 2
+		"nivel_educativoid":4,
+		"titulo":"tecnico en desarrollo web",
+		"completo":1,
+		"en_curso":0,
+		"fecha":"2014-12-20"
+	}]
 }
 
 ****** Para borrar *****
