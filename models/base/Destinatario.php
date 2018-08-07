@@ -53,7 +53,8 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
             [['oficio', 'profesion', 'origen', 'banco_cbu', 'banco_nombre', 'banco_alias'], 'string', 'max' => 200],
-            [['legajo'], 'string', 'max' => 45]
+            [['legajo'], 'string', 'max' => 45],
+            [['personaid'], 'unique']
         ];
     }
 

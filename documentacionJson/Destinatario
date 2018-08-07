@@ -83,7 +83,7 @@
 		"calificacion": 7,
 		"legajo": "usb123/7",
 		"profesion":"ninguna",
-		"fecha_presentacion":20123456789,
+		"fecha_presentacion":"2000-12-12",
 		"fecha_ingreso": 
 		"origen": "un origen",
 		"deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
@@ -95,34 +95,50 @@
 		"observacion": "Una observacion"
 	},
 	"persona":{
-		"nombre":"Ezequiel Francisco",
-		"apellido":"Garcia",
-		"nro_documento":"32145123",
-		"fecha_nacimiento":"1989-10-10",
-		"estado_civilid:1,
-		"telefono":"2029-430321",
-		"celular":"2029-412321",
-		"sexoid":1,
-		"tipo_documentoid":1,
-		"nucleoid":1,
-		"situacion_laboralid":1,
-		"generoid":1,
-		"email":"algo@correo.com.ar",
-		"barrio":"Don Bosco",
-		"calle":"Cagliero",
-		"altura":"321",
-		"piso":"",
-		"depto:"",
-		"localidadid":1,
-		"estudios": [{
-			"nivel_educativoid":4,
-			"titulo":"tecnico en desarrollo web",
-			"completo":1,
-			"en_curso":0,
-			"fecha":"2014-12-20"
-		}],
-
-	}
+	    "id": 2,
+	    "nombre": "Romina",
+	    "apellido": "Rodríguez",
+	    "nro_documento": "29890098",
+	    "fecha_nacimiento":"1980-12-12",
+	    "apodo":"rominochi",
+	    "telefono": "2920430690",
+	    "celular": "2920412127",
+	    "situacion_laboralid": 1,
+	    "estado_civilid": 1,
+	    "sexoid": 2,
+	    "tipo_documentoid": 1,
+	    "generoid": 1,
+	    "email":"algo@correo.com.ar",
+	    "cuil":"20367655678",
+	    "estudios": [{
+	    	"nivel_educativoid":4,
+	    	"titulo":"tecnico en desarrollo web",
+	    	"completo":1,
+	    	"en_curso":0,
+	    	"fecha":"2014-12-20"
+	    }],
+	    "nucleo": {
+	    	"nombre":"Familia Rodriguez"
+	    },
+	    "hogar": {
+	    	"barrio":"Don bosco",
+	    	"calle":"Mitre",
+	    	"altura":"327",
+	    	"piso":"",
+	    	"depto":"",
+	    	"localidadid":1,
+	    	"tiene_gas":0,
+	    	"tiene_luz":0,
+	    	"tiene_agua":0,
+	    	"condicion_ocupacionid":1,
+	    	"obtencion_aguaid": 1,
+	        "tipo_desagueid": 1,
+	        "cocina_combustibleid": 1,
+	        "tipo_viviendaid": 1,
+	        "habitacion_dormir": 2,
+	        "banioid": 1
+	    }
+		
 }
 
 
@@ -136,7 +152,7 @@
 		"calificacion": 7,
 		"legajo": "usb123/7",
 		"profesion":"ninguna",
-		"fecha_presentacion":20123456789,
+		"fecha_presentacion":"2000-12-12",
 		"fecha_ingreso": 
 		"origen": "un origen",
 		"deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
