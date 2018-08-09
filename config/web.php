@@ -22,6 +22,10 @@ $config = [
             ]
         ],
         
+        'registral'=> [
+            'class' => 'app\components\ServicioPersona'
+        ],
+        
         'i18n' => [
             'translations' => [
                 '*' => [
@@ -70,6 +74,9 @@ $config = [
             'rules' => [
                 [   'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/accion', 
+                ],
+                [   'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/destinatario', 
                 ],
             ],
         ],

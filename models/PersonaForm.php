@@ -39,7 +39,9 @@ class PersonaForm extends Model
             [['email'], 'email'],
             [['fecha_nacimiento'], 'date', 'format' => 'php:Y-m-d'],
             ['nro_documento', 'match', 'pattern' => "/^[0-9]+$/"],
-            ['id', 'existeEnRegistral']
+            ['id', 'existeEnRegistral'],
+            ['nucleoid', 'existeNucleoEnRegistral','skipOnEmpty' => true],
+            ['nro_documento', 'existeNroDocumentoEnRegistral'],
         ];
     }
     
@@ -84,16 +86,32 @@ class PersonaForm extends Model
         }
     }
     
+    /**
+     * Una validacion Rule()
+     */
     public function existeEnRegistral(){
-//        $resultado = false;
-        
         $response = \Yii::$app->registral->buscarPersonaPorId($this->id);       
         
         if(isset($response['estado']) && $response['estado']!=true){
             $this->addError('id', 'La persona con el id '.$this->id.' no existe!');
         }
+    }
+    public function existeNucleoEnRegistral(){
+        $response = \Yii::$app->registral->buscarNucleo($this->nucleoid);       
         
-//        return $resultado;
+        if(isset($response['estado']) && $response['estado']!=true){
+            $this->addError('nucleoid', 'El nucleo con el id '.$this->nucleoid.' no existe!');
+        }
+    }
+    public function existeNroDocumentoEnRegistral(){
+        
+        if(!isset($this->id)){
+            $response = \Yii::$app->registral->buscarPersonaPorNroDocumento($this->nro_documento);       
+
+            if(isset($response['estado']) && $response['estado']==true){
+                $this->addError('nro_documento', 'El nro de documento '.$this->nro_documento.' ya está en uso!');
+            }
+        }
     }
 //    public function existeEnRegistral(){
 //        $resultado = false;
