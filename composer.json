@@ -23,7 +23,8 @@
         "msheng/yii2-jwt": "~1.0.0",
         "dektrium/yii2-rbac": "1.0.0-alpha@dev",
         "bedezign/yii2-audit": "^1.0",
-        "yiisoft/yii2-queue": "^2.0@dev"
+        "yiisoft/yii2-queue": "^2.0@dev",
+        "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
