@@ -55,6 +55,7 @@ class DestinatarioController extends ActiveController{
     {
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['update']);
         return $actions;
     
     }
@@ -74,6 +75,87 @@ class DestinatarioController extends ActiveController{
             $model = new Destinatario();
             $model->setAttributes($param);
             //Registrar y validar personaid
+            
+            if(!$model->save()){
+                $arrayErrors['destinatario']=$model->getErrors();
+                $arrayErrors['tab']='destinatario';                
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            $transaction->commit();
+            
+            $resultado['success']=true;
+            $resultado['data']['id']=$model->id;
+            
+            return  $resultado;
+           
+        }catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+
+    }
+    
+    /**
+     * Se modificar un Destinatario y se vincula con una Persona()
+     * @return array Un array con datos
+     * @throws \yii\web\HttpException
+     */
+    public function actionUpdate($id)
+    {
+        $resultado['message']='Se guarda un Destinatario';
+        $param = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            
+            $model = Destinatario::findOne(['id'=>$id]);            
+            if($model==NULL){
+                $msj = 'El destinatario con el id '.$id.' no existe!';
+                throw new Exception($msj);
+            }
+            
+            $model->setAttributes($param);
+            
+            if(!$model->save()){
+                $arrayErrors['destinatario']=$model->getErrors();
+                $arrayErrors['tab']='destinatario';                
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            $transaction->commit();
+            
+            $resultado['success']=true;
+            $resultado['data']['id']=$model->id;
+            
+            return  $resultado;
+           
+        }catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+
+    }
+    
+    public function actionBuscar()
+    {
+        $resultado['message']='Se guarda un Destinatario';
+        $param = Yii::$app->request->queryParams;
+        print_r($param);
+        die('...');
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            
+            $model = Destinatario::findOne(['id'=>$id]);            
+            if($model==NULL){
+                $msj = 'El destinatario con el id '.$id.' no existe!';
+                throw new Exception($msj);
+            }
+            
+            $model->setAttributes($param);
             
             if(!$model->save()){
                 $arrayErrors['destinatario']=$model->getErrors();
