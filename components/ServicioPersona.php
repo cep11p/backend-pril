@@ -288,6 +288,108 @@ class ServicioPersona extends Component
     }
     
     /**
+     * Se devuelve una coleccion de Sexos.
+     * NOTA!... Hay que tener en cuenta que el SexoController del sistema Registral no soporta filtrado, es decir que los parametros enviados va a ser inrrelevantes
+     * @param array $param
+     * @return boolean
+     */
+    public function buscarSexo($param)
+    {
+        
+        $criterio = $this->crearCriterioBusquedad($param);
+        $client =   $this->_client;
+        try{
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
+//                'Content-Type'=>'application/json'
+            ];          
+            
+            $response = $client->request('GET', 'http://api.registral.local/api/sexo?'.$criterio, ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            \Yii::error($respuesta);
+            
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return false;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    /**
+     * Se devuelve una coleccion de Genero.
+     * NOTA!... Hay que tener en cuenta que el GeneroController del sistema Registral no soporta filtrado, es decir que los parametros enviados va a ser inrrelevantes
+     * @param array $param
+     * @return boolean
+     */
+    public function buscarGenero($param)
+    {
+        
+        $criterio = $this->crearCriterioBusquedad($param);
+        $client =   $this->_client;
+        try{
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
+//                'Content-Type'=>'application/json'
+            ];          
+            
+            $response = $client->request('GET', 'http://api.registral.local/api/genero?'.$criterio, ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            \Yii::error($respuesta);
+            
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return false;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    /**
+     * Se devuelve una coleccion de Estados Civiles.
+     * NOTA!... Hay que tener en cuenta que el EstadoCivilController del sistema Registral no soporta filtrado, es decir que los parametros enviados va a ser inrrelevantes
+     * @param array $param
+     * @return boolean
+     */
+    public function buscarEstadoCivil($param)
+    {
+        
+        $criterio = $this->crearCriterioBusquedad($param);
+        $client =   $this->_client;
+        try{
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
+//                'Content-Type'=>'application/json'
+            ];          
+            
+            $response = $client->request('GET', 'http://api.registral.local/api/estado-civil?'.$criterio, ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            \Yii::error($respuesta);
+            
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return false;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    /**
      * crear un string con los criterio de busquedad por ejemplo: localidadid=1&calle=mata negra&altura=123
      * @param array $param
      * @return string

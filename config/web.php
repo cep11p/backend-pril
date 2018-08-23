@@ -72,10 +72,12 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
-                [   'class' => 'yii\rest\UrlRule',
+                [   
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/accion', 
                 ],
-                [   'class' => 'yii\rest\UrlRule',
+                [   
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/destinatario', 
 //                    'extraPatterns' => [
 //                        'GET buscarPersona/{id}' => 'mostrar',
@@ -83,13 +85,21 @@ $config = [
 //                        'OPTIONS buscaPersona' => 'options'
 //                    ], 
                 ],
-                [   'class' => 'yii\rest\UrlRule',
-                    'controller' => 'api/persona', 
-//                    'extraPatterns' => [
-//                        'GET buscarPersona/{id}' => 'mostrar',
-//                        'GET buscar' => 'buscar',
-//                        'OPTIONS buscaPersona' => 'options'
-//                    ], 
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/persona'
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/sexo'
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/genero'
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/estado-civil'
                 ],
             ],
         ],
