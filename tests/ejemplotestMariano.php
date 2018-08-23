@@ -1,34 +1,22 @@
-<?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
+ <?php
+ 
+    $manager = $this->getMockBuilder('yii\rbac\PhpManager')
+        ->setMethods(['checkAccess'])
+        ->getMock();        
+    $manager->expects($this->any())->method('checkAccess')->willReturn(TRUE);        
+    \Yii::$app->set('authManager', $manager);
 
-namespace app\commands;
-
-use yii\console\Controller;
-use yii\console\ExitCode;
-
-/**
- * This command echoes the first argument that you have entered.
- *
- * This command is provided as an example for you to learn how to create console commands.
- *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
- */
-class HelloController extends Controller
-{
-    /**
-     * This command echoes what you have entered as the message.
-     * @param string $message the message to be echoed.
-     * @return int Exit code
-     */
-    public function actionIndex($message = 'hello world')
-    {
-        echo $message . "\n";
-
-        return ExitCode::OK;
-    }
-}
+    // cargar fixture
+    $logger = $this->getMockBuilder('yii\\log\\Logger')
+        ->setMethods(['log'])
+        ->getMock();        
+     \Yii::setLogger($logger);
+    $logger->expects($this->any())->method('log')->willReturnCallback(function() use (&$arrayLogs){
+        $parametros = func_get_args();
+        $arrayLogs[] = $parametros;
+    });
+    //die(\yii\helpers\VarDumper::dumpAsString($arrayLogs));
+    $headers = [
+        'Authorization' => 'Bearer ' . $this->jwtToken
+    ];
+    $response = $client->request('POST', $this->base_uri . '/proveidos', ['json' => $proveido, 'headers' => $headers]);

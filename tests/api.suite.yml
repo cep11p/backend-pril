@@ -1,0 +1,14 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - \Helper\Api
+        - Yii2:
+            part: ORM
+        - REST:
+            url: http://api.pril.local/index-test.php
+            depends: 
+               - PhpBrowser
+               - Yii2
+            part: Json
+    config:
+        - Yii2
