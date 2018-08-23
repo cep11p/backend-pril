@@ -42,8 +42,8 @@ class ServicioPersona extends Component
         try{
             \Yii::error(json_encode($data));
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s'
-            ];          
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
+           ];          
             
             
             $response = $client->request('POST', 'http://api.registral.local/api/personas', ['json' => $data,'headers' => $headers]);
@@ -68,7 +68,7 @@ class ServicioPersona extends Component
         try{
             \Yii::error(json_encode($data));
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s'
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
             ];          
             
             
@@ -95,7 +95,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -122,7 +122,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -156,7 +156,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -182,7 +182,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -208,7 +208,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -238,7 +238,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
@@ -266,7 +266,7 @@ class ServicioPersona extends Component
         $client =   $this->_client;
         try{
             $headers = [
-                'Authorization' => 'Bearer ' . 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJ1aWQiOjF9.rTItKCAU2xYxW1kiCDwP-e64LK2DG6PAq7FGCs43V5s',
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
                 'Content-Type'=>'application/json'
             ];          
             
