@@ -23,7 +23,7 @@ class DestinatarioTest extends \Codeception\Test\Unit
         $this->tester->expectException(new \yii\base\Exception($msj),function(){
             $param=[];
             $model = new Destinatario;
-            $model->setAttributes($param);
+            $model->setAttributesAndValidate($param);
         });
 
     }
@@ -51,7 +51,52 @@ class DestinatarioTest extends \Codeception\Test\Unit
                 ],
             ];
             $model = new Destinatario;
-            $model->setAttributes($param);
+            $model->setAttributesAndValidate($param);
+        });
+
+    }
+    
+    public function testDisparaExcepcionSiPersonaNoExiste()
+    {
+        $msj = 'un mensaje peroooo';
+        $this->tester->expectException(new \yii\base\Exception($msj),function(){
+            $param=[
+                "destinatario"=>[
+                    "oficio"=> "Un oficio",
+                    "calificacion"=> 7,
+                    "legajo"=> "usb123/7",
+                    "profesion"=>"ninguna",
+                    "fecha_presentacion"=>"2000-12-12",
+                    "fecha_ingreso"=> "2000-12-12",
+                    "origen"=> "un origen",
+                    "deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
+                    "deseo_actividad"=> "La actividad que desea realizar",
+                    "experiencia_laboral"=> 1,
+                    "banco_cbu"=> "54321987654",
+                    "banco_nombre"=> "Patagonia",
+                    "banco_alias"=> "CAMION-RODILLO-RUEDA",
+                    "observacion"=> "Una observacion"
+                ],
+                "persona"=>[
+                    "id"=>0,
+                    "nombre"=>"Carlos",
+                    "apodo"=>"Kar",
+                    "apellido"=>"Lopez",
+                    "nro_documento"=>"36765567",
+                    "fecha_nacimiento"=>"07/05/1995",
+                    "estado_civilid"=>"1",
+                    "telefono"=>"",
+                    "celular"=>"(2920) 15412228",
+                    "sexoid"=>"1",
+                    "tipo_documentoid"=>1,
+                    "nucleoid"=>null,
+                    "situacion_laboralid"=>1,
+                    "generoid"=>1,
+                    "email"=>"uncorre@hotmail.com",
+                ]
+            ];
+            $model = new Destinatario;
+            $model->setAttributesAndValidate($param); // no me toma la instancia con ServicioPersona
         });
 
     }
