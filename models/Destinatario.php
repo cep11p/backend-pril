@@ -47,50 +47,46 @@ class Destinatario extends BaseDestinatario
 //
 //    }
 
-
-    public function setAttributes($param, $safeOnly = true) {
-        
-//        if(isset($param['persona']['nro_documento']) && preg_match("/^[0-9]+$/", $param['persona']['nro_documento'])){
-//            $resultado = \Yii::$app->registral->buscarPersonaPorNroDocumento($param['persona']['nro_documento']);
-//            
-//            if(isset($resultado['resultado'][0]['id'])){
-//                $personaid= intval($resultado['resultado'][0]['id']);                
-//            }
-//        }
+    /**
+     * 
+     * @param array $param estos parametros son de Destinatario, Persona, Hogar y una coleccion de Estudios
+     * @throws Exception
+     */
+    public function setAttributesAndValidate($param) {
         
         $personaForm = new PersonaForm();
         $hogarForm = new HogarForm();
-//        $nucleoForm = new NucleoForm();
+        $arrayErrors = array();
         
-        if(!isset($param['persona'])){
-            $personaForm->validate();
-            $arrayErrors['persona']=$personaForm->getErrors();
-            throw new Exception(json_encode($arrayErrors));
-        }       
-        if(!isset($param['persona']['hogar'])){
-            $hogarForm->validate();
-            $arrayErrors['hogar']=$hogarForm->getErrors();
-            throw new Exception(json_encode($arrayErrors));
+  
+        if(isset($param['destinatario'])){            
+            parent::setAttributes($param['destinatario']);
         }
         
-        $personaForm->setAttributes($param['persona']);
-        $hogarForm->setAttributes($param['persona']['hogar']);
+        if(isset($param['persona'])){
+            $personaForm->setAttributes($param['persona']);
+        }       
+        if(isset($param['persona']['hogar'])){
+            $hogarForm->setAttributes($param['persona']['hogar']);
+        }
 
         if(!$personaForm->validate()){
-            $arrayErrors['persona']=$personaForm->getErrors();
-            throw new Exception(json_encode($arrayErrors));
+            $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
         }                
         
         if(!$hogarForm->validate()){
-            $arrayErrors['hogar']=$hogarForm->getErrors();
-            throw new Exception(json_encode($arrayErrors));
+            $arrayErrors=ArrayHelper::merge($arrayErrors, array('hogar'=>$hogarForm->getErrors()));
         } 
         
-        //SERIALIZAMOS Persona
-//        $param_persona = $personaForm->toArray();
-        //SERIALIZAMOS Hogar
-//        $param_persona['hogar'] = $hogarForm->toArray();
-        //SERIALIZAMOS Estudios
+        if(!$this->validate()){
+            $arrayErrors=ArrayHelper::merge($arrayErrors, array('destinatario'=>$this->getErrors()));
+        } 
+        
+        if(count($arrayErrors)>0){
+            throw new Exception(json_encode($arrayErrors));
+        }
+
+        
         if(isset($param['persona']['estudios'])){
             $coleccionEstudio = array();
             foreach ($param['persona']['estudios'] as $estudio) {
@@ -111,11 +107,9 @@ class Destinatario extends BaseDestinatario
                 $hogarForm->id = $response['resultado'][0]['id'];
                 $nucleoPredeterminado = \Yii::$app->registral->buscarNucleo($hogarForm->id);
                 if(isset($nucleoPredeterminado['estado']) && $nucleoPredeterminado['estado']==true && isset($nucleoPredeterminado['resultado'][0]['id'])){
-//                                    die('entra');
                     //instanceamos el nucleo encontrado
-                    $personaForm->nucleoid = $nucleoPredeterminado['resultado'][0]['id'];                    
-                    $param_persona['nucleo']['id'] = $personaForm->nucleoid;
-                }                
+                    $personaForm->nucleoid = $nucleoPredeterminado['resultado'][0]['id'];  
+                }              
             }
         }
         
@@ -123,28 +117,24 @@ class Destinatario extends BaseDestinatario
         $param_persona['estudios'] = $coleccionEstudio;
         $param_persona['hogar'] = $hogarForm->toArray();
         $param_persona['nucleo']['nombre'] = 'Predeterminado';
+        $param_persona['nucleo']['id'] = (isset($personaForm->nucleoid))?$personaForm->nucleoid:null;
         
+        /*************** Ejecutamos la interoperabilidad ************************/
         //Si es una persona con id entonces ya existe en Registral
-        //ejecutamos la interoperabilidad
         if(isset($personaForm->id) && !empty($personaForm->id)){
-            //actualizamos la persona
-            \Yii::$app->registral->actualizarPersona($param_persona);
+            $personaid = intval(\Yii::$app->registral->actualizarPersona($param_persona));
+            $personaForm->id = $personaid;
+            
         }else{
-            //no tiene id Persona()
-            //creamos una persona nueva
             $personaid = intval(\Yii::$app->registral->crearPersona($param_persona));
             $personaForm->id = $personaid;
         }
-            
+        
         //seteamos lo datos de Destinatario
-        if(isset($param['destinatario'])){
-            
-            parent::setAttributes($param['destinatario'], $safeOnly);
-            
-            $this->fecha_ingreso = date('Y-m-d');
-            $this->personaid = $personaForm->id;
-//            print_r($this->personaid);die();
-        }
+        
+        $this->fecha_ingreso = date('Y-m-d');
+        $this->personaid = $personaForm->id;
+        
         
         
     }
