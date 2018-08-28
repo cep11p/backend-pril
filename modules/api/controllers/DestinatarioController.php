@@ -73,7 +73,7 @@ class DestinatarioController extends ActiveController{
         try {
             
             $model = new Destinatario();
-            $model->setAttributes($param);
+            $model->setAttributesAndValidate($param);
             //Registrar y validar personaid
             
             if(!$model->save()){
