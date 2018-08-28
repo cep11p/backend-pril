@@ -48,7 +48,7 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['legajo', 'fecha_ingreso', 'fecha_presentacion', 'personaid'], 'required'],
+            [['legajo', 'fecha_ingreso', 'fecha_presentacion'], 'required'],
             [['calificacion', 'personaid', 'experiencia_laboral'], 'integer'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
@@ -81,6 +81,16 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             'banco_alias' => 'Banco Alias',
             'experiencia_laboral' => 'Experiencia Laboral',
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeHints()
+    {
+        return array_merge(parent::attributeHints(), [
+            'personaid' => 'Este campo debe ser obligatorio, pero esto se debe obligar mediante una regla de negocio a mano, es decir con codigo puro',
+        ]);
     }
 
     /**
