@@ -60,7 +60,7 @@ Creamos el esquema de la bd desde docker
         (DEV)
 	docker exec -i app_mimysql_1 mysql -u root -proot --execute 'create database pril DEFAULT CHARACTER SET utf8'
 
-Importamos el sql inicial que se encuentra en /desarrolloPRIL/bd_inicial
+Importamos el sql inicial que se encuentra en /desarrolloPRILBack/bd_inicial
 
 	docker exec -i app_mimysql_1 mysql -u root -p pril < bd_inicial.sql
 

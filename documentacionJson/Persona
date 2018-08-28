@@ -1,0 +1,8 @@
+**** Ingresar al sistema ***
+http://api.pril.local/api/usuario/login
+Method POST
+
+{
+	"username": String,
+	"password_hash": String
+}
