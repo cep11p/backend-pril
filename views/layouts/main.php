@@ -39,9 +39,12 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Administrar Usuarios', 'url' => ['/user/admin/index']],
-            ['label' => 'Plan', 'url' => ['/site/index']],
-            ['label' => 'Ambiente de Trabajo', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Tablas Soporte', 'items' => [
+                ['label' => 'Plan', 'url' => ['/site/index']],
+                ['label' => 'Ambiente de Trabajo', 'url' => ['/site/about']],
+                ['label' => 'Profesion', 'url' => ['/backend/profesion']],
+                ['label' => 'Oficio', 'url' => ['/backend/oficio']],
+            ]],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/user/security/login']]
             ) : (

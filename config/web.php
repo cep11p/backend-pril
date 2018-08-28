@@ -124,6 +124,10 @@ $config = [
         'api' => [
             'class' => 'app\modules\api\Api',
         ],
+        
+        'backend' => [
+            'class' => 'app\modules\backend\Backend',
+        ],
     ],
     'params' => $params,
 ];
