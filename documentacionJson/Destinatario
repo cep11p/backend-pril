@@ -79,10 +79,10 @@
 @param
 {
 	"destinatario":{
-		"oficio": "Un oficio",
 		"calificacion": 7,
 		"legajo": "usb123/7",
-		"profesion":"ninguna",
+		"profesionid":1,
+		"oficioid": 2,
 		"fecha_presentacion":"2000-12-12",
 		"fecha_ingreso": "2000-12-12",
 		"origen": "un origen",
@@ -135,6 +135,7 @@
 	        "habitacion_dormir": 2,
 	        "banioid": 1
 	    }
+	}
 		
 }
 
@@ -145,10 +146,10 @@
 @param
 {
 	"destinatario":{
-		"oficio": "Un oficio",
 		"calificacion": 7,
 		"legajo": "usb123/7",
-		"profesion":"ninguna",
+		"profesionid":1,
+		"oficioid": 2,
 		"fecha_presentacion":"2000-12-12",
 		"fecha_ingreso": 
 		"origen": "un origen",

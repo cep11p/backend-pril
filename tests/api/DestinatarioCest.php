@@ -25,10 +25,10 @@ class DestinatarioCest
         $I->wantTo('Agregar Destinataro Con Persona No existente');
         $param=[
             "destinatario"=>[
-                "oficio"=> "Un oficio",
 		"calificacion"=> 7,
 		"legajo"=> "usb123/7",
-		"profesion"=>"Maestra",
+                "oficioid"=>1,
+		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"fecha_ingreso"=> "2000-12-12",
 		"origen"=> "un origen",
