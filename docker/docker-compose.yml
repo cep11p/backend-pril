@@ -22,6 +22,17 @@ services:
        default:
            aliases:
               - api.registral.local
+
+  lugarphp:
+    image:  lugar_php:0.1
+    ports:
+      - 82:80
+    volumes:
+      - /var/www/html:/var/www/html
+    networks:
+       default:
+           aliases:
+              - api.lugar.local
   mimysql:
     image: mysql
     ports:
