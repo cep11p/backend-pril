@@ -35,18 +35,46 @@
 }
 
 **** Para crear****
-@url http://api.pril.local/api/ambiente-trabajo 
+Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mismo se registran datos de georeferencia y geolocalizacion. 
+Antes de registral lugar se buscara si existe un lugar identico, si existe, la api lo notificará
+A veces suele pasar que se quiere registrar un lugar que ya existe. Si pasa esto, existe la opcion de reutilizar el lugar y poder llegar a modificar o utilizar. La opcion es agregar el parametro "usarLugarEncontrado":true dentro del array lugar().
+@url http://api.pril.local/api/ambiente-trabajos
 @method POST
 {
-	    "nombre": "Panaderia San Fernando",
-	    "calificacion": 7,
-	    "legajo": "asb123/7",
-	    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
-	    "cuit":20123456789,
-	    "actividad": "Vende facturas, tortas y variedades de panes",
-	    "tipo_ambiente_trabajoid": 1,
-	    "lugarid": 2,
-	    "personaid": 1 //puede ser null
+	   "ambiente_trabajo":{
+			"nombre": "Panaderia San Fernando",
+		    "calificacion": 7,
+		    "legajo": "asb123/7",
+		    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+		    "cuit":"20123456789",
+		    "actividad": "Vende facturas, tortas y variedades de panes",
+		    "tipo_ambiente_trabajoid": 1
+	   },
+	   "lugar":{
+	   		"calle":"Mata Negra modificado",
+	   		"altura":"1233",
+	   		"localidadid":2
+	   }
+		
+}
+@UsarLugarEncontrado
+{
+	   "ambiente_trabajo":{
+			"nombre": "Panaderia San Fernando",
+		    "calificacion": 7,
+		    "legajo": "asb123/7",
+		    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+		    "cuit":"20123456789",
+		    "actividad": "Vende facturas, tortas y variedades de panes",
+		    "tipo_ambiente_trabajoid": 1
+	   },
+	   "lugar":{
+		"id":1
+   		"calle":"Mata Negra modificado",
+   		"altura":"1233",
+   		"localidadid":2,
+		"usarLugarEncontrado":true
+	   }
 		
 }
 

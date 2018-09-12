@@ -1,6 +1,6 @@
-**** Ingresar al sistema ***
-http://api.pril.local/api/usuario/login
-Method POST
+**** obtener lista de Personas ***
+@url ejemplo http://api.pril.local/api/personas?nombre=lorena&nro_documento=36849868
+@Method GET
 
 {
 	"username": String,

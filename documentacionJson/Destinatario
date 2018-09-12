@@ -95,7 +95,7 @@
 		"observacion": "Una observacion"
 	},
 	"persona":{
-	    "id": 2,
+	    "id": 2, //si id no esta seteado, la persona no fue encontrada, por lo tanto es una persona nueva
 	    "nombre": "Romina",
 	    "apellido": "Rodríguez",
 	    "nro_documento": "29890098",
@@ -162,7 +162,7 @@
 		"observacion": "Una observacion"
 	},
 	"persona":{
-		"id":1
+		"id":1 
 		"nombre":"Ezequiel Francisco",
 		"apellido":"Garcia",
 		"nro_documento":"32145123",

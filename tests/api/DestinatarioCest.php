@@ -19,8 +19,11 @@ class DestinatarioCest
 //        ];
 //    }
 
-    // tests
-    public function crearDestinatarioConPersonaNoExistente(ApiTester $I)
+    /**
+     * NOTA!...Esto debe andar con autoclean
+     * @param ApiTester $I
+     */
+    public function crearDestinatarioConPersonaNueva(ApiTester $I)
     {
         $I->wantTo('Agregar Destinataro Con Persona No existente');
         $param=[
@@ -92,6 +95,8 @@ class DestinatarioCest
             'success' => true
         ]);
         
-        $I->seeResponseCodeIs(500); 
+        $I->seeResponseCodeIs(200);
+        
+        
     }
 }
