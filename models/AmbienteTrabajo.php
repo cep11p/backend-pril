@@ -27,7 +27,9 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
         return ArrayHelper::merge(
             parent::rules(),
             [
-                # custom validation rules
+                # custom validation rules                
+                ['lugarid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar el Lugar correctamente en el Sistema Lugar.'],
+//                ['lugarid', 'existeLugarEnSistemaLugar','skipOnEmpty' => true],
             ]
         );
     }

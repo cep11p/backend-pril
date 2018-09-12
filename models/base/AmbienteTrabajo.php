@@ -43,7 +43,7 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'personaid', 'tipo_ambiente_trabajoid', 'lugarid'], 'required'],
+            [['nombre', 'tipo_ambiente_trabajoid'], 'required'],
             [['calificacion', 'personaid', 'tipo_ambiente_trabajoid', 'lugarid'], 'integer'],
             [['observacion', 'actividad'], 'string'],
             [['nombre'], 'string', 'max' => 200],
@@ -77,7 +77,10 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
     public function attributeHints()
     {
         return array_merge(parent::attributeHints(), [
-            'personaid' => 'esta personaid esta para identificar al representante del ambiente de trabajo',
+            'personaid' => 'esta personaid esta para identificar al representante del ambiente de trabajo
+
+Este atributo debe ser obligatorio, por lo tanto se debera validar logicamente (regla de negocio)',
+            'lugarid' => 'Este atributo debe ser obligatorio, por lo tanto se debera validar logicamente (regla de negocio)',
         ]);
     }
 
