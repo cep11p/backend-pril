@@ -25,6 +25,9 @@ $config = [
         'registral'=> [
             'class' => 'app\components\ServicioPersona'
         ],
+        'lugar'=> [
+            'class' => 'app\components\ServicioLugar'
+        ],
         
         'i18n' => [
             'translations' => [
@@ -84,6 +87,10 @@ $config = [
 //                        'GET buscar' => 'buscar',
 //                        'OPTIONS buscaPersona' => 'options'
 //                    ], 
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/ambiente-trabajo'
                 ],
                 [   
                     'class' => 'yii\rest\UrlRule',
