@@ -10,7 +10,7 @@ use app\models\Estudio;
 use yii\base\Model;
 
 /**
- * This is the model class for table "persona".
+ * Esto es un modelo que representa un estudio en el Sistema Registral
  */
 class EstudioForm extends Model
 {
@@ -18,7 +18,7 @@ class EstudioForm extends Model
     public $titulo;
     public $completo;
     public $en_curso;
-    public $fecha;
+    public $anio;
     public $personaid;
 
     public function rules()
@@ -26,7 +26,7 @@ class EstudioForm extends Model
         return [
             [['nivel_educativoid'], 'required'],
             [['nivel_educativoid', 'completo', 'en_curso', 'personaid'], 'integer'],
-            [['fecha'], 'date', 'format' => 'php:Y-m-d'],
+            [['anio'], 'date', 'format' => 'php:Y'],
             [['titulo'], 'string', 'max' => 200],
             ['nivel_educativoid','existeNivelEducativoEnRegistral']
         ];

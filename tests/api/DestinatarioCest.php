@@ -64,7 +64,7 @@ class DestinatarioCest
                     "titulo"=>"Maestra",
                     "completo"=>1,
                     "en_curso"=>0,
-                    "fecha"=>"2014-12-20"
+                    "fecha"=>"2014"
                     ]
                 ],
                 "hogar"=> [
