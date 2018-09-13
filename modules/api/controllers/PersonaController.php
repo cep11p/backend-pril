@@ -75,6 +75,7 @@ class PersonaController extends ActiveController{
         if($resultado['estado']!=true){
             $data['success']=false;            
             $data['resultado']=[];
+            $data['message']="No se encontró ninguna persona!";   
         }else{
             $data['success']=true;
             $data['resultado']=$resultado['resultado'];
