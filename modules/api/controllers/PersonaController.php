@@ -73,7 +73,7 @@ class PersonaController extends ActiveController{
 //        print_r($resultado);
 //        die();
         if($resultado['estado']!=true){
-            $data['success']='false';            
+            $data['success']=false;            
             $data['resultado']=[];
         }else{
             $data['success']=true;
