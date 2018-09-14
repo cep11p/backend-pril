@@ -43,11 +43,12 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'tipo_ambiente_trabajoid'], 'required'],
+            [['nombre', 'legajo', 'tipo_ambiente_trabajoid'], 'required'],
             [['calificacion', 'personaid', 'tipo_ambiente_trabajoid', 'lugarid'], 'integer'],
             [['observacion', 'actividad'], 'string'],
             [['nombre'], 'string', 'max' => 200],
             [['legajo', 'cuit'], 'string', 'max' => 45],
+            [['legajo'], 'unique'],
             [['tipo_ambiente_trabajoid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\TipoAmbienteTrabajo::className(), 'targetAttribute' => ['tipo_ambiente_trabajoid' => 'id']]
         ];
     }
