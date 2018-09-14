@@ -4,3 +4,4 @@ services:
   prilphp: 
    environment:
        RUNMODE: prod
+       CLASE_PERSONA: app\components\ServicioPersona

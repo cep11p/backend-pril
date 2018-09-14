@@ -17,7 +17,7 @@ use Exception;
  *
  * @author mboisselier
  */
-class ServicioPersona extends Component implements IServicioPersona
+class DummyServicioPersona extends Component implements IServicioPersona
 {
     public $base_uri;
     private $_client;
@@ -261,29 +261,16 @@ class ServicioPersona extends Component implements IServicioPersona
     
     public function buscarPersona($param)
     {
+        $data['estado']=true;
         
-        $criterio = $this->crearCriterioBusquedad($param);
-        $client =   $this->_client;
-        try{
-            $headers = [
-                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
-                'Content-Type'=>'application/json'
-            ];          
-            
-            $response = $client->request('GET', 'http://api.registral.local/api/persona?'.$criterio, ['headers' => $headers]);
-            $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
-            
-            return $respuesta;
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
-                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
-        } catch (Exception $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
-                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
-                return false;
-        }
+        $resultado = array(
+            array("persona1"),
+            array("persona2"),
+        );
+        
+        $data['resultado']=$resultado;
+        
+        return $data;
        
     }
     
