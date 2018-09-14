@@ -85,25 +85,7 @@ class AmbienteTrabajoController extends ActiveController{
             
             if(!$lugarForm->validate()){
                 $arrayErrors = ArrayHelper::merge($arrayErrors, array('lugar' => $lugarForm->getErrors()));
-            }
-            
-            $paramLugar = $lugarForm->toArray();
-            
-            if(isset($param['lugar']['usarLugarEncontrado']) && $param['lugar']['usarLugarEncontrado']==true){
-                if(!isset($paramLugar['id'])){
-                    $arrayErrors['lugar']['id']='El atributo id debe estar seteando si se quiere reutilizar el lugar!';                
-                    $arrayErrors['tab']='lugar';                
-                    throw new Exception(json_encode($arrayErrors));
-                }
-                $paramLugar['usarLugarEncontrado'] = $param['lugar']['usarLugarEncontrado'];
-            }else{
-                $lugarForm->existeLugar();                
-                if(count($lugarForm->getErrors())>0){
-                    $arrayErrors = ArrayHelper::merge($arrayErrors, array('lugar' => $lugarForm->getErrors()));
-                }
-                
-            }
-            
+            }            
             
             /************ Validamos todos los campos de AmbienteTrabajo************/
             if (isset($param['ambiente_trabajo'])){
@@ -112,15 +94,16 @@ class AmbienteTrabajoController extends ActiveController{
             
             if(!$model->validate()){ 
                 $arrayErrors = ArrayHelper::merge($arrayErrors, array('ambiente_trabajo' => $model->getErrors()));
-            }
+            }           
             
+            /*********** Fin de la Validacion******/
+            
+            //verificamos si hay errores para mostrar
             if(count($arrayErrors)>0){
                 throw new Exception(json_encode($arrayErrors));
             }
-            /*********** Fin de la Validacion******/
             
-            
-            $lugarid = intval(\Yii::$app->lugar->crearLugar($paramLugar));
+            $lugarid = intval(\Yii::$app->lugar->crearLugar($lugarForm));
             $model->lugarid = $lugarid;
             
             if(!$model->save()){
