@@ -8,7 +8,7 @@ use yii\base\Exception;
 /**Models**/
 //use app\models\Destinatario;
 
-class PersonaController extends ActiveController{
+class LocalidadController extends ActiveController{
     
     public $modelClass = 'app\models\Destinatario';
     
@@ -72,10 +72,10 @@ class PersonaController extends ActiveController{
         $resultado = \Yii::$app->lugar->buscarLocalidad($param);
 //        print_r($resultado);
 //        die();
-        if($resultado['estado']!=true){
+        if($resultado['success']!=true){
             $data['success']=false;            
             $data['resultado']=[];
-            $data['message']="No se encontró ninguna persona!";   
+            $data['message']="No se encontró ninguna localidad!";   
         }else{
             $data['success']=true;
             $data['resultado']=$resultado['resultado'];
