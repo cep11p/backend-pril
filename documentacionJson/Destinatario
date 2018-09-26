@@ -95,7 +95,6 @@
 		"observacion": "Una observacion"
 	},
 	"persona":{
-	    "id": 2, //si id no esta seteado, la persona no fue encontrada, por lo tanto es una persona nueva
 	    "nombre": "Romina",
 	    "apellido": "Rodríguez",
 	    "nro_documento": "29890098",
@@ -117,24 +116,18 @@
 	    	"en_curso":0,
 	    	"anio":"2014"
 	    }],
-	    "hogar": {
+	    "lugar": {
+	    	//"usarLugarEncontrado":true, //este campo solo es utilizado cuando se encuentra un lugar identico
 	    	"barrio":"Don bosco",
 	    	"calle":"Mitre",
 	    	"altura":"327",
-	    	"piso":"",
+	    	"piso":"A",
 	    	"depto":"",
 	    	"localidadid":1,
-	    	"tiene_gas":0,
-	    	"tiene_luz":0,
-	    	"tiene_agua":0,
-	    	"condicion_ocupacionid":1,
-	    	"obtencion_aguaid": 1,
-	        "tipo_desagueid": 1,
-	        "cocina_combustibleid": 1,
-	        "tipo_viviendaid": 1,
-	        "habitacion_dormir": 2,
-	        "banioid": 1
+	    	"latitud":"-123123",
+			"longitud":"321123"
 	    }
+
 	}
 		
 }
