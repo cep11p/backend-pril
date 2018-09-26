@@ -145,14 +145,14 @@ class ServicioPersona extends Component implements IServicioPersona
     
     
     /**
-     * Busca el nucleo que tenga el mismo hogarid y con el nombre = 'Predeterminado'
-     * @param int $hogarid
+     * Busca el nucleo que tengan los atributos que viene por $param
+     * @param array $param un array de atributos del nucleoForm
      * @param string $nombre
      * @return obtenemos una respuesta de registral
      */
-    public function buscarNucleo($hogarid,$nombre = 'Predeterminado')
+    public function buscarNucleo($param)
     {
-        $criterio = $this->crearCriterioBusquedad(['hogarid'=>$hogarid,'nombre'=>$nombre]);
+        $criterio = $this->crearCriterioBusquedad($param);
         $client =   $this->_client;
         try{
             $headers = [
@@ -233,8 +233,8 @@ class ServicioPersona extends Component implements IServicioPersona
 
     public function buscarHogar($param)
     {
-        $paramLimpio = \app\components\Help::extraerArrayDeArrayAsociativo($param,['localidadid','calle','altura','depto','piso','barrio']);
-        $criterio = $this->crearCriterioBusquedad($paramLimpio);
+//        $paramLimpio = \app\components\Help::extraerArrayDeArrayAsociativo($param,['localidadid','calle','altura','depto','piso','barrio']);
+        $criterio = $this->crearCriterioBusquedad($param);
         $client =   $this->_client;
         try{
             $headers = [

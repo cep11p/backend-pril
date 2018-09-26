@@ -38,7 +38,7 @@ interface IServicioPersona {
      * @param string $nombre
      * @return obtenemos una respuesta de registral
      */
-    public function buscarNucleo($hogarid,$nombre = 'Predeterminado');
+    public function buscarNucleo($param);
     
     public function buscarNucleoPorId($id);
     
