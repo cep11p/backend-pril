@@ -52,7 +52,7 @@ class LugarForm extends Model
      * que vamos a chequear si coinciden los atributos
      * @return LugarForm $lugarEncontrado;
      */
-    protected function buscarLugarEnSistemaLugar() {
+    public function buscarLugarEnSistemaLugar() {
         
         $resultado = null;
         $response = \Yii::$app->lugar->buscarLugar($this->attributes);   
@@ -84,35 +84,17 @@ class LugarForm extends Model
     }
     
     /**
-     * Es regla regla solo se usa en el actionCreate
      * Vamos a verificar si existe comparando todos los atributos, 
      * si existe, se notificará y se enviara el id del lugar con el fin de ser utilizado si se quiere
      */
     public function existeLugarIdentico(){
-        
-        if(isset($this->id) && !isset($this->usarLugarEncontrado)){
-            $this->addError("id", 'El atributo id debe estar seteando solo si usarLugarEncontrado = true');  
-        }
-       
-        if((isset($this->usarLugarEncontrado) && $this->usarLugarEncontrado == true)){
-            
-                if(!isset($this->id)){
-                    $this->addError($id, 'El atributo id debe estar seteando si se quiere reutilizar el lugar!');  
-                }
-                
-                if(!$this->existeLugarEnSistemaLugar()){
-                    $this->addError("id", 'El lugar a reutilizar con el id '.$this->id.' no existe!');
-                }    
-                
-        }else{
-            
+
+        if(!isset($this->usarLugarEncontrado) || $this->usarLugarEncontrado==false){
             if($this->buscarLugarEnSistemaLugar()!=null){
                 $lugarEncontrado = $this->buscarLugarEnSistemaLugar();
                 $this->addError("notificacion", "El lugar a registrar ya existe!");
                 $this->addError("lugarEncontrado", $lugarEncontrado);
             }
-            
-            
         }
         
     }
