@@ -11,24 +11,33 @@ use yii\base\Model;
 class HogarForm extends Model
 {
     public $id;
-    public $barrio;
-    public $calle;
-    public $altura;
-    public $piso;
-    public $depto;
-    public $localidadid;
+    public $lugarid;
     public $jefeid;
 
     public function rules()
     {
         return [
-            [['calle', 'altura', 'localidadid'], 'required'],
-            [['localidadid', 'jefeid','id'], 'integer'],
-            [['barrio'], 'string', 'max' => 100],
-            [['calle', 'altura', 'piso', 'depto'], 'string', 'max' => 45],
+            [['lugarid'], 'required'],
+            [['jefeid','lugarid','id'], 'integer']
         ];
     }
     
+    /**
+     * Devolvemos el hogar encontrado
+     * @return array
+     */
+    public function buscarHogarEnSistemaRegistral(){        
+        $resultado = null;
+        $response = \Yii::$app->registral->buscarHogar($this->attributes);   
+        if(isset($response['success']) && $response['success']==true){
+
+            if(count($response['resultado'])>0){            
+                $resultado = $response['resultado'][0];
+            }
+        }
+        
+        return $resultado;
+    }
     
     
    
