@@ -63,6 +63,57 @@ class PersonaForm extends Model
         }  
         
     }
+    
+    /**
+     * Se cargar los atributos de la persona encontrada
+     * @param int $id
+     */
+    public function buscarPersonaPorIdEnRegistral(){
+        $response = \Yii::$app->registral->buscarPersonaPorId($this->id); 
+        
+        if(isset($response['estado']) && $response['estado']==true){
+            $this->setAttributes(array_shift($response['resultado']));
+            
+        }
+    }
+    
+    /**
+     * Se serializa los datos Persona,Estudios y Lugar para ser mostrados
+     * @return array devuelven datos para ser mostrados, caso contrario, se devuelve un array vacio
+     */
+    public function mostrarPersonaConLugarYEstudios(){
+        $response = \Yii::$app->registral->buscarPersonaPorId($this->id); 
+        
+        $personaArray = array();
+        if(isset($response['estado']) && $response['estado']==true){
+            $personaArray = $response['resultado'][0];
+            
+            if(isset($personaArray['hogar'])){
+                $lugarid = $personaArray['hogar']['lugarid'];
+                $lugarArray = $this->getLugar($lugarid);
+                
+                unset($personaArray['hogar']);
+                $personaArray['lugar'] = $lugarArray;
+            }
+        }
+        
+        return $personaArray;
+    }
+    
+    /**
+     * Esta funcion busca un lugar en el sistema lugar
+     * @param int $id
+     * @return array con atributos de lugar, en caso que no exista se devuelve un Null;
+     */
+    protected function getLugar($lugarid){
+        $response = \Yii::$app->lugar->buscarLugarPorId($lugarid);
+        $resultado = null;
+        if(isset($response['success']) && $response['success']==true){
+            $resultado = $response['resultado'][0];
+        }
+        
+        return $resultado;
+    }
 
     /**
      * 

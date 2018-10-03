@@ -7,6 +7,7 @@ use Yii;
 use yii\base\Exception;
 /**Models**/
 use app\models\Destinatario;
+use app\models\PersonaForm;
 
 class DestinatarioController extends ActiveController{
     
@@ -56,8 +57,25 @@ class DestinatarioController extends ActiveController{
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['update']);
+        unset($actions['view']);
         return $actions;
     
+    }
+    
+    /**
+     * Se recibe una id y se buscar el destinatario para ser mostrado
+     * @param int $id
+     * @return array con los datos de un agente
+     */
+    public function actionView($id)
+    {
+        
+        $model = new Destinatario();
+        $model = $model->findOne(['id'=>$id]);
+        $resultado = $this->crearVistaModelo($model);
+        
+        return $resultado;
+
     }
     
     /**
@@ -140,42 +158,47 @@ class DestinatarioController extends ActiveController{
 
     }
     
-    public function actionBuscar()
-    {
-        $resultado['message']='Se guarda un Destinatario';
-        $param = Yii::$app->request->queryParams;
-        print_r($param);
-        die('...');
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
+    /**
+     * Se recibe el modelo Destinatario para crear un array con sus registros
+     * @param Destinatario $model
+     * @return array $resultado
+     */
+    private function crearVistaModelo($model){
+        
+        
+        try{
+            $resultado['success'] = false;
+            $resultado['resultado'] = array();
             
-            $model = Destinatario::findOne(['id'=>$id]);            
-            if($model==NULL){
-                $msj = 'El destinatario con el id '.$id.' no existe!';
-                throw new Exception($msj);
+            if($model!=null){
+                
+                #####Instanceamos la persona a mostrar
+                $personaForm = new PersonaForm();
+                $personaForm->buscarPersonaPorIdEnRegistral($model->personaid);
+                
+                if(!isset($personaForm->id)){
+                    $resultado['menssage'] = 'El destinatario tiene como referencia una persona que no existe';
+                    throw new Exception(json_encode($resultado['menssage']));
+                }
+                
+                $resultado['success'] = true;
+                $resultado['resultado']['persona'] = $personaForm->mostrarPersonaConLugarYEstudios();
+                $resultado['resultado']['destinatario'] = $model->toArray();
+
+            }else{
+                $resultado['menssage'] = 'El Destinatario no existe!';
+                    throw new Exception(json_encode($resultado['menssage']));
             }
+        
+        return $resultado;
             
-            $model->setAttributes($param);
-            
-            if(!$model->save()){
-                $arrayErrors['destinatario']=$model->getErrors();
-                $arrayErrors['tab']='destinatario';                
-                throw new Exception(json_encode($arrayErrors));
-            }
-            
-            $transaction->commit();
-            
-            $resultado['success']=true;
-            $resultado['data']['id']=$model->id;
-            
-            return  $resultado;
-           
-        }catch (Exception $exc) {
-            //echo $exc->getTraceAsString();
-            $transaction->rollBack();
+        }catch(Exception $exc){
+        
             $mensaje =$exc->getMessage();
             throw new \yii\web\HttpException(500, $mensaje);
         }
-
+        
+        
+        
     }
 }
