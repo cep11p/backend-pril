@@ -8,6 +8,7 @@ use Yii;
 /**Models**/
 use app\models\AmbienteTrabajo;
 use app\models\LugarForm;
+use app\models\PersonaForm;
 use \yii\helpers\ArrayHelper;
 use yii\base\Exception;
 
@@ -77,6 +78,7 @@ class AmbienteTrabajoController extends ActiveController{
             
             $model = new AmbienteTrabajo();
             $lugarForm = new LugarForm();
+            $personaForm = new PersonaForm();
             
             /************ Validamos todos los campos de Lugar************/
             if(isset($param['lugar'])){
@@ -87,9 +89,19 @@ class AmbienteTrabajoController extends ActiveController{
                 $arrayErrors = ArrayHelper::merge($arrayErrors, array('lugar' => $lugarForm->getErrors()));
             }            
             
+            /************ Validamos todos los campos de Representante************/
+            if(isset($param['persona'])){
+                $personaForm->setAttributes($param['persona']);
+            }
+            if(!$personaForm->save()){
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
+            }            
+            
+            
             /************ Validamos todos los campos de AmbienteTrabajo************/
             if (isset($param['ambiente_trabajo'])){
                 $model->setAttributes($param['ambiente_trabajo']);
+                $model->personaid = $personaForm->id;
             }
             
             if(!$model->validate()){ 

@@ -46,6 +46,28 @@ class PersonaForm extends Model
     }
     
     
+    public function save(){
+        
+        if($this->validate()){
+            $resultado = null;
+            if(isset($this->id) && !empty($this->id)){
+                $personaid = intval(\Yii::$app->registral->actualizarPersona($this->attributes()));
+                $this->id = $personaid;
+                $resultado = $this->id;
+            }else{
+                $personaid = intval(\Yii::$app->registral->crearPersona($this->toArray()));
+                $this->id = $personaid;
+                $resultado = $this->id;
+            }
+        }else{
+            die("mal");
+            $resultado = false;
+        } 
+            
+        
+        
+        return $resultado;
+    }
     
     /**
      * Ademas de registrar los datos personales, se registran los datos del hogar
