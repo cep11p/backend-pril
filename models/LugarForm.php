@@ -21,17 +21,14 @@ class LugarForm extends Model
     public $piso;
     public $depto;
     public $escalera;
-    public $usarLugarEncontrado;
-
+    
     public function rules()
     {
         return [
             [['calle', 'altura', 'localidadid'], 'required'],
             [['localidadid','id'], 'integer'],
-            [['usarLugarEncontrado'], 'boolean'],
             [['nombre', 'calle', 'altura', 'latitud', 'longitud', 'barrio', 'piso', 'depto', 'escalera'], 'string', 'max' => 200],
             ['localidadid','existeLocalidadEnSistemaLugar'],
-            ['localidadid','existeLugarIdentico'],//aprovechamos que localidadid es obligatorio, para realizar siempre una busquedad de lugar
         ];
     }
     
@@ -65,7 +62,7 @@ class LugarForm extends Model
                     $lugarARegistrar = $this->attributes;
                     
                     #borramos el siguiente atributo por el modelo de lugarEncontrado no lo tiene
-                    unset($lugarARegistrar['usarLugarEncontrado']);
+//                    unset($lugarARegistrar['usarLugarEncontrado']);
                     
                     #borramos el id, ya que el modelo a registrar aun no tiene id
                     if(!isset($this->id) && empty($this->id)){
@@ -83,21 +80,7 @@ class LugarForm extends Model
         return $resultado;
     }
     
-    /**
-     * Vamos a verificar si existe comparando todos los atributos, 
-     * si existe, se notificará y se enviara el id del lugar con el fin de ser utilizado si se quiere
-     */
-    public function existeLugarIdentico(){
 
-        if(!isset($this->usarLugarEncontrado) || $this->usarLugarEncontrado==false){
-            if($this->buscarLugarEnSistemaLugar()!=null){
-                $lugarEncontrado = $this->buscarLugarEnSistemaLugar();
-                $this->addError("notificacion", "El lugar a registrar ya existe!");
-                $this->addError("lugarEncontrado", $lugarEncontrado);
-            }
-        }
-        
-    }
     
     /**
      * Es regla regla solo se usa en el actionCreate
