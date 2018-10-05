@@ -117,15 +117,15 @@
 	    	"anio":"2014"
 	    }],
 	    "lugar": {
-	    	//"usarLugarEncontrado":true, //este campo solo es utilizado cuando se encuentra un lugar identico
 	    	"barrio":"Don bosco",
 	    	"calle":"Mitre",
 	    	"altura":"327",
 	    	"piso":"A",
 	    	"depto":"",
+		"escalera":"",
 	    	"localidadid":1,
 	    	"latitud":"-123123",
-			"longitud":"321123"
+		"longitud":"321123"
 	    }
 
 	}
