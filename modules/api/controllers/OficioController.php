@@ -65,10 +65,9 @@ class OficioController extends ActiveController{
 //        return $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
         
-        $data = array('estado'=>false);
-        if($resultado->getTotalCount()){
-            $data['estado']='true';            
-            $data['resultado']=$resultado->models;
+        $data = array();
+        if($resultado->getTotalCount()){      
+            $data=$resultado->models;
         }
 
         return $data;

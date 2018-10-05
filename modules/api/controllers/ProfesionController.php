@@ -65,10 +65,9 @@ class ProfesionController extends ActiveController{
 //        return $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
         
-        $data = array('estado'=>false);
+        $data = array();
         if($resultado->getTotalCount()){
-            $data['estado']='true';            
-            $data['resultado']=$resultado->models;
+            $data = $resultado->models;
         }
 
         return $data;
