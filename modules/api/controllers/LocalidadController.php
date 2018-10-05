@@ -70,15 +70,10 @@ class LocalidadController extends ActiveController{
         
         
         $resultado = \Yii::$app->lugar->buscarLocalidad($param);
-//        print_r($resultado);
-//        die();
-        if($resultado['success']!=true){
-            $data['success']=false;            
-            $data['resultado']=[];
-            $data['message']="No se encontró ninguna localidad!";   
-        }else{
-            $data['success']=true;
-            $data['resultado']=$resultado['resultado'];
+        
+        $data = array();
+        if($resultado['success']==true){
+            $data = $resultado['resultado'];
         }
         
         return $data;
