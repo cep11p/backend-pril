@@ -60,7 +60,6 @@ class PersonaForm extends Model
                 $resultado = $this->id;
             }
         }else{
-            die("mal");
             $resultado = false;
         } 
             
