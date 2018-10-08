@@ -323,7 +323,7 @@ class ServicioPersona extends Component implements IServicioPersona
     
     /**
      * Se devuelve una coleccion de Genero.
-     * NOTA!... Hay que tener en cuenta que el GeneroController del sistema Registral no soporta filtrado, es decir que los parametros enviados va a ser inrrelevantes
+     * NOTA!... Hay que tener en cuenta que el GeneroController del sistema Registral no soporta filtrado, es decir que los parametros enviados van a ser inrrelevantes
      * @param array $param
      * @return boolean
      */
@@ -357,7 +357,7 @@ class ServicioPersona extends Component implements IServicioPersona
     
     /**
      * Se devuelve una coleccion de Estados Civiles.
-     * NOTA!... Hay que tener en cuenta que el EstadoCivilController del sistema Registral no soporta filtrado, es decir que los parametros enviados va a ser inrrelevantes
+     * NOTA!... Hay que tener en cuenta que el EstadoCivilController del sistema Registral no soporta filtrado, es decir que los parametros enviados van a ser inrrelevantes
      * @param array $param
      * @return boolean
      */

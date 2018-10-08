@@ -67,7 +67,7 @@ class EstadoCivilController extends ActiveController{
         $param = Yii::$app->request->queryParams;
         
         
-        $resultado = \Yii::$app->registral->buscarGenero($param);
+        $resultado = \Yii::$app->registral->buscarEstadoCivil($param);
         
         return $resultado;
 
