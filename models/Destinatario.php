@@ -31,8 +31,7 @@ class Destinatario extends BaseDestinatario
             [
                 # custom validation rules
                 [['fecha_presentacion'], 'date', 'format' => 'php:Y-m-d'],
-                [['fecha_ingreso'], 'date', 'format' => 'php:Y-m-d'],
-                [['fecha_ingreso'], 'date', 'format' => 'php:Y-m-d'],
+                [['fecha_ingreso'], 'date', 'format' => 'php:Y-m-d H:i:s'],
                 ['personaid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar la persona correctamente en el Sistema Registral.'],
             ]
         );
@@ -64,6 +63,7 @@ class Destinatario extends BaseDestinatario
   
         if(isset($param['destinatario'])){            
             parent::setAttributes($param['destinatario']);
+            $this->fecha_ingreso = date('Y-m-d H:i:s');
         }
         
         if(isset($param['persona'])){
@@ -144,9 +144,7 @@ class Destinatario extends BaseDestinatario
             $personaForm->id = $personaid;
         }
         
-        //seteamos lo datos de Destinatario
-        
-        $this->fecha_ingreso = date('Y-m-d');
+        //seteamos a la persona instanciada de Destinatario
         $this->personaid = $personaid;
         
         
