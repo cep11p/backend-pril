@@ -64,6 +64,9 @@ class Destinatario extends BaseDestinatario
         if(isset($param['destinatario'])){            
             parent::setAttributes($param['destinatario']);
             $this->fecha_ingreso = date('Y-m-d H:i:s');
+            
+            $this->experiencia_laboral = (isset($param['destinatario']['experiencia_laboral']) && ($param['destinatario']['experiencia_laboral']===true))?1:0;
+            
         }
         
         if(isset($param['persona'])){
@@ -144,7 +147,7 @@ class Destinatario extends BaseDestinatario
             $personaForm->id = $personaid;
         }
         
-        //seteamos a la persona instanciada de Destinatario
+        /*****************seteamos a la persona instanciada de Destinatario********************/
         $this->personaid = $personaid;
         
         
