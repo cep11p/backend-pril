@@ -58,9 +58,25 @@ class DestinatarioController extends ActiveController{
         unset($actions['create']);
         unset($actions['update']);
         unset($actions['view']);
+//        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
     }
+    
+//    public function prepareDataProvider() 
+//    {
+//        $searchModel = new \app\models\DestinatarioSearch();
+////        return $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
+//        $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
+//        
+//        $data = array('success'=>false);
+//        if($resultado->getTotalCount()){
+//            $data['success']='true';            
+//            $data['resultado']=$resultado->models;
+//        }
+//
+//        return $data;
+//    }   
     
     /**
      * Se recibe una id y se buscar el destinatario para ser mostrado

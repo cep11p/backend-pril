@@ -99,7 +99,8 @@ class PersonaForm extends Model
     }
     
     /**
-     * Se serializa los datos Persona,Estudios y Lugar para ser mostrados
+     * Se serializa los datos Persona,Estudios y Lugar para ser mostrados.
+     * NOTA! Tener encuenta que Estudio y Lugar no son partes de PersonaForm
      * @return array devuelven datos para ser mostrados, caso contrario, se devuelve un array vacio
      */
     public function mostrarPersonaConLugarYEstudios(){
@@ -109,6 +110,7 @@ class PersonaForm extends Model
         if(isset($response['estado']) && $response['estado']==true){
             $personaArray = $response['resultado'][0];
             
+            #Preparamos los atributos de lugar
             if(isset($personaArray['hogar'])){
                 $lugarid = $personaArray['hogar']['lugarid'];
                 $lugarArray = $this->getLugar($lugarid);
