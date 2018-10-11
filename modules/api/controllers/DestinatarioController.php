@@ -85,10 +85,19 @@ class DestinatarioController extends ActiveController{
      */
     public function actionView($id)
     {
+        $param = Yii::$app->request->get();
         
+//        print_r($param);die();
         $model = new Destinatario();
         $model = $model->findOne(['id'=>$id]);
-        $resultado = $this->crearVistaModelo($model);
+        
+        $resultado = array();
+        if(isset($param['modificar']) && $param['modificar']==true){
+            $resultado = $this->crearVistaModeloModificar($model);
+        }else{
+            $resultado = $this->crearVistaModelo($model);
+        }
+        
         
         return $resultado;
 
@@ -183,8 +192,7 @@ class DestinatarioController extends ActiveController{
         
         
         try{
-            $resultado['success'] = false;
-            $resultado['resultado'] = array();
+            $resultado = array();
             
             if($model!=null){
                 
@@ -197,9 +205,58 @@ class DestinatarioController extends ActiveController{
                     throw new Exception(json_encode($resultado['menssage']));
                 }
                 
-                $resultado['success'] = true;
-                $resultado['resultado']['persona'] = $personaForm->mostrarPersonaConLugarYEstudios();
-                $resultado['resultado']['destinatario'] = $model->toArray();
+                $resultado['persona'] = $personaForm->mostrarPersonaConLugarYEstudios();
+                $resultado['destinatario'] = $model->toArray();
+
+            }else{
+                $resultado['menssage'] = 'El Destinatario no existe!';
+                throw new Exception(json_encode($resultado['menssage']));
+            }
+        
+        return $resultado;
+            
+        }catch(Exception $exc){
+        
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+        
+        
+        
+    }
+    
+    
+    /**
+     * Se recibe el modelo Destinatario para crear un array con sus registros, con el fin de ser modificados
+     * @param Destinatario $model
+     * @return array $resultado
+     */
+    private function crearVistaModeloModificar($model){
+        
+        
+        try{
+            $resultado = array();
+            
+            if($model!=null){
+                
+                #####Instanceamos la persona a mostrar
+                $personaForm = new PersonaForm();
+                $personaForm->buscarPersonaPorIdEnRegistral($model->personaid);
+                
+                if(!isset($personaForm->id)){
+                    $resultado['menssage'] = 'El destinatario tiene como referencia una persona que no existe';
+                    throw new Exception(json_encode($resultado['menssage']));
+                }
+                
+                $resultado['persona'] = $personaForm->mostrarPersonaConLugarYEstudios();
+                unset($resultado['persona']['sexo']);
+                unset($resultado['persona']['genero']);
+                unset($resultado['persona']['estado_civil']);
+                
+                
+                $resultado['destinatario'] = $model->toArray();
+                unset($resultado['destinatario']['oficio']);
+                unset($resultado['destinatario']['profesion']);
 
             }else{
                 $resultado['menssage'] = 'El Destinatario no existe!';
