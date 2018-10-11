@@ -148,7 +148,7 @@ class DestinatarioController extends ActiveController{
      */
     public function actionUpdate($id)
     {
-        $resultado['message']='Se guarda un Destinatario';
+        $resultado['message']='Se modifica un Destinatario';
         $param = Yii::$app->request->post();
         $transaction = Yii::$app->db->beginTransaction();
         try {
@@ -159,7 +159,8 @@ class DestinatarioController extends ActiveController{
                 throw new Exception($msj);
             }
             
-            $model->setAttributes($param);
+            $model->setAttributesAndValidate($param);
+            //Registrar y validar personaid
             
             if(!$model->save()){
                 $arrayErrors['destinatario']=$model->getErrors();

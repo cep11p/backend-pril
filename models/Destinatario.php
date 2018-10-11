@@ -61,6 +61,8 @@ class Destinatario extends BaseDestinatario
         $arrayErrors = array();
         
   
+        
+        ####### Instanciamos atributos de Destinatario #########
         if(isset($param['destinatario'])){            
             parent::setAttributes($param['destinatario']);
             $this->fecha_ingreso = date('Y-m-d H:i:s');
@@ -68,35 +70,37 @@ class Destinatario extends BaseDestinatario
             $this->experiencia_laboral = (isset($param['destinatario']['experiencia_laboral']) && ($param['destinatario']['experiencia_laboral']===true))?1:0;
             
         }
+        if(!$this->validate()){
+            $arrayErrors=ArrayHelper::merge($arrayErrors, array('destinatario'=>$this->getErrors()));
+        } 
         
+        ####### Instanciamos atributos de PersonaForm #########
         if(isset($param['persona'])){
             $personaForm->setAttributes($param['persona']);
-        }       
-        if(isset($param['persona']['lugar'])){
-            $lugarForm->setAttributes($param['persona']['lugar']);
-        }
-
+        }           
         if(!$personaForm->validate()){
             $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
+        }   
+        
+        ####### Instanciamos atributos de LugarForm #########
+        if(isset($param['persona']['lugar'])){
+            $lugarForm->setAttributes($param['persona']['lugar']);
         }                
         
         if(!$lugarForm->validate()){
             $arrayErrors=ArrayHelper::merge($arrayErrors, array('lugar'=>$lugarForm->getErrors()));
         } 
         
-        if(!$this->validate()){
-            $arrayErrors=ArrayHelper::merge($arrayErrors, array('destinatario'=>$this->getErrors()));
-        } 
-        
+       
+        ###### chequeamos si existen errores ###############        
         if(count($arrayErrors)>0){
             throw new Exception(json_encode($arrayErrors));
         }
 
-        /**********************Estudios*********************/
+        /********************** Instanciamos un coleccion de Estudios *********************/
         if(isset($param['persona']['estudios'])){
             $coleccionEstudio = array();
             foreach ($param['persona']['estudios'] as $estudio) {
-//                $coleccionEstudio = ArrayHelper::merge($coleccionEstudio, $this->agregarEstudio($estudio));
                 $coleccionEstudio[] = $this->serializarEstudio($estudio);
             } 
             $param_persona['estudios'] = $coleccionEstudio;           
@@ -104,7 +108,7 @@ class Destinatario extends BaseDestinatario
         
         /*************** Lugar/Hogar/Nucleo ******************/
         //se debe hacer un buscado de nucleo mediante los datos de direccion que tiene lugar[]
-        if(!isset($param['persona']['nucleoid']) && isset($param['persona']['lugar'])){
+        if($lugarForm->validate()){
             $lugarEncontrado = $lugarForm->buscarLugarEnSistemaLugar();
             //Verificamos si existe el lugar y seteamos el hogar con el nucleo que corresponde
             if($lugarEncontrado!=null){
@@ -113,10 +117,8 @@ class Destinatario extends BaseDestinatario
                 
                 if($hogarEncontrado!=null){
                     $hogarForm->setAttributes($hogarEncontrado);
+                    $nucleoEncontrado = $nucleoForm->buscarNucleoEnSistemaRegistral(['hogarid'=>$hogarForm->id,'nombre'=>'Predeterminado']);
                 }
-                
-                $nucleoEncontrado = $nucleoForm->buscarNucleoEnSistemaRegistral(['hogarid'=>$hogarForm->id,'nombre'=>'Predeterminado']);
-                
                 
                 if(isset($nucleoEncontrado)){
                     $nucleoForm->setAttributes($nucleoEncontrado);
@@ -132,8 +134,6 @@ class Destinatario extends BaseDestinatario
         $param_persona['hogar'] = $hogarForm->toArray();
         $param_persona['lugar'] = $lugarForm->toArray();
         $param_persona['nucleo'] = $nucleoForm->toArray();
-//        $param_persona['nucleo']['nombre'] = 'Predeterminado';//chequear q no se guarde predeterminado si ya existe nucleo
-//        $param_persona['nucleo']['id'] = (isset($personaForm->nucleoid))?$personaForm->nucleoid:null;
         
         /*************** Ejecutamos la interoperabilidad ************************/
         //Si es una persona con id entonces ya existe en Registral
@@ -165,7 +165,7 @@ class Destinatario extends BaseDestinatario
     }
     
     /**
-     * Se valida el estudio y luego se serializa
+     * Se instancia un estudio y se valida y luego se serializa como parametro con el fin de ser registrado con interoperabilidad
      * @param array $param
      * @return array
      * @throws Exception si el estuio no es valido, creamos una excepcion con los errores
