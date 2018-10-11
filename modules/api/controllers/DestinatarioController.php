@@ -92,7 +92,7 @@ class DestinatarioController extends ActiveController{
         $model = $model->findOne(['id'=>$id]);
         
         $resultado = array();
-        if(isset($param['modificar']) && $param['modificar']==true){
+        if(isset($param['modificar']) && $param['modificar']=="true"){
             $resultado = $this->crearVistaModeloModificar($model);
         }else{
             $resultado = $this->crearVistaModelo($model);
