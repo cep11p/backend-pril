@@ -182,4 +182,18 @@ class Destinatario extends BaseDestinatario
         
         return $estudioForm->toArray();
     }
+        
+    public function fields()
+    {
+        return ArrayHelper::merge(parent::fields(), [
+            'profesion'=> function($model){
+                return $model->profesion->nombre;
+            },
+            'oficio'=> function($model){
+                return $model->oficio->nombre;
+            },
+        ]);
+    
+    }
+    
 }
