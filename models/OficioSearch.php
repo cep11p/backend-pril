@@ -71,6 +71,7 @@ class OficioSearch extends Oficio
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => FALSE,
         ]);
 
         $this->load($params,'');

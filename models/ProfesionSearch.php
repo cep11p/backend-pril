@@ -71,6 +71,7 @@ class ProfesionSearch extends Profesion
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => FALSE,
         ]);
 
         $this->load($params,'');
