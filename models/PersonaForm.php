@@ -35,6 +35,7 @@ class PersonaForm extends Model
             [['nombre', 'apellido','nro_documento','fecha_nacimiento','estado_civilid','email','sexoid','generoid'], 'required'],
             [['estado_civilid', 'sexoid', 'tipo_documentoid', 'nucleoid', 'situacion_laboralid', 'generoid','id'], 'integer'],
             [['nombre', 'apellido', 'nro_documento', 'telefono', 'celular'], 'string', 'max' => 45],
+            [['cuil'], 'string', 'max' => 20],
             [['email'], 'string', 'max' => 200],            
             [['email'], 'email'],
             [['fecha_nacimiento'], 'date', 'format' => 'php:Y-m-d'],
