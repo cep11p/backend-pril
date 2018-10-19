@@ -93,8 +93,6 @@ class PersonaForm extends Model
     public function buscarPersonaPorIdEnRegistral($id){
         $response = \Yii::$app->registral->buscarPersonaPorId($id); 
         
-        print_r($response);die();
-        
         if(isset($response['estado']) && $response['estado']==true){
             $this->setAttributes(array_shift($response['resultado']));
             
