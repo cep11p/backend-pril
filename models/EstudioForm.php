@@ -40,6 +40,20 @@ class EstudioForm extends Model
         }
     }
     
+    public function setAttributes($values, $safeOnly = true) {
+        parent::setAttributes($values, $safeOnly);
+        
+        if($values['en_curso']==true || $values['en_curso']==1){
+            $this->en_curso = 1;
+            $this->completo = 0;
+        }else{
+            $this->en_curso = 0;
+            $this->completo = 1;
+        }
+        
+        
+    }
+    
     
     
    
