@@ -12,7 +12,7 @@ namespace app\components;
  *
  * @author carlos
  */
-interface IServicioPersona {
+interface IServicioRegistral {
     
    
     /**

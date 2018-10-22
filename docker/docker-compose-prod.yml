@@ -4,4 +4,10 @@ services:
   prilphp: 
    environment:
        RUNMODE: prod
-       CLASE_PERSONA: app\components\ServicioPersona
+       SERVICIO_REGISTRAL: app\components\ServicioRegistral
+       SERVICIO_LUGAR: app\components\ServicioLugar
+
+  registralphp: 
+   environment:
+       RUNMODE: prod
+       SERVICIO_LUGAR: app\components\ServicioLugar

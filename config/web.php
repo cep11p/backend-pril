@@ -23,10 +23,11 @@ $config = [
         ],
         
         'registral'=> [
-            'class' => $params['clasePersona'],//'app\components\ServicioPersona'
+            'class' => $params['servicioRegistral'],//'app\components\ServicioRegistral'
         ],
+        
         'lugar'=> [
-            'class' => 'app\components\ServicioLugar'
+            'class' => $params['servicioLugar'],//'app\components\ServicioLugar'
         ],
         
         'i18n' => [

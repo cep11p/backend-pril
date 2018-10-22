@@ -8,7 +8,6 @@
 namespace app\components;
 use yii\base\Component;
 use GuzzleHttp\Client;
-use app\models\PersonaForm;
 use Exception;
 
 
@@ -17,7 +16,7 @@ use Exception;
  *
  * @author mboisselier
  */
-class DummyServicioPersona extends Component implements IServicioPersona
+class DummyServicioRegistral extends Component implements IServicioRegistral
 {
     public $base_uri;
     private $_client;
@@ -38,27 +37,10 @@ class DummyServicioPersona extends Component implements IServicioPersona
      */
     public function crearPersona($data)
     {
-        $client =   $this->_client;
-        try{
-            \Yii::error(json_encode($data));
-            $headers = [
-                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
-           ];          
-            
-            
-            $response = $client->request('POST', 'http://api.registral.local/api/personas', ['json' => $data,'headers' => $headers]);
-            $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
-            return $respuesta['data']['id'];
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
-                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
-        } catch (Exception $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
-                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
-                return false;
-        }
+        $resultado['success'] =  true;
+        $resultado['data']['id'] =  99;
+        
+        return $resultado;
        
     }
     
@@ -91,28 +73,9 @@ class DummyServicioPersona extends Component implements IServicioPersona
     
     public function buscarPersonaPorNroDocumento($nrodocumento)
     {
-       
-        $client =   $this->_client;
-        try{
-            $headers = [
-                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
-                'Content-Type'=>'application/json'
-            ];          
-            
-            $response = $client->request('GET', 'http://api.registral.local/api/personas?nro_documento='.$nrodocumento, ['headers' => $headers]);
-            $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
-            
-            return $respuesta;
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
-                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
-        } catch (Exception $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
-                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
-                return false;
-        }
+       $response['estado'] = false;
+       return $response;
+        
        
     }
     
@@ -374,6 +337,31 @@ class DummyServicioPersona extends Component implements IServicioPersona
                 return false;
         }
        
+    }
+    
+    public function buscarNivelEducativo($param){
+        $criterio = $this->crearCriterioBusquedad($param);
+        $client =   $this->_client;
+        try{
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
+//                'Content-Type'=>'application/json'
+            ];          
+            
+            $response = $client->request('GET', 'http://api.registral.local/api/nivel-educativos?'.$criterio, ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            \Yii::error($respuesta);
+            
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return false;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
     }
     
     /**

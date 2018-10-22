@@ -11,7 +11,7 @@ use Exception;
  *
  * @author cep11p
  */
-class ServicioLugar extends Component implements IServicioLugar
+class DummyServicioLugar extends Component implements IServicioLugar
 {
     public $base_uri;
     private $_client;

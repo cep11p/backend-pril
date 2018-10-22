@@ -17,7 +17,7 @@ use Exception;
  *
  * @author mboisselier
  */
-class ServicioPersona extends Component implements IServicioPersona
+class ServicioRegistral extends Component implements IServicioRegistral
 {
     public $base_uri;
     private $_client;
