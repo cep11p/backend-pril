@@ -1,7 +1,7 @@
 <?php
 
 return [    
-    "destinatario" => [
+    "destinatario1" => [
         "id" => 1,
         "oficio" => 1,
         "legajo" => 1,
