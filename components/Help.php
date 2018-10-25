@@ -53,4 +53,22 @@ class Help extends \yii\base\Component{
         }
         return $array;
     }
+    
+    /*
+    * filtering an array
+    */
+    public static function filter_by_value ($array, $index, $value){
+        $resultado = array();
+        if(is_array($array) && count($array)>0) 
+        {
+            foreach(array_keys($array) as $key){
+                $temp[$key] = $array[$key][$index];
+                
+                if ($temp[$key] == $value){
+                    $resultado[] = $array[$key];
+                }
+            }
+          }
+        return $resultado;
+    } 
 }

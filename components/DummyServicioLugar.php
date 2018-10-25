@@ -63,28 +63,22 @@ class DummyServicioLugar extends Component implements IServicioLugar
     public function buscarLugar($param)
     {
         
-        $criterio = $this->crearCriterioBusquedad($param);
-        $client =   $this->_client;
-        try{
-            $headers = [
-//                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_LUGAR'],
-                'Content-Type'=>'application/json'
-            ];          
-            
-            $response = $client->request('GET', 'http://api.lugar.local/api/lugar?'.$criterio, ['headers' => $headers]);
-            $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
-            
-            return $respuesta;
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
-                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
-        } catch (Exception $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
-                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
-                return false;
-        }
+        $response = array(
+            "success"=>true,
+            "resultado"=>array(
+                    [
+                    "barrio"=>"Don bosco",
+                    "calle"=>"Mitre",
+                    "altura"=>"327",
+                    "piso"=>"A",
+                    "depto"=>"",
+                    "escalera"=>"",
+                    "localidadid"=>1,
+                    "latitud"=>"-123123",
+                    "longitud"=>"321123"
+                    ]
+                )
+            );
        
     }
     

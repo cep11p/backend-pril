@@ -14,6 +14,13 @@ return [
     ],
     'language' => 'en-US',
     'components' => [
+        'registral'=> [
+            'class' => $params['servicioRegistral'],//'app\components\ServicioRegistral'
+        ],
+        
+        'lugar'=> [
+            'class' => $params['servicioLugar'],//'app\components\ServicioLugar'
+        ],
         'db' => $db,
         'mailer' => [
             'useFileTransport' => true,
