@@ -119,8 +119,7 @@ class AmbienteTrabajoController extends ActiveController{
             $model->lugarid = $lugarid;
             
             if(!$model->save()){
-                $arrayErrors['ambiente_trabajo']=$model->getErrors();
-                $arrayErrors['tab']='ambiente_trabajo';                
+                $arrayErrors['ambiente_trabajo']=$model->getErrors();                
                 throw new Exception(json_encode($arrayErrors));
             }
             
