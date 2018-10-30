@@ -89,6 +89,94 @@ class PersonaForm extends Model
     /**
      * Se cargar los atributos de la persona encontrada
      * @param int $id
+     * Del sistema registral obtenemos un array con datos, y de lo obtenido manipulamos los atributos relevantes para instanciar un persona PersonaForm, 
+     * El array obtenido es como el siguiente ejemplo
+     * 
+        {
+            "estado": true,
+            "resultado": [
+                {
+                    "id": 1,
+                    "nombre": "Alejandra",
+                    "apellido": "Rodríguez",
+                    "apodo": "rominochi",
+                    "nro_documento": "29890010",
+                    "fecha_nacimiento": "1980-12-12",
+                    "estado_civilid": 1,
+                    "telefono": "2920430690",
+                    "celular": "2920412127",
+                    "sexoid": 2,
+                    "tipo_documentoid": 1,
+                    "nucleoid": 1,
+                    "situacion_laboralid": 1,
+                    "generoid": 1,
+                    "email": "algo@correo.com.ar",
+                    "cuil": "20367655678",
+                    "hogar": {
+                        "id": 1,
+                        "tiene_gas": 0,
+                        "tiene_luz": 0,
+                        "tiene_agua": 0,
+                        "condicion_ocupacionid": 1,
+                        "obtencion_aguaid": 1,
+                        "tipo_desagueid": 1,
+                        "cocina_combustibleid": 1,
+                        "tipo_viviendaid": 1,
+                        "jefeid": null,
+                        "habitacion_dormir": 2,
+                        "banioid": 1,
+                        "lugarid": 1,
+                        "observacion": null,
+                        "nucleos": [
+                            {
+                                "id": 1,
+                                "hogarid": 1,
+                                "jefeid": null,
+                                "nombre": "Familia Rodriguez"
+                            }
+                        ]
+                    },
+                    "estudios": [
+                        {
+                            "id": 7,
+                            "titulo": "tecnico en desarrollo web",
+                            "completo": 1,
+                            "en_curso": 0,
+                            "nivel_educativoid": 4,
+                            "nivel_educativo": "Terciario",
+                            "anio": "2014"
+                        },
+                        {
+                            "id": 8,
+                            "titulo": "nutricionista",
+                            "completo": 1,
+                            "en_curso": 0,
+                            "nivel_educativoid": 4,
+                            "nivel_educativo": "Terciario",
+                            "anio": "2014"
+                        }
+                    ],
+                    "sexo": "Mujer",
+                    "genero": "Masculino",
+                    "estado_civil": "Soltero/a",
+                    "lugar": {
+                        "id": 1,
+                        "nombre": null,
+                        "calle": "Mitre",
+                        "altura": "123",
+                        "localidadid": 1,
+                        "latitud": null,
+                        "longitud": null,
+                        "barrio": "Inalauquen",
+                        "piso": "",
+                        "depto": "",
+                        "escalera": "",
+                        "localidad": "Capital Federal"
+                    }
+                }
+            ]
+        }
+     * 
      */
     public function buscarPersonaPorIdEnRegistral($id){
         $response = \Yii::$app->registral->buscarPersonaPorId($id); 
@@ -100,12 +188,40 @@ class PersonaForm extends Model
     }
     
     /**
+     * Cuando obtenemos una Persona por interoperabilidad, en el resultado viene un array llamado lugar, 
+     * donde este hace referencia a los datos de direccion o georeferencias
+     * @param int $id este atributo hace referencia a una persona
+     * @return array Devolvemos el lugar que asociado la persona intanciada
+     */
+    public function getLugar($id){
+        $resultado = null;
+        $response = \Yii::$app->registral->buscarPersonaPorId($id);
+        
+        if(isset($response['estado']) && $response['estado']==true){
+            $personaArray = $response['resultado'][0];
+            
+            if(isset($personaArray['lugar'])){
+                $resultado = $personaArray['lugar'];
+            }
+            
+        }
+        
+        return $resultado;
+    }
+    
+    /**
      * Se serializa los datos Persona,Estudios y Lugar para ser mostrados.
      * NOTA! Tener encuenta que Estudio y Lugar no son partes de PersonaForm
      * @return array devuelven datos para ser mostrados, caso contrario, se devuelve un array vacio
      */
-    public function mostrarPersonaConLugarYEstudios(){
-        $response = \Yii::$app->registral->buscarPersonaPorId($this->id); 
+    public function obtenerPersonaConLugarYEstudios($id = null){
+        
+        if($id){
+            $response = \Yii::$app->registral->buscarPersonaPorId($id); 
+        }else{
+            $response = \Yii::$app->registral->buscarPersonaPorId($this->id);
+        }
+         
         
         $personaArray = array();
         if(isset($response['estado']) && $response['estado']==true){

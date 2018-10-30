@@ -37,7 +37,7 @@ class LugarForm extends Model
      * Es decir que el sistema lugar debe tener una tabla Localidad
      */
     public function existeLocalidadEnSistemaLugar() {
-        $response = \Yii::$app->lugar->buscarLocalidadPorId($this->localidadid);       
+        $response = \Yii::$app->lugar->buscarLocalidadPorId($this->localidadid);    
         
         if(isset($response['success']) && $response['success']!=true){
             $this->addError('id', 'La localidad con el id '.$this->id.' no existe!');
@@ -79,23 +79,6 @@ class LugarForm extends Model
         
         return $resultado;
     }
-    
-
-    
-    /**
-     * Es regla regla solo se usa en el actionCreate
-     * Vamos a verificar si existe $this->id en el sistemaLugar
-     */
-    public function existeLugarEnSistemaLugar(){
-        $response = \Yii::$app->lugar->buscarLugarPorId($this->id);   
-            if(isset($response['success']) && $response['success']==true){
-                return true;
-            }else{
-                return false;
-            }
-    }
-    
-    
     
     
 }

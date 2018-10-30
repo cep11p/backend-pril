@@ -182,17 +182,90 @@ class Destinatario extends BaseDestinatario
         
         return $estudioForm->toArray();
     }
+    
+    /** para obtener este dato se requiere hacer una interoperabilidad con el sistema Registral**/
+    public function getPersona(){
+        $resultado = null;
+        $model = new PersonaForm();
+        $model->buscarPersonaPorIdEnRegistral($this->personaid);
+
+        if($model){
+            $resultado = $model;
+        }        
         
+//        print_r($resultado->toArray());die();
+        return $resultado;
+        
+        
+    }
+    
+    public function getDatosPersona(){
+        $resultado = null;
+        $model = new PersonaForm();
+        $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+//        print_r($arrayPersona);die();
+        
+        if($arrayPersona){
+            
+            
+            $resultado['nombre'] = $arrayPersona['nombre'];
+            $resultado['apellido'] = $arrayPersona['apellido'];
+            $resultado['telefono'] = $arrayPersona['telefono'];
+            $resultado['celular'] = $arrayPersona['celular'];
+            $resultado['email'] = $arrayPersona['email'];
+            $resultado['nro_documento'] = $arrayPersona['nro_documento'];
+            $resultado['cuil'] = $arrayPersona['cuil'];
+//            $resultado['fecha_nacimiento'] = $arrayPersona['fecha_nacimiento'];
+            $resultado['fecha_nacimiento'] = $arrayPersona['fecha_nacimiento'];
+            
+            if($arrayPersona['lugar']){
+                $direccion = '';
+                if($arrayPersona['lugar']['localidad']){
+                    $direccion.= $arrayPersona['lugar']['localidad'];
+                }
+                if($arrayPersona['lugar']['barrio']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['barrio']}";
+                }
+                if($arrayPersona['lugar']['calle']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['calle']}";
+                }
+                if($arrayPersona['lugar']['altura']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['altura']}";
+                }
+                if($arrayPersona['lugar']['escalera']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['escalera']}";
+                }
+                if($arrayPersona['lugar']['piso']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['piso']}";
+                }
+                if($arrayPersona['lugar']['depto']){
+                    $direccion.= "<br>{$arrayPersona['lugar']['depto']}";
+                }
+                
+                $resultado['direccion'] = $direccion;  
+            }
+        }        
+        
+        return $resultado;
+        
+        
+    }
+
     public function fields()
-    {
-        return ArrayHelper::merge(parent::fields(), [
+    {        
+        $resultado = ArrayHelper::merge(parent::fields(), [
             'profesion'=> function($model){
                 return $model->profesion->nombre;
             },
             'oficio'=> function($model){
                 return $model->oficio->nombre;
             },
+            'dato_extra'=> function($model){
+                return $model->DatosPersona;
+            }
         ]);
+        
+        return $resultado;
     
     }
     
