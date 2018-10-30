@@ -249,7 +249,21 @@
 		"completo":1,
 		"en_curso":0,
 		"anio":"2014"
-	}]
+	}],
+        "lugar": {
+            "id": 31,
+            "nombre": null,
+            "calle": "Mitre",
+            "altura": "327",
+            "localidadid": 1,
+            "latitud": "-123123",
+            "longitud": "321123",
+            "barrio": "Don asd,aslñk",
+            "piso": "A",
+            "depto": "",
+            "escalera": null,
+            "localidad": "Capital Federal"
+        }
 }
 
 ****** Para borrar *****
