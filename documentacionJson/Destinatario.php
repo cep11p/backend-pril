@@ -218,73 +218,71 @@
 @method PUT
 @param
 {
-    "success": true,
-    "resultado": {
-        "persona": {
-            "id": 29,
-            "nombre": "Alejandra",
-            "apellido": "Rodríguez",
-            "apodo": "rominochi",
-            "nro_documento": "29890010",
-            "fecha_nacimiento": "1980-12-12",
-            "estado_civilid": 1,
-            "telefono": "2920430690",
-            "celular": "2920412127",
-            "sexoid": 2,
-            "tipo_documentoid": 1,
-            "nucleoid": 17,
-            "situacion_laboralid": 1,
-            "generoid": 1,
-            "email": "algo@correo.com.ar",
-            "estudios": [
-                {
-                    "id": 31,
-                    "titulo": "tecnico en desarrollo web",
-                    "completo": 1,
-                    "en_curso": 0,
-                    "nivel_educativoid": 4
-                },
-                {
-                    "id": 32,
-                    "titulo": "nutricionista",
-                    "completo": 1,
-                    "en_curso": 0,
-                    "nivel_educativoid": 4
-                }
-            ],
-            "lugar": {
-                "id": 23,
-                "nombre": null,
-                "calle": "saavedra",
-                "altura": "327",
-                "localidadid": 1,
-                "latitud": "-123123",
-                "longitud": "321123",
-                "barrio": "Don bosco",
-                "piso": "2",
-                "depto": "",
-                "escalera": ""
+    "persona": {
+        "id": 29,
+        "nombre": "Alejandra",
+        "apellido": "Rodríguez",
+        "apodo": "rominochi",
+        "nro_documento": "29890010",
+        "fecha_nacimiento": "1980-12-12",
+        "estado_civilid": 1,
+        "telefono": "2920430690",
+        "celular": "2920412127",
+        "sexoid": 2,
+        "tipo_documentoid": 1,
+        "nucleoid": 17,
+        "situacion_laboralid": 1,
+        "generoid": 1,
+        "email": "algo@correo.com.ar",
+        "estudios": [
+            {
+                "id": 31,
+                "titulo": "tecnico en desarrollo web",
+                "completo": 1,
+                "en_curso": 0,
+                "nivel_educativoid": 4
+            },
+            {
+                "id": 32,
+                "titulo": "nutricionista",
+                "completo": 1,
+                "en_curso": 0,
+                "nivel_educativoid": 4
             }
-        },
-        "destinatario": {
-            "id": 3,
-            "oficioid": 2,
-            "legajo": "usb123/7",
-            "calificacion": 7,
-            "profesionid": 1,
-            "fecha_ingreso": "2018-09-26 00:00:00",
-            "origen": "un origen",
-            "observacion": "Una observacion",
-            "deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
-            "deseo_actividad": "La actividad que desea realizar",
-            "fecha_presentacion": "2000-12-12",
-            "personaid": 33,
-            "banco_cbu": "54321987654",
-            "banco_nombre": "Patagonia",
-            "banco_alias": "CAMION-RODILLO-RUEDA",
-            "experiencia_laboral": 1
+        ],
+        "lugar": {
+            "id": 23,
+            "nombre": null,
+            "calle": "saavedra",
+            "altura": "327",
+            "localidadid": 1,
+            "latitud": "-123123",
+            "longitud": "321123",
+            "barrio": "Don bosco",
+            "piso": "2",
+            "depto": "",
+            "escalera": ""
         }
+    },
+    "destinatario": {
+        "id": 3,
+        "oficioid": 2,
+        "legajo": "usb123/7",
+        "calificacion": 7,
+        "profesionid": 1,
+        "fecha_ingreso": "2018-09-26 00:00:00",
+        "origen": "un origen",
+        "observacion": "Una observacion",
+        "deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
+        "deseo_actividad": "La actividad que desea realizar",
+        "fecha_presentacion": "2000-12-12",
+        "personaid": 33,
+        "banco_cbu": "54321987654",
+        "banco_nombre": "Patagonia",
+        "banco_alias": "CAMION-RODILLO-RUEDA",
+        "experiencia_laboral": 1
     }
+    
 }
 */
 
