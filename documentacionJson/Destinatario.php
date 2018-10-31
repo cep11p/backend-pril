@@ -52,7 +52,7 @@
 	    	"titulo":"tecnico en desarrollo web",
 	    	"completo":1,
 	    	"en_curso":0,
-	    	"fecha":"2014-12-20"
+	    	"fecha"anio2014-12-20"
 	    	}
             ],
             "sexo": "Hombre",
@@ -117,14 +117,14 @@
 	    	"titulo":"tecnico en desarrollo web",
 	    	"completo":1,
 	    	"en_curso":0,
-	    	"fecha":"2014-12-20"
+	    	"anio":"2014-12-20"
 	    	}
 	    	{
 	    	"nivel_educativoid":4,
 	    	"titulo":"Otro estudio",
 	    	"completo":1,
 	    	"en_curso":0,
-	    	"fecha":"2014-12-20"
+	    	"anio":"2014-12-20"
 	    	}
             ],
             "sexo": "Hombre",
