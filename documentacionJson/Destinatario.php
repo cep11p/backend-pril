@@ -46,7 +46,15 @@
             "generoid": null,
             "email": null,
             "cuil": "21338901237",
-            "estudios": [],
+            "estudios": [
+	    	{
+	    	"nivel_educativoid":4,
+	    	"titulo":"tecnico en desarrollo web",
+	    	"completo":1,
+	    	"en_curso":0,
+	    	"fecha":"2014-12-20"
+	    	}
+            ],
             "sexo": "Hombre",
             "genero": "",
             "estado_civil": "Soltero/a",
@@ -103,7 +111,22 @@
             "generoid": 1,
             "email": null,
             "cuil": "10298901238",
-            "estudios": [],
+            "estudios": [
+	    	{
+	    	"nivel_educativoid":4,
+	    	"titulo":"tecnico en desarrollo web",
+	    	"completo":1,
+	    	"en_curso":0,
+	    	"fecha":"2014-12-20"
+	    	}
+	    	{
+	    	"nivel_educativoid":4,
+	    	"titulo":"Otro estudio",
+	    	"completo":1,
+	    	"en_curso":0,
+	    	"fecha":"2014-12-20"
+	    	}
+            ],
             "sexo": "Hombre",
             "genero": "Masculino",
             "estado_civil": "Soltero/a",
