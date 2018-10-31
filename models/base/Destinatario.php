@@ -25,6 +25,7 @@ use Yii;
  * @property string $banco_nombre
  * @property string $banco_alias
  * @property integer $experiencia_laboral
+ * @property string $conocimientos_basicos
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property \app\models\Oficio $oficio
@@ -53,9 +54,10 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             [['oficioid', 'calificacion', 'profesionid', 'personaid', 'experiencia_laboral'], 'integer'],
             [['legajo', 'fecha_ingreso', 'fecha_presentacion'], 'required'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
-            [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad'], 'string'],
-            [['legajo'], 'string', 'max' => 45],
+            [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad', 'conocimientos_basicos'], 'string'],
+            [['legajo'], 'string', 'max' => 50],
             [['origen', 'banco_cbu', 'banco_nombre', 'banco_alias'], 'string', 'max' => 200],
+            [['legajo'], 'unique'],
             [['personaid'], 'unique'],
             [['oficioid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Oficio::className(), 'targetAttribute' => ['oficioid' => 'id']],
             [['profesionid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Profesion::className(), 'targetAttribute' => ['profesionid' => 'id']]
@@ -84,6 +86,7 @@ abstract class Destinatario extends \yii\db\ActiveRecord
             'banco_nombre' => 'Banco Nombre',
             'banco_alias' => 'Banco Alias',
             'experiencia_laboral' => 'Experiencia Laboral',
+            'conocimientos_basicos' => 'Conocimientos Basicos',
         ];
     }
 
