@@ -22,7 +22,7 @@ return [
     "destinatario2" => [
         "id" => 2,
         "oficioid" => 1,
-        "legajo" => 'usb123/6',
+        "legajo" => 'usb123/7',
         "calificacion" => 1,
         "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
@@ -40,7 +40,7 @@ return [
     "destinatario3" => [
         "id" => 3,
         "oficioid" => 1,
-        "legajo" => 'usb123/6',
+        "legajo" => 'usb123/8',
         "calificacion" => 1,
         "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
@@ -58,7 +58,7 @@ return [
     "destinatario4" => [
         "id" => 4,
         "oficioid" => 1,
-        "legajo" => 'usb123/6',
+        "legajo" => 'usb123/9',
         "calificacion" => 1,
         "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
