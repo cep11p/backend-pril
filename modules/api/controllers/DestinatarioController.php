@@ -71,7 +71,7 @@ class DestinatarioController extends ActiveController{
         $data = array('success'=>false);
         if($resultado->getTotalCount()){
             $data['success']='true';            
-            $data['resultado']=$resultado->models;
+            $data['coleccion']=$resultado->models;
         }
 
         return $data;
