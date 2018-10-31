@@ -1,6 +1,7 @@
 <?php
 
 use Helper\Api;
+use app\models\AmbienteTrabajo;
 class AmbienteTrabajoCest
 {
     public function _before(ApiTester $I,Api $api)
@@ -199,6 +200,79 @@ class AmbienteTrabajoCest
         ]);
         
         $I->seeResponseCodeIs(500);
+    
+    }
+    
+    public function agregarUnAmbienteTrabajo(ApiTester $I)
+    {
+        $I->wantTo('Agregar Un Ambiente');
+        $param=[
+            "ambiente_trabajo"=>[
+                "nombre"=> "Panaderia San Fernando",
+                "calificacion"=> 7,
+                "legajo"=> "asb123/7",
+                "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+                "cuit"=>"20123456789",
+                "actividad"=> "Vende facturas, tortas y variedades de panes",
+                "tipo_ambiente_trabajoid"=> 1,
+            ],
+            "lugar"=>[
+                "calle"=>"Mata Negra",
+                "altura"=>"123",
+                "localidadid"=>1
+            ],
+            "persona"=>[
+                "nombre"=> "Diego",
+                "apellido"=> "Matinez",
+                "nro_documento"=> "27890098",
+                "fecha_nacimiento"=>"1980-12-12",
+                "apodo"=>"rominochi",
+                "telefono"=> "2920430690",
+                "celular"=> "2920412127",
+                "situacion_laboralid"=> 1,
+                "estado_civilid"=> 1,
+                "sexoid"=> 2,
+                "tipo_documentoid"=> 1,
+                "generoid"=> 1,
+                "email"=>"algo@correo.com.ar",
+                "cuil"=>"20367655678"
+
+            ]
+        ];
+        
+        $I->sendPOST('/api/ambiente-trabajos', $param);
+        $I->seeResponseContainsJson([
+            'message' => 'Se guarda un Ambiente de Trabajo',
+            'success' => true
+        ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+        //chequeamos lo guardado
+//        $model = AmbienteTrabajo::findOne(['legajo'=>'usb123/7']);
+//        $id = $model->id;
+//        $I->sendGET("/api/ambiente-trabajo/$id");
+//        $I->seeResponseContainsJson([
+//            'id' => $id,
+//            'oficioid' => 1,
+//            'legajo' => 'usb123/7',
+//            'calificacion' => 7,
+//            'profesionid' => 2,
+//            'origen' => 'un origen test',
+//            'observacion' => 'Una observacion',
+//            'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
+//            'deseo_actividad' => 'La actividad que desea realizar',
+//            'fecha_presentacion' => '2000-12-12',
+//            'personaid' => 100,
+//            'banco_cbu' => '54321987654',
+//            'banco_nombre' => 'Patagonia',
+//            'banco_alias' => 'CAMION-RODILLO-RUEDA',
+//            'experiencia_laboral' => 0,
+//            'conocimientos_basicos' => null,
+//            'profesion' => 'Académico/a',
+//            'oficio' => 'Albañil'
+//        ]);
+//        $I->seeResponseCodeIs(200);
     
     }
     
