@@ -103,6 +103,24 @@ class DestinatarioCest
         $id = $model->id;
         $I->sendGET("/api/destinatarios/$id");
         $I->seeResponseContainsJson([
+            'id' => $id,
+            'oficioid' => 1,
+            'legajo' => 'usb123/7',
+            'calificacion' => 7,
+            'profesionid' => 2,
+            'origen' => 'un origen test',
+            'observacion' => 'Una observacion',
+            'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
+            'deseo_actividad' => 'La actividad que desea realizar',
+            'fecha_presentacion' => '2000-12-12',
+            'personaid' => 100,
+            'banco_cbu' => '54321987654',
+            'banco_nombre' => 'Patagonia',
+            'banco_alias' => 'CAMION-RODILLO-RUEDA',
+            'experiencia_laboral' => 0,
+            'conocimientos_basicos' => null,
+            'profesion' => 'Académico/a',
+            'oficio' => 'Albañil',
             "persona"=>[
                 'id' => 100,
                 'nombre' => 'Pilar',
@@ -119,26 +137,6 @@ class DestinatarioCest
                 'generoid' => 1,
                 'email' => 'algo@correo.com.ar',
                 'cuil' => '20367655678'
-            ],
-            "destinatario"=>[
-                'id' => $id,
-                'oficioid' => 1,
-                'legajo' => 'usb123/7',
-                'calificacion' => 7,
-                'profesionid' => 2,
-                'origen' => 'un origen test',
-                'observacion' => 'Una observacion',
-                'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
-                'deseo_actividad' => 'La actividad que desea realizar',
-                'fecha_presentacion' => '2000-12-12',
-                'personaid' => 100,
-                'banco_cbu' => '54321987654',
-                'banco_nombre' => 'Patagonia',
-                'banco_alias' => 'CAMION-RODILLO-RUEDA',
-                'experiencia_laboral' => 0,
-                'conocimientos_basicos' => null,
-                'profesion' => 'Académico/a',
-                'oficio' => 'Albañil',
             ],
         ]);
         $I->seeResponseCodeIs(200);
