@@ -9,9 +9,17 @@ class AmbienteTrabajoCest
         $token = $api->generarToken();
         $I->amBearerAuthenticated($token);
     }
+    
+    public function _fixtures()
+    {
+        return [
+            'ambientes_trasbajos' => \app\tests\fixtures\AmbienteTrabajoFixture::className(),
+        ];
+    }
 
     public function _after(ApiTester $I)
     {
+        $I->unloadFixtures([new  app\tests\fixtures\DestinatarioFixture]);
     }
 
     // tests
@@ -23,8 +31,29 @@ class AmbienteTrabajoCest
         $I->sendPOST('/api/ambiente-trabajos', $param);
         
         $I->seeResponseContainsJson([
-            'message' => '{"lugar":{"calle":["Calle no puede estar vac\u00edo."],"altura":["Altura no puede estar vac\u00edo."],"localidadid":["Localidadid no puede estar vac\u00edo."]},"ambiente_trabajo":{"nombre":["Nombre no puede estar vac\u00edo."],"tipo_ambiente_trabajoid":["Tipo Ambiente Trabajoid no puede estar vac\u00edo."]}}',
-        ]);
+            
+            'message' => 
+                        '{"lugar":{'
+                            . '"calle":["Calle no puede estar vac\u00edo."],'
+                            . '"altura":["Altura no puede estar vac\u00edo."],'
+                            . '"localidadid":["Localidadid no puede estar vac\u00edo."]},'
+                        . '"persona":{'
+                            . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                            . '"apellido":["Apellido no puede estar vac\u00edo."],'
+                            . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
+                            . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
+                            . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
+                            . '"email":["Email no puede estar vac\u00edo."],'
+                            . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
+                            . '"generoid":["Generoid no puede estar vac\u00edo."]},'
+                        . '"ambiente_trabajo":{'
+                            . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                            . '"legajo":["Legajo no puede estar vac\u00edo."],'
+                            . '"tipo_ambiente_trabajoid":["Tipo Ambiente Trabajoid no puede estar vac\u00edo."]}}'
+
+
+            
+            ]);
         
         $I->seeResponseCodeIs(500);
         
@@ -45,6 +74,23 @@ class AmbienteTrabajoCest
                 "cuit"=>"20123456789",
                 "actividad"=> "Vende facturas, tortas y variedades de panes",
                 "tipo_ambiente_trabajoid"=> 1
+            ],
+            "persona"=>[
+                "nombre"=> "Diego",
+                "apellido"=> "Matinez",
+                "nro_documento"=> "27890098",
+                "fecha_nacimiento"=>"1980-12-12",
+                "apodo"=>"rominochi",
+                "telefono"=> "2920430690",
+                "celular"=> "2920412127",
+                "situacion_laboralid"=> 1,
+                "estado_civilid"=> 1,
+                "sexoid"=> 2,
+                "tipo_documentoid"=> 1,
+                "generoid"=> 1,
+                "email"=>"algo@correo.com.ar",
+                "cuil"=>"20367655678"
+
             ]
         ];
         
@@ -78,6 +124,23 @@ class AmbienteTrabajoCest
                 "calle"=>"Mata Negra",
                 "altura"=>"123",
                 "localidadid"=>0
+            ],
+            "persona"=>[
+                "nombre"=> "Diego",
+                "apellido"=> "Matinez",
+                "nro_documento"=> "27890098",
+                "fecha_nacimiento"=>"1980-12-12",
+                "apodo"=>"rominochi",
+                "telefono"=> "2920430690",
+                "celular"=> "2920412127",
+                "situacion_laboralid"=> 1,
+                "estado_civilid"=> 1,
+                "sexoid"=> 2,
+                "tipo_documentoid"=> 1,
+                "generoid"=> 1,
+                "email"=>"algo@correo.com.ar",
+                "cuil"=>"20367655678"
+
             ]
         ];
         
@@ -102,23 +165,41 @@ class AmbienteTrabajoCest
                 "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
                 "cuit"=>"20123456789",
                 "actividad"=> "Vende facturas, tortas y variedades de panes",
-                "tipo_ambiente_trabajoid"=> 1
+                "tipo_ambiente_trabajoid"=> 1,
+                "lugarid"=>0,
             ],
             "lugar"=>[
-                "id"=>0,
                 "calle"=>"Mata Negra",
                 "altura"=>"123",
                 "localidadid"=>1
+            ],
+            "persona"=>[
+                "nombre"=> "Diego",
+                "apellido"=> "Matinez",
+                "nro_documento"=> "27890098",
+                "fecha_nacimiento"=>"1980-12-12",
+                "apodo"=>"rominochi",
+                "telefono"=> "2920430690",
+                "celular"=> "2920412127",
+                "situacion_laboralid"=> 1,
+                "estado_civilid"=> 1,
+                "sexoid"=> 2,
+                "tipo_documentoid"=> 1,
+                "generoid"=> 1,
+                "email"=>"algo@correo.com.ar",
+                "cuil"=>"20367655678"
+
             ]
         ];
         
         $I->sendPOST('/api/ambiente-trabajos', $param);
         
         $I->seeResponseContainsJson([
-            'message' => '{"ambiente_trabajo":{"lugarid":["No se pudo registrar el Lugar correctamente en el Sistema Lugar."]},"tab":"ambiente_trabajo"}',
+            'message' => '{"ambiente_trabajo":{"lugarid":["No se pudo registrar el Lugar correctamente en el Sistema Lugar."]}}',
         ]);
         
         $I->seeResponseCodeIs(500);
-        
+    
     }
+    
 }
