@@ -187,6 +187,19 @@ class PersonaForm extends Model
         }
     }
     
+    public function buscarPersonaEnRegistral($param){
+        $resultado = [];
+        $response = \Yii::$app->registral->buscarPersona($param); 
+        
+        
+        
+        if(isset($response['estado']) && $response['estado']==true){
+            $resultado = $response['resultado'];
+        }
+        
+        return $resultado;
+    }
+    
     /**
      * Cuando obtenemos una Persona por interoperabilidad, en el resultado viene un array llamado lugar, 
      * donde este hace referencia a los datos de direccion o georeferencias

@@ -91,7 +91,9 @@ class DestinatarioSearch extends Destinatario
      */
     public function busquedadGeneral($params)
     {
+        $personaForm = new PersonaForm();
         $query = Destinatario::find();
+        $listaid = array();
 
         // add conditions that should always apply here
 
@@ -106,7 +108,10 @@ class DestinatarioSearch extends Destinatario
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        
+        
+        
+        
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -128,6 +133,21 @@ class DestinatarioSearch extends Destinatario
             ->andFilterWhere(['like', 'banco_nombre', $this->banco_nombre])
             ->andFilterWhere(['like', 'banco_alias', $this->banco_alias])
             ->andFilterWhere(['like', 'conocimientos_basicos', $this->conocimientos_basicos]);
+        
+        if(isset($params['global_param']) && !empty($params['global_param'])){
+            $persona_params = array("global_param"=>$params['global_param']);
+            $coleccionPersonas = $personaForm->buscarPersonaEnRegistral($persona_params);
+            
+            foreach ($coleccionPersonas as $persona) {
+                $listaid[] = $persona['id'];
+            }
+            
+            
+        }
+        
+        if(count($listaid)>0){
+            $query->where(array('in', 'personaid', $listaid));
+        }
 
         return $dataProvider;
     }

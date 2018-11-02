@@ -128,7 +128,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/personas?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -162,7 +162,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/nucleos?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -188,7 +188,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/nucleos?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -214,7 +214,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/nivel-educativo?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -244,7 +244,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/hogar?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -261,7 +261,6 @@ class ServicioRegistral extends Component implements IServicioRegistral
     
     public function buscarPersona($param)
     {
-        
         $criterio = $this->crearCriterioBusquedad($param);
         $client =   $this->_client;
         try{
@@ -272,7 +271,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             
             $response = $client->request('GET', 'http://api.registral.local/api/persona?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -422,7 +421,6 @@ class ServicioRegistral extends Component implements IServicioRegistral
      * @return string
      */
     public function crearCriterioBusquedad($param){
-        //funcion armar url con criterio de busquedad
         $criterio = '';
         $primeraVez = true;
         foreach ($param as $key => $value) {
