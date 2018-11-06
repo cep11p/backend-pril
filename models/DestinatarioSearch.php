@@ -89,16 +89,20 @@ class DestinatarioSearch extends Destinatario
      *
      * @return ActiveDataProvider
      */
-    public function busquedadGeneral($params)
+    public function busquedadGeneral($params = array())
     {
         $personaForm = new PersonaForm();
         $query = Destinatario::find();
         $listaid = array();
-
+        
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 2,
+                'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
+            ],
         ]);
 
         $this->load($params,'');
@@ -135,20 +139,34 @@ class DestinatarioSearch extends Destinatario
             ->andFilterWhere(['like', 'conocimientos_basicos', $this->conocimientos_basicos]);
         
         if(isset($params['global_param']) && !empty($params['global_param'])){
-            $persona_params = array("global_param"=>$params['global_param']);
+            $persona_params["global_param"] = $params['global_param'];
+        }
+        
+        if(isset($params['localidadid']) && !empty($params['localidadid'])){
+            $persona_params['localidadid'] = $params['localidadid'];
+        }
+        
+        if(isset($params['calle']) && !empty($params['calle'])){
+            $persona_params['calle'] = $params['calle'];    
+        }
+        
+        if(isset($persona_params)){
             $coleccionPersonas = $personaForm->buscarPersonaEnRegistral($persona_params);
             
-            foreach ($coleccionPersonas as $persona) {
-                $listaid[] = $persona['id'];
+            if($coleccionPersonas){
+                foreach ($coleccionPersonas as $persona) {
+                    $listaid[] = $persona['id'];
+                }
+            }else{
+                $query->where('0=1');
             }
-            
             
         }
         
         if(count($listaid)>0){
-            $query->where(array('in', 'personaid', $listaid));
+            $query->andWhere(array('in', 'personaid', $listaid));
         }
-
+                
         return $dataProvider;
     }
 }

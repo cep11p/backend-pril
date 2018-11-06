@@ -193,7 +193,7 @@ class Destinatario extends BaseDestinatario
             $resultado = $arrayPersona;
         }        
         
-//        print_r($resultado->toArray());die();
+//        print_r($resultado);die();
         return $resultado;
         
         
