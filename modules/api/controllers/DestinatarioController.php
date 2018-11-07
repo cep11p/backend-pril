@@ -73,7 +73,7 @@ class DestinatarioController extends ActiveController{
         if($resultado->getTotalCount()){
             $data['success']='true';
             $data['total_filtrado']=$resultado->totalCount;            
-            $data['total']=intval($total);    
+            $data['total_general']=intval($total);    
             $data['coleccion']=$resultado->models;
         } else {
             $data['mesagge'] = "No se encontró ningun destinatario!";
