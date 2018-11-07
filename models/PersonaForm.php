@@ -292,7 +292,6 @@ class PersonaForm extends Model
         
         if(!isset($this->id)){
             $response = \Yii::$app->registral->buscarPersonaPorNroDocumento($this->nro_documento);       
-
             if(isset($response['estado']) && $response['estado']==true){
                 $this->addError('nro_documento', 'El nro de documento '.$this->nro_documento.' ya está en uso!');
             }

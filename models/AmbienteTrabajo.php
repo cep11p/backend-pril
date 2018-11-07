@@ -29,6 +29,7 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
             [
                 # custom validation rules                
                 ['lugarid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar el Lugar correctamente en el Sistema Lugar.'],
+                ['personaid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar la persona correctamente en el Sistema Lugar.'],
 //                ['lugarid', 'existeLugarEnSistemaLugar','skipOnEmpty' => true],
             ]
         );
