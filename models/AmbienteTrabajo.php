@@ -33,4 +33,44 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
             ]
         );
     }
+    
+    public function getLugar() {
+        $lugar = new LugarForm();
+        
+        $resultado = $lugar->buscarLugarPorIdEnSistemaLugar($this->lugarid);
+        
+        return $resultado;
+        
+    }
+    
+    /** para obtener este dato se requiere hacer una interoperabilidad con el sistema Registral**/
+    public function getPersona(){
+        $resultado = null;
+        $model = new PersonaForm();
+        $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+
+        if($arrayPersona){
+            $resultado = $arrayPersona;
+        }        
+        unset($resultado['lugar']);
+        
+        return $resultado;
+        
+        
+    }
+    
+    public function fields()
+    {        
+        $resultado = ArrayHelper::merge(parent::fields(), [
+            'persona'=> function($model){
+                return $model->persona;
+            },
+            'lugar'=> function($model){
+                return $model->lugar;
+            }
+        ]);
+        
+        return $resultado;
+    
+    }
 }

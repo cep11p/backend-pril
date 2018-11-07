@@ -80,5 +80,22 @@ class LugarForm extends Model
         return $resultado;
     }
     
+    public function buscarLugarPorIdEnSistemaLugar($id) {
+        
+        $resultado = null;
+        $response = \Yii::$app->lugar->buscarLugarPorId($id);   
+        
+        if(isset($response['success']) && $response['success']==true){
+
+            if(count($response['resultado'])>0){            
+                foreach ($response['resultado'] as $modeloEncontrado){
+                    $resultado = $modeloEncontrado;
+                }
+            }
+        }
+        
+        return $resultado;
+    }
+    
     
 }

@@ -31,4 +31,16 @@ class Oferta extends BaseOferta
             ]
         );
     }
+    
+    public function fields()
+    {        
+        $resultado = ArrayHelper::merge(parent::fields(), [
+            'lugar'=> function($model){
+                return "un lugar";
+            }
+        ]);
+        
+        return $resultado;
+    
+    }
 }

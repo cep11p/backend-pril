@@ -1,4 +1,8 @@
-**** Para mostrar listado ****
+<?php
+
+
+
+/****** Para mostrar listado ****
 @url http://api.pril.local/api/ambiente-trabajo 
 @method GET
 {
@@ -33,8 +37,9 @@
 		]    
 	}
 }
+**/
 
-**** Para crear****
+/****** Para crear****
 Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mismo se registran datos de georeferencia y geolocalizacion. 
 @url http://api.pril.local/api/ambiente-trabajos
 @method POST
@@ -91,7 +96,9 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
 	   }
 		
 }
+**/
 
+/**
 **** Para modificar ****
 @url http://api.pril.local/api/ambiente-trabajo/{$id} 
 @method PUT
@@ -108,26 +115,63 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
 	    "personaid": 1 //puede ser null
 		
 }
+**/
 
-
-****** Mostrado particular *******
+/****** Mostrado particular *******
 @url http://api.pril.local/api/ambiente-trabajo/{$id} 
 @method GET
 @return 
 {
-
-	'id': 1,
-	'nombre': Panaderia San Fernando
-	'tipo_ambiente_trabajo':{
-		'nombre': "Empleador privado",
-	},		
-	'direccion' : "Rivadavia 765",
-	'actividad' : "Vende facturas, tortas y variedades de panes",
-	'cuit' : 12345678769,
-	'representante' : "Rodriguez Raul" 
+    "id": 1,
+    "nombre": "Panaderia San Fernando",
+    "calificacion": 7,
+    "personaid": 1,
+    "legajo": "asb123/8",
+    "observacion": "es una empresa que realiza actividades de panaderia y pasteleria",
+    "cuit": "20123456789",
+    "actividad": "Vende facturas, tortas y variedades de panes",
+    "tipo_ambiente_trabajoid": 1,
+    "lugarid": 1,
+    "persona": {
+        "id": 1,
+        "nombre": "Romina Belen",
+        "apellido": "Rodríguez",
+        "apodo": "rominochi",
+        "nro_documento": "29800100",
+        "fecha_nacimiento": "1980-12-12",
+        "estado_civilid": 1,
+        "telefono": "2920430690",
+        "celular": "2920412127",
+        "sexoid": 2,
+        "tipo_documentoid": 1,
+        "nucleoid": 1,
+        "situacion_laboralid": 1,
+        "generoid": 1,
+        "email": null,
+        "cuil": "21298001007",
+        "estudios": [],
+        "sexo": "Mujer",
+        "genero": "Masculino",
+        "estado_civil": "Soltero/a"
+    },
+    "lugar": {
+        "id": 1,
+        "nombre": null,
+        "calle": "Mitre",
+        "altura": "327",
+        "localidadid": 1,
+        "latitud": "-123123",
+        "longitud": "321123",
+        "barrio": "Don Bosco",
+        "piso": "Planta Baja",
+        "depto": "A",
+        "escalera": null,
+        "localidad": "Capital Federal"
+    }
 }
+*/
 
-****** Para borrar *****
+/****** Para borrar *****
 @url http://api.pril.local/api/ambiente-trabajo/{$id} 
 @method Delete
 @return arrayJson
@@ -136,3 +180,4 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
 	'msj': 'Se ha borrado un ambiente de trabajo'
 
 }
+*/
