@@ -5,13 +5,13 @@
 Obtenemos una listado de destinatario, vinculando una persona del sistema registral(Interoperabilidad).
 Podemos aplicar un filtrado aplicando un "?" despues de la url, y concatenadamente le tiramos los parametros relevantes. Estos
 parametros son:
- 
+    page (numero de la pagina, por defecto va el 0 como primera pagina)
     global_param (busca por nombre, apellido y/o apodo)
     calle (busca el nombre de la calle donde el destinatario vive)
     localidadid (id de la localidad donde el destinatario vive)
     legajo,banco_cbu, etc (cualquier atributo de destinatario)
 
-La Url quedaria algo asi, (no importa el orden) api/destinatarios?global_param=gonzalez&localidadid=1
+La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_param=gonzalez&localidadid=1
 @url http://api.pril.local/api/destinatarios
 @method GET
 @return
