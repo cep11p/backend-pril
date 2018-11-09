@@ -1,4 +1,6 @@
-**** Para mostrar listado ****
+<?php
+
+/**** Para mostrar listado ****
 @url http://api.pril.local/api/oferta
 @method GET
 {
@@ -39,26 +41,32 @@
 		]    
 	}
 }
+*/
 
-****Para crear un Oferta ****
+
+/****Para crear un Oferta ****
 @url http://api.pril.local/api/oferta 
 @method POST
 @param arrayJson
 {
-	    "ambiente_trabajoid": 1,
-	    "nombre_sucursal": "Sucursal 1 - Paderia Mitre",
-	    "puesto": "cajera",
-	    "area":"",
-	    "fecha_inicial": 2018-12-12,
-	    "fecha_final": "",
-	    "demanda_laboral": "Falta dividir responsabilidades",
-	    "objetivo": "Poder dar una oportunidad de trabajo",
-	    "dia_horario": "lunes a viernes 10 a 12:30",
-	    "lugarid": 2,
-	    "tarea": "tareas de cajera",
+    "ambiente_trabajoid": 1,
+    "nombre_sucursal": "Sucursal 1 - Paderia Mitre",
+    "puesto": "cajera",
+    "area":"",
+    "fecha_inicial": 2018-12-12,
+    "fecha_final": "",
+    "demanda_laboral": "Falta dividir responsabilidades",
+    "objetivo": "Poder dar una oportunidad de trabajo",
+    "dia_horario": "lunes a viernes 10 a 12:30",
+    "lugarid": 2,
+    "tarea": "tareas de cajera",
 		
 }
-**** Para modificar una oferta *****
+ * 
+ */
+
+
+/**** Para modificar una oferta *****
 @url http://api.pril.local/api/oferta/{$id} 
 @method PUT
 @param arrayJson
@@ -77,9 +85,11 @@
 	    "tarea": "tareas de cajera",
 		
 }
+ * 
+ */
 
 
-
+/**
 ****** Para mostrar una Oferta *****
 @url http://api.pril.local/api/oferta/{$id} 
 @method GET
@@ -102,7 +112,10 @@
 	    },
 	    "tarea": "tareas de cajera",
 }
+ * 
+ */
 
+/**
 ****** Para borrar una oferta *****
 @url http://api.pril.local/api/oferta/{$id} 
 @method Delete
@@ -111,4 +124,4 @@
 	'success': TRUE,
 	'msj': 'Se ha borrado un ambiente de trabajo'
 
-}
+}*/

@@ -33,6 +33,24 @@ class LugarForm extends Model
     }
     
     /**
+     * Se registra un lugar con el sistemaLugar (interoperabilidad)
+     * @return boolean
+     */
+    public function save(){
+        $resultado = null;
+        
+        if($this->validate()){
+            $id = intval(\Yii::$app->lugar->crearLugar($this->toArray()));
+            $resultado = $this->id = $id;
+            
+        }else{
+            $resultado = false;
+        } 
+        
+        return $resultado;
+    }
+    
+    /**
      * Vamos a ver si localidadid tiene integridad con el sistema Lugar, 
      * Es decir que el sistema lugar debe tener una tabla Localidad
      */

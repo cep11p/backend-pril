@@ -28,6 +28,7 @@ class Oferta extends BaseOferta
             parent::rules(),
             [
                 # custom validation rules
+                ['lugarid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar el Lugar correctamente en el Sistema Lugar.'],
             ]
         );
     }

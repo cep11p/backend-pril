@@ -52,7 +52,7 @@ class PersonaForm extends Model
         if($this->validate()){
             $resultado = null;
             if(isset($this->id) && !empty($this->id)){
-                $personaid = intval(\Yii::$app->registral->actualizarPersona($this->attributes()));
+                $personaid = intval(\Yii::$app->registral->actualizarPersona($this->toArray()));
                 $this->id = $personaid;
                 $resultado = $this->id;
             }else{

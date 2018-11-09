@@ -95,6 +95,10 @@ $config = [
                 ],
                 [   
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/oferta'
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/persona'
                 ],
                 [   
