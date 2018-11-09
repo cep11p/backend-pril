@@ -33,11 +33,20 @@ class Oferta extends BaseOferta
         );
     }
     
+    public function getLugar() {
+        $lugar = new LugarForm();
+        
+        $resultado = $lugar->buscarLugarPorIdEnSistemaLugar($this->lugarid);
+        
+        return $resultado;
+        
+    }
+    
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
             'lugar'=> function($model){
-                return "un lugar";
+                return $model->lugar;
             }
         ]);
         
