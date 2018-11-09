@@ -45,6 +45,10 @@ class OfertaSearch extends Oferta
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+                'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
+            ],
         ]);
 
         $this->load($params);
