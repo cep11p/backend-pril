@@ -26,7 +26,7 @@ return [
         "demanda_laboral" => "falta una cajera",
         "objetivo" => "conseguir personal especificamente para la caja",
         "dia_horario" => "Lunes a Viernes de 9 a 12",
-        "lugarid" => 1,
+        "lugarid" => 2,
         "tarea" => "cobrar a personas y realizar las facturas correspondientes"
     ],
     "oferta3" => [
@@ -40,7 +40,7 @@ return [
         "demanda_laboral" => "falta mantenimiento en la sucursal",
         "objetivo" => "conseguir personal especificamente para limpieza",
         "dia_horario" => "Lunes a Viernes de 9 a 12",
-        "lugarid" => 1,
+        "lugarid" => 2,
         "tarea" => "limpiar todo lo que se pueda"
     ],
     "oferta4" => [
@@ -54,7 +54,7 @@ return [
         "demanda_laboral" => "falta mantenimiento en la sucursal",
         "objetivo" => "conseguir personal especificamente para limpieza",
         "dia_horario" => "Lunes a Viernes de 9 a 12",
-        "lugarid" => 1,
+        "lugarid" => 3,
         "tarea" => "limpiar todo lo que se pueda"
     ],
     
