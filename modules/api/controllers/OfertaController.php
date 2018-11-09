@@ -148,5 +148,72 @@ class OfertaController extends ActiveController{
 
     }
     
-    
+    /**
+     * Se crea una Oferta y se vincula con un AmbienteTrabajo()
+     * @return array Un array con datos
+     * @throws \yii\web\HttpException
+     */
+    public function actionUpdate($id)
+    {
+        $resultado['message']='Se guarda una Oferta';
+        $param = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $arrayErrors = array();
+        try {
+            
+            $model = Oferta::findOne(['id'=>$id]);            
+            if($model==NULL){
+                $msj = 'La oferta con el id '.$id.' no existe!';
+                throw new Exception($msj);
+            }
+            
+            $lugarForm = new LugarForm();
+            
+            /************ Validamos todos los campos de Lugar************/
+            if(isset($param['lugar'])){
+                $lugarForm->setAttributes($param['lugar']);
+            }
+            
+            if(!$lugarForm->save()){
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array('lugar' => $lugarForm->getErrors()));
+            }         
+            
+            /************ Validamos todos los campos de Oferta************/
+            $model->setAttributes($param);
+            $model->lugarid = $lugarForm->id;
+            
+            if(!$model->validate()){ 
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array("oferta" => $model->getErrors()));
+            }         
+            
+            /*********** Fin de la Validacion******/
+            
+            //verificamos si hay errores para mostrar
+            if(count($arrayErrors)>0){
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            
+            
+            if(!$model->save()){
+                $arrayErrors['oferta']=$model->getErrors();                
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            
+            $transaction->commit();
+            
+            $resultado['success']=true;
+            $resultado['data']['id']=$model->id;
+            
+            return  $resultado;
+           
+        }catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+
+    }
 }
