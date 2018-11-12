@@ -41,3 +41,6 @@ services:
      MYSQL_ROOT_PASSWORD: root
     volumes:
      - /dbdata:/var/lib/mysql
+     
+volumes:
+    dbdata:
