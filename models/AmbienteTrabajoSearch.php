@@ -75,6 +75,9 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
     public function busquedadGeneral($params)
     {
         $query = AmbienteTrabajo::find();
+        $lugarForm = new LugarForm();
+        $personaForm = new PersonaForm();
+        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -105,6 +108,62 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
             ->andFilterWhere(['like', 'observacion', $this->observacion])
             ->andFilterWhere(['like', 'cuit', $this->cuit])
             ->andFilterWhere(['like', 'actividad', $this->actividad]);
+        
+        /*** Filtrado por Lugar (tabla con registros de geolocalizacion y georeferencias)****/
+        
+        #Localidad
+        if(isset($params['localidadid']) && !empty($params['localidadid'])){
+            $lugar_params['localidadid'] = $params['localidadid'];
+        }
+        
+        #Calle
+        if(isset($params['calle']) && !empty($params['calle'])){
+            $lugar_params['calle'] = $params['calle'];    
+        }
+        
+        #coleccionamos ids
+        $lugar_listaid = array();
+        if(isset($lugar_params)){
+            $coleccionLugar = $lugarForm->buscarLugarEnSistemaLugar($lugar_params);
+            
+            if($coleccionLugar){
+                foreach ($coleccionLugar as $array) {
+                    $lugar_listaid[] = $array['id'];
+                }
+            }else{
+                $query->where('0=1');
+            }
+            
+        }
+        
+        #filtramos por ids de lugar
+        if(count($lugar_listaid)>0){
+            $query->andWhere(array('in', 'lugarid', $lugar_listaid));
+        }
+        
+        /************** Filtrando por Persona(representante del A.T) **********************/
+        if(isset($params['global_param']) && !empty($params['global_param'])){
+            $persona_params["global_param"] = $params['global_param'];
+        }
+        
+        
+        $persona_listaid = array();
+        if(isset($persona_params)){
+            $coleccionPersonas = $personaForm->buscarPersonaEnRegistral($persona_params);
+            
+            if($coleccionPersonas){
+                foreach ($coleccionPersonas as $persona) {
+                    $persona_listaid[] = $persona['id'];
+                }
+            }else{
+                $query->where('0=1');
+            }
+            
+        }
+        
+        if(count($persona_listaid)>0){
+            $query->andWhere(array('in', 'personaid', $persona_listaid));
+        }
 
         return $dataProvider;
     }

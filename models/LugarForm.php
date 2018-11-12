@@ -67,32 +67,18 @@ class LugarForm extends Model
      * que vamos a chequear si coinciden los atributos
      * @return LugarForm $lugarEncontrado;
      */
-    public function buscarLugarEnSistemaLugar() {
+    public function buscarLugarEnSistemaLugar($params = null) {
         
         $resultado = null;
-        $response = \Yii::$app->lugar->buscarLugar($this->attributes);   
+        if(isset($params)){
+            $response = \Yii::$app->lugar->buscarLugar($params);   
+        }else{
+            $response = \Yii::$app->lugar->buscarLugar($this->attributes);
+        }
         
         if(isset($response['success']) && $response['success']==true){
 
-            if(count($response['resultado'])>0){            
-                foreach ($response['resultado'] as $modeloEncontrado){
-                    $lugarEncontrado = $modeloEncontrado;                
-                    $lugarARegistrar = $this->attributes;
-                    
-                    #borramos el siguiente atributo por el modelo de lugarEncontrado no lo tiene
-//                    unset($lugarARegistrar['usarLugarEncontrado']);
-                    
-                    #borramos el id, ya que el modelo a registrar aun no tiene id
-                    if(!isset($this->id) && empty($this->id)){
-                        $modeloEncontrado['id']="";
-                    }
-                    
-                    if($lugarARegistrar==$modeloEncontrado){
-                        $resultado = $lugarEncontrado;
-                        
-                    }
-                }
-            }
+            $resultado = $response['resultado'];
         }
         
         return $resultado;

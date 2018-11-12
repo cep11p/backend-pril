@@ -39,7 +39,7 @@ class ServicioLugar extends Component implements IServicioLugar
             
             $response = $client->request('GET', 'http://api.lugar.local/api/localidad?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -67,7 +67,7 @@ class ServicioLugar extends Component implements IServicioLugar
             
             $response = $client->request('POST', 'http://api.lugar.local/api/lugars', ['json' => $data,'headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             return $respuesta['data']['id'];
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
@@ -95,7 +95,7 @@ class ServicioLugar extends Component implements IServicioLugar
             
             $response = $client->request('GET', 'http://api.lugar.local/api/lugar?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -123,7 +123,7 @@ class ServicioLugar extends Component implements IServicioLugar
             
             $response = $client->request('GET', 'http://api.lugar.local/api/localidad?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
@@ -151,7 +151,7 @@ class ServicioLugar extends Component implements IServicioLugar
             
             $response = $client->request('GET', 'http://api.lugar.local/api/lugar?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
+            \Yii::info($respuesta);
             
             return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
