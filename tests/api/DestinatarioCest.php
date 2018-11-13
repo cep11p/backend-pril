@@ -136,7 +136,18 @@ class DestinatarioCest
                 'tipo_documentoid' => 1,
                 'generoid' => 1,
                 'email' => 'algo@correo.com.ar',
-                'cuil' => '20367655678'
+                'cuil' => '20367655678',
+                "lugar"=> [
+                    "id"=> 6,
+                    "barrio"=> "Ceferino(1016)",
+                    "calle"=> "Guatemala",
+                    "altura"=> "212",
+                    "piso"=> "",
+                    "depto"=> "",
+                    "escalera"=> "",
+                    "localidadid"=> 1,
+                    "localidad"=> "nombreDeLocalidad"
+                ]
             ],
         ]);
         $I->seeResponseCodeIs(200);
