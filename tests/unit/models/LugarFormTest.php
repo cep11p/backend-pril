@@ -19,23 +19,25 @@ class LugarFormTest extends \Codeception\Test\Unit
     public function testBuscarLugarEnSistemaLugar()
     {
         $param = [
-                    "nombre"=>"",
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                ];
+            "nombre"=>"",
+            "barrio"=>"Don bosco",
+            "calle"=>"Mitre",
+            "altura"=>"327",
+            "piso"=>"A",
+            "depto"=>"",
+            "escalera"=>"",
+            "localidadid"=>1,
+            "latitud"=>"-123123",
+            "longitud"=>"321123"
+        ];
         $model = new app\models\LugarForm;
         $model->setAttributes($param);
         
         $param['id'] = 1;
+        $lugarEncontrado = $model->buscarLugarEnSistemaLugar();
+        $param = array_filter($param);
         
-        $this->assertJsonStringEqualsJsonString(json_encode($param), json_encode($model->buscarLugarEnSistemaLugar()));
+        $this->assertJsonStringEqualsJsonString(json_encode($param), json_encode($lugarEncontrado[0]));
     }
     
     public function testSiExisteLocalidadEnSistemaLugarRetornaTrue()
