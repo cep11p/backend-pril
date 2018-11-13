@@ -9,12 +9,11 @@
 return [   
     [
         "id"=>1,
-        "nombre"=>"",
         "barrio"=>"Don bosco",
         "calle"=>"Mitre",
         "altura"=>"327",
-        "piso"=>"2",
-        "depto"=>"A",
+        "piso"=>"A",
+        "depto"=>"",
         "escalera"=>"",
         "localidadid"=>1,
         "latitud"=>"-123123",
@@ -32,5 +31,18 @@ return [
         "localidadid"=>1,
         "latitud"=>"-123321",
         "longitud"=>"321321"
+    ],
+    [
+        "id"=>3,
+        "nombre"=>"",
+        "barrio"=>"Don bosco",
+        "calle"=>"Mitre",
+        "altura"=>"327",
+        "piso"=>"2",
+        "depto"=>"A",
+        "escalera"=>"",
+        "localidadid"=>1,
+        "latitud"=>"-123123",
+        "longitud"=>"321123"
     ]
 ];

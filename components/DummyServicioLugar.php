@@ -59,38 +59,19 @@ class DummyServicioLugar extends Component implements IServicioLugar
     
     public function buscarLugar($param)
     {
+        #injectamos el array de datos (mock)
+        $data = require(\Yii::getAlias('@app').'/components/DataLugar.php');   
         
-        $response = array(
+        
+        $arrayEncontrado = Help::filtrarArrayAsociativo($data, $param);
+        
+        $response = $coleccion = array(
             "success"=>true,
-            "resultado"=>array(
-                    [
-                    "id"=>1,
-                    "nombre"=>"",
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                    ],
-                    [
-                    "id"=>2,
-                    "nombre"=>"",
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"3",
-                    "depto"=>"A",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                    ]
-                )
-            );
+            "resultado"=>array(),
+        );
+        if(isset($arrayEncontrado)){
+            $response['resultado'][] = $arrayEncontrado;
+        }
         
         return $response;
        

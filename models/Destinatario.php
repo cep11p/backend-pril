@@ -112,7 +112,11 @@ class Destinatario extends BaseDestinatario
             $lugarEncontrado = $lugarForm->buscarLugarEnSistemaLugar();
             //Verificamos si existe el lugar y seteamos el hogar con el nucleo que corresponde
             if($lugarEncontrado!=null){
-                $hogarForm->lugarid = $lugarEncontrado['id'];
+                
+                if(count($lugarEncontrado)>1){
+                    throw new Exception("error!... existe un lugar duplicado");
+                }
+                $hogarForm->lugarid = $lugarEncontrado[0]['id'];
                 $hogarEncontrado = $hogarForm->buscarHogarEnSistemaRegistral();
                 
                 if($hogarEncontrado!=null){

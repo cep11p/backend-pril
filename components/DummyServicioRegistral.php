@@ -188,8 +188,7 @@ class DummyServicioRegistral extends Component implements IServicioRegistral
 
     public function buscarHogar($param)
     {
-        $paramLimpio = \app\components\Help::extraerArrayDeArrayAsociativo($param,['localidadid','calle','altura','depto','piso','barrio']);
-        $criterio = $this->crearCriterioBusquedad($paramLimpio);
+        $criterio = $this->crearCriterioBusquedad($param);
         $client =   $this->_client;
         try{
             $headers = [

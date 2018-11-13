@@ -35,23 +35,29 @@ class Help extends \yii\base\Component{
     
     /**
      * Vamos a extrar un array de una array por las keys seteadas
-     * @param array $array_principal
-     * @param array $param Esto es un array de Keys
+     * @param array $arrays_colection es la coleccion de arrays que se obtiene para filtrar
+     * @param array $array_search array a buscar
+     * @return array
      * @author cep11p
      */
-    public static function extraerArrayDeArrayAsociativo($array_principal, $array_keys)
+    public static function filtrarArrayAsociativo($arrays_colection, $array_search)
     {
-        $array = array();
-        foreach ($array_keys as $index){
+        
+        $resultado = null;
+        $array_search = array_filter($array_search);
+                
+        foreach ($arrays_colection as $array) {
             
-            foreach ($array_principal as $key => $value) {
-                if($index == $key){
-                    $array = ArrayHelper::merge($array, [$key=>$value]);
-                    break;
-                }
-            }  
-        }
-        return $array;
+            $array = array_filter($array);
+            $array_found = $array;
+            unset($array['id']);
+            
+            if($array == $array_search){
+                $resultado = $array_found;
+            }
+        }  
+        
+        return $resultado;
     }
     
     /*
