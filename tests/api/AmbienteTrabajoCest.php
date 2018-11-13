@@ -249,30 +249,20 @@ class AmbienteTrabajoCest
         $I->seeResponseCodeIs(200);
         
         //chequeamos lo guardado
-//        $model = AmbienteTrabajo::findOne(['legajo'=>'usb123/7']);
-//        $id = $model->id;
-//        $I->sendGET("/api/ambiente-trabajo/$id");
-//        $I->seeResponseContainsJson([
-//            'id' => $id,
-//            'oficioid' => 1,
-//            'legajo' => 'usb123/7',
-//            'calificacion' => 7,
-//            'profesionid' => 2,
-//            'origen' => 'un origen test',
-//            'observacion' => 'Una observacion',
-//            'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
-//            'deseo_actividad' => 'La actividad que desea realizar',
-//            'fecha_presentacion' => '2000-12-12',
-//            'personaid' => 100,
-//            'banco_cbu' => '54321987654',
-//            'banco_nombre' => 'Patagonia',
-//            'banco_alias' => 'CAMION-RODILLO-RUEDA',
-//            'experiencia_laboral' => 0,
-//            'conocimientos_basicos' => null,
-//            'profesion' => 'Académico/a',
-//            'oficio' => 'Albañil'
-//        ]);
-//        $I->seeResponseCodeIs(200);
+        $model = AmbienteTrabajo::findOne(['legajo'=>'asb123/7']);
+        $id = $model->id;
+        $I->sendGET("/api/ambiente-trabajos/$id");
+        $I->seeResponseContainsJson([
+            'id' => $id,
+            "nombre"=> "Panaderia San Fernando",
+            "calificacion"=> 7,
+            "legajo"=> "asb123/7",
+            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+            "cuit"=>"20123456789",
+            "actividad"=> "Vende facturas, tortas y variedades de panes",
+            "tipo_ambiente_trabajoid"=> 1,
+        ]);
+        $I->seeResponseCodeIs(200);
     
     }
     
