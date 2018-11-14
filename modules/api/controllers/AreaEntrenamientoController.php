@@ -59,6 +59,7 @@ class AreaEntrenamientoController extends ActiveController{
     {
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['update']);
 //        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -97,14 +98,59 @@ class AreaEntrenamientoController extends ActiveController{
         try {
             
             $model = new AreaEntrenamiento();
-            $personaForm = new PersonaForm();
-            $oferta = new Oferta();
-            
-            
             
             /************ Validamos y Guardamos el Area de entrenamiento************/
             $model->setAttributes($param);
             $model->fecha_inicial = date("Y-m-d H:i:s");
+            
+            if(!$model->save()){
+                $arrayErrors=$model->getErrors();                
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            #verificamos si hay errores para mostrar
+            if(count($arrayErrors)>0){
+                throw new Exception(json_encode($arrayErrors));
+            }
+            /*********** Fin de la Validacion******/
+            
+            $transaction->commit();
+            
+            $resultado['success']=true;
+            $resultado['data']['id']=$model->id;
+            
+            return  $resultado;
+           
+        }catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+
+    }
+    
+    /**
+     * Se modifica un Area de entrenamiento que se vincula con una Persona() y una Oferta()
+     * @return array Un array con datos
+     * @throws \yii\web\HttpException
+     */
+    public function actionUpdate($id)
+    {
+        $resultado['message']='Se modifica el Area de entrenamiento';
+        $param = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $arrayErrors = array();
+        try {
+            
+            $model = AreaEntrenamiento::findOne(['id'=>$id]); 
+            if($model==NULL){
+                $msj = 'El area de entrenamiento con el id '.$id.' no existe!';
+                throw new Exception($msj);
+            }
+            
+            /************ Validamos y Guardamos el Area de entrenamiento************/
+            $model->setAttributes($param);
             
             if(!$model->save()){
                 $arrayErrors=$model->getErrors();                
