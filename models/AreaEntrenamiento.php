@@ -31,4 +31,22 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
             ]
         );
     }
+    
+    public function fields()
+    {        
+        $resultado = ArrayHelper::merge(parent::fields(), [
+            'plan'=> function($model){
+                return $model->plan;
+            },
+            'oferta'=> function($model){
+                return $model->oferta;
+            },
+            'destinatario'=> function($model){
+                return $model->destinatario;
+            }
+        ]);
+        
+        return $resultado;
+    
+    }
 }

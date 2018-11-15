@@ -113,7 +113,7 @@ class DummyServicioLugar extends Component implements IServicioLugar
         
         #preparamos el resultado
         $resultado = array(
-            "estado"=>FALSE,
+            "success"=>FALSE,
             "resultado"=>array()
         );
         
@@ -121,7 +121,7 @@ class DummyServicioLugar extends Component implements IServicioLugar
         $modelEncontrado = Help::filter_by_value($data, 'id', $id);        
         
         if($modelEncontrado){
-            $resultado['estado'] = true;
+            $resultado['success'] = true;
             $resultado['resultado'] = $modelEncontrado;
         }
         

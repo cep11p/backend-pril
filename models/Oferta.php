@@ -47,6 +47,9 @@ class Oferta extends BaseOferta
         $resultado = ArrayHelper::merge(parent::fields(), [
             'lugar'=> function($model){
                 return $model->lugar;
+            },
+            'ambiente_trabajo'=> function($model){
+                return $model->ambienteTrabajo;
             }
         ]);
         
