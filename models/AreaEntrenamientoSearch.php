@@ -93,6 +93,7 @@ public function rules()
             return $dataProvider;
         }
 
+        $query->from("area_entrenamiento as e");
         $query->andFilterWhere([
             'id' => $this->id,
             'planid' => $this->planid,
@@ -102,8 +103,8 @@ public function rules()
             'ofertaid' => $this->ofertaid,
         ]);
 
-        $query->andFilterWhere(['like', 'tarea', $this->tarea])
-              ->andFilterWhere(['like', 'descripcion_baja', $this->descripcion_baja]);
+        $query->andFilterWhere(['like', 'e.tarea', $this->tarea])
+              ->andFilterWhere(['like', 'e.descripcion_baja', $this->descripcion_baja]);
         
         
         /*********** Filtramos por Destinatario/Persona ********************/
@@ -141,7 +142,7 @@ public function rules()
         }
         
         /******************** FIN del filtrado por Persona ****************/
-
+        
         return $dataProvider;
     }
 }
