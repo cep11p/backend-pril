@@ -101,9 +101,12 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/oferta'
                 ],
-                [   
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'api/persona'
+                [   'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/persona', 
+                    'extraPatterns' => [
+                        'GET buscar-por-documento/{nro_documento}' => 'buscar-por-documento',
+                    ],                      
+                    'tokens' => [ '{id}' => '<id:\\w+>', '{nro_documento}'=>'<nro_documento:\\w+>' ],
                 ],
                 [   
                     'class' => 'yii\rest\UrlRule',

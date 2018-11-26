@@ -89,7 +89,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
        
     }
     
-    public function buscarPersonaPorNroDocumento($nrodocumento)
+    public function buscarPersonaPorNroDocumento($nro_documento)
     {
        
         $client =   $this->_client;
@@ -99,7 +99,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/personas?nro_documento='.$nrodocumento, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://api.registral.local/api/personas/buscar-por-documento/'.$nro_documento, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             

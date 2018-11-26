@@ -70,8 +70,25 @@ class PersonaController extends ActiveController{
         
         
         $resultado = \Yii::$app->registral->buscarPersona($param);
-//        print_r($resultado);
-//        die();
+        
+        if($resultado['estado']!=true){
+            $data['success']=false;            
+            $data['resultado']=[];
+            $data['message']="No se encontró ninguna persona!";   
+        }else{
+            $data['success']=true;
+            $data['resultado']=$resultado['resultado'];
+        }
+        
+        return $data;
+
+    }
+    
+    public function actionBuscarPorDocumento($nro_documento)
+    {
+        $resultado['estado']=false;   
+        $resultado = \Yii::$app->registral->buscarPersonaPorNroDocumento($nro_documento);
+        
         if($resultado['estado']!=true){
             $data['success']=false;            
             $data['resultado']=[];
