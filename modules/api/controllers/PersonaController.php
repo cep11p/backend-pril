@@ -84,6 +84,13 @@ class PersonaController extends ActiveController{
 
     }
     
+    /**
+     * Se busca una persona por numero documento
+     * @param type $nro_documento
+     * @Method GET
+     * @url ejemplo http://api.pril.local/api/personas/buscar-por-documento/29800100
+     * @return array
+     */
     public function actionBuscarPorDocumento($nro_documento)
     {
         $resultado['estado']=false;   
