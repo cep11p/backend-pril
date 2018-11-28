@@ -119,10 +119,9 @@ class AmbienteTrabajoController extends ActiveController{
             
             
             /************ Validamos todos los campos de AmbienteTrabajo************/
-            if (isset($param['ambiente_trabajo'])){
-                $model->setAttributes($param['ambiente_trabajo']);
-                $model->personaid = $personaForm->id;
-            }
+            $model->setAttributes($param);
+            $model->personaid = $personaForm->id;
+            
             
             if(!$model->validate()){ 
                 $arrayErrors = ArrayHelper::merge($arrayErrors, array('ambiente_trabajo' => $model->getErrors()));

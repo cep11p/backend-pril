@@ -67,33 +67,31 @@ class AmbienteTrabajoCest
     {
         $I->wantTo('Agregar Un Ambiente de trabajo con los Campos De Lugar Vacio');
         $param=[
-            "ambiente_trabajo"=>[
                 "nombre"=> "Panaderia San Fernando",
                 "calificacion"=> 7,
                 "legajo"=> "asb123/7",
                 "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
                 "cuit"=>"20123456789",
                 "actividad"=> "Vende facturas, tortas y variedades de panes",
-                "tipo_ambiente_trabajoid"=> 1
-            ],
-            "persona"=>[
-                "nombre"=> "Diego",
-                "apellido"=> "Matinez",
-                "nro_documento"=> "27890098",
-                "fecha_nacimiento"=>"1980-12-12",
-                "apodo"=>"rominochi",
-                "telefono"=> "2920430690",
-                "celular"=> "2920412127",
-                "situacion_laboralid"=> 1,
-                "estado_civilid"=> 1,
-                "sexoid"=> 2,
-                "tipo_documentoid"=> 1,
-                "generoid"=> 1,
-                "email"=>"algo@correo.com.ar",
-                "cuil"=>"20367655678"
+                "tipo_ambiente_trabajoid"=> 1,
+                "persona"=>[
+                    "nombre"=> "Diego",
+                    "apellido"=> "Matinez",
+                    "nro_documento"=> "27890098",
+                    "fecha_nacimiento"=>"1980-12-12",
+                    "apodo"=>"rominochi",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=>"algo@correo.com.ar",
+                    "cuil"=>"20367655678"
 
-            ]
-        ];
+                ]   
+            ];
         
         $I->sendPOST('/api/ambiente-trabajos', $param);
         
@@ -112,15 +110,13 @@ class AmbienteTrabajoCest
     {
         $I->wantTo('Agregar Un Ambiente de trabajo con localidad no existente');
         $param=[
-            "ambiente_trabajo"=>[
-                "nombre"=> "Panaderia San Fernando",
-                "calificacion"=> 7,
-                "legajo"=> "asb123/7",
-                "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
-                "cuit"=>"20123456789",
-                "actividad"=> "Vende facturas, tortas y variedades de panes",
-                "tipo_ambiente_trabajoid"=> 1
-            ],
+            "nombre"=> "Panaderia San Fernando",
+            "calificacion"=> 7,
+            "legajo"=> "asb123/7",
+            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+            "cuit"=>"20123456789",
+            "actividad"=> "Vende facturas, tortas y variedades de panes",
+            "tipo_ambiente_trabajoid"=> 1,
             "lugar"=>[
                 "calle"=>"Mata Negra",
                 "altura"=>"123",
@@ -141,7 +137,6 @@ class AmbienteTrabajoCest
                 "generoid"=> 1,
                 "email"=>"algo@correo.com.ar",
                 "cuil"=>"20367655678"
-
             ]
         ];
         
@@ -159,16 +154,14 @@ class AmbienteTrabajoCest
     {
         $I->wantTo('Agregar Un Ambiente de trabajo con lugarid incorrecto');
         $param=[
-            "ambiente_trabajo"=>[
-                "nombre"=> "Panaderia San Fernando",
-                "calificacion"=> 7,
-                "legajo"=> "asb123/7",
-                "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
-                "cuit"=>"20123456789",
-                "actividad"=> "Vende facturas, tortas y variedades de panes",
-                "tipo_ambiente_trabajoid"=> 1,
-                "lugarid"=>0,
-            ],
+            "nombre"=> "Panaderia San Fernando",
+            "calificacion"=> 7,
+            "legajo"=> "asb123/7",
+            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+            "cuit"=>"20123456789",
+            "actividad"=> "Vende facturas, tortas y variedades de panes",
+            "tipo_ambiente_trabajoid"=> 1,
+            "lugarid"=>0,
             "lugar"=>[
                 "calle"=>"Mata Negra",
                 "altura"=>"123",
@@ -207,15 +200,13 @@ class AmbienteTrabajoCest
     {
         $I->wantTo('Agregar Un Ambiente');
         $param=[
-            "ambiente_trabajo"=>[
-                "nombre"=> "Panaderia San Fernando",
-                "calificacion"=> 7,
-                "legajo"=> "asb123/7",
-                "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
-                "cuit"=>"20123456789",
-                "actividad"=> "Vende facturas, tortas y variedades de panes",
-                "tipo_ambiente_trabajoid"=> 1,
-            ],
+            "nombre"=> "Panaderia San Fernando",
+            "calificacion"=> 7,
+            "legajo"=> "asb123/7",
+            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+            "cuit"=>"20123456789",
+            "actividad"=> "Vende facturas, tortas y variedades de panes",
+            "tipo_ambiente_trabajoid"=> 1,
             "lugar"=>[
                 "calle"=>"Mata Negra",
                 "altura"=>"123",

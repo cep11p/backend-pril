@@ -116,19 +116,17 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
 @url http://api.pril.local/api/ambiente-trabajos
 @method POST
 {
-    "ambiente_trabajo":{
-             "nombre": "Panaderia San Fernando",
-             "calificacion": 7,
-             "legajo": "asb123/7",
-             "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
-             "cuit":"20123456789",
-             "actividad": "Vende facturas, tortas y variedades de panes",
-             "tipo_ambiente_trabajoid": 1
-    },
+    "nombre": "Panaderia San Fernando",
+    "calificacion": 7,
+    "legajo": "asb123/7",
+    "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+    "cuit":"20123456789",
+    "actividad": "Vende facturas, tortas y variedades de panes",
+    "tipo_ambiente_trabajoid": 1,
     "lugar":{
-                 "calle":"Mata Negra",
-                 "altura":"1233",
-                 "localidadid":2
+       "calle":"Mata Negra",
+       "altura":"1233",
+       "localidadid":2
     },
     "persona":{
         "nombre": "Diego",
@@ -145,8 +143,7 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
         "generoid": 1,
         "email":"algo@correo.com.ar",
         "cuil":"20367655678"
-    }
-		
+    }	
 }
 **/
 
