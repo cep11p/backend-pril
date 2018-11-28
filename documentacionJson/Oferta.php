@@ -11,6 +11,7 @@
 			{
 		      		"id": 2,
 			        "ambiente_trabajoid": 1,
+                                "ambiente_trabajo":"Panaderia San Fernando",
 			        "nombre_sucursal": "Sucursal 1 - Paderia Mitre",
 			        "puesto": "cajera",
 			        "area":"",
@@ -26,6 +27,7 @@
 			{
 				"id": 3,
 				"ambiente_trabajoid": 1,
+                                "ambiente_trabajo":"Panaderia San Fernando",
 				"nombre_sucursal": "Sucursal 2 - Peatonal Buenos Aires",
 				"puesto": "cajera",
 				"area":"",
@@ -96,9 +98,7 @@
 @return arrayJson
 {
 	    "id": 2,
-	    "ambiente_trabajo": {
-		"nombre": "Panaderia San Fernando"
-	    },
+	    "ambiente_trabajo":"Panaderia San Fernando",
 	    "nombre_sucursal": "Sucursal 1 - Paderia Mitre",
 	    "puesto": "cajera",
 	    "area":"",

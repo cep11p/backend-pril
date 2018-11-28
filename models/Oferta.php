@@ -49,7 +49,7 @@ class Oferta extends BaseOferta
                 return $model->lugar;
             },
             'ambiente_trabajo'=> function($model){
-                return $model->ambienteTrabajo;
+                return $model->ambienteTrabajo->nombre;
             }
         ]);
         
