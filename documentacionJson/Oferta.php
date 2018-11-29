@@ -60,7 +60,19 @@
     "demanda_laboral": "Falta dividir responsabilidades",
     "objetivo": "Poder dar una oportunidad de trabajo",
     "dia_horario": "lunes a viernes 10 a 12:30",
-    "lugarid": 2,
+    "lugar": {
+                "id": 1,
+                "nombre": "",
+                "barrio": "Don bosco",
+                "calle": "Mitre",
+                "altura": "327",
+                "piso": "A",
+                "depto": "",
+                "escalera": "",
+                "localidadid": 1,
+                "latitud": "-123123",
+                "longitud": "321123"
+            },
     "tarea": "tareas de cajera",
 		
 }
@@ -83,7 +95,19 @@
 	    "demanda_laboral": "Falta dividir responsabilidades",
 	    "objetivo": "Poder dar una oportunidad de trabajo",
 	    "dia_horario": "lunes a viernes 10 a 12:30",
-	    "lugarid": 2,
+	    "lugar": {
+                "id": 1,
+                "nombre": "",
+                "barrio": "Don bosco",
+                "calle": "Mitre",
+                "altura": "327",
+                "piso": "A",
+                "depto": "",
+                "escalera": "",
+                "localidadid": 1,
+                "latitud": "-123123",
+                "longitud": "321123"
+            },
 	    "tarea": "tareas de cajera",
 		
 }
@@ -107,9 +131,19 @@
 	    "demanda_laboral": "Falta dividir responsabilidades",
 	    "objetivo": "Poder dar una oportunidad de trabajo",
 	    "dia_horario": "lunes a viernes 10 a 12:30",
-	    "lugarid": {
-		"direccion": "mitre y rivadavia"
-	    },
+	    "lugar": {
+                "id": 1,
+                "nombre": "",
+                "barrio": "Don bosco",
+                "calle": "Mitre",
+                "altura": "327",
+                "piso": "A",
+                "depto": "",
+                "escalera": "",
+                "localidadid": 1,
+                "latitud": "-123123",
+                "longitud": "321123"
+            },
 	    "tarea": "tareas de cajera",
 }
  * 

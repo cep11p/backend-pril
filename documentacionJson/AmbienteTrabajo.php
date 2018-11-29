@@ -123,10 +123,18 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
     "cuit":"20123456789",
     "actividad": "Vende facturas, tortas y variedades de panes",
     "tipo_ambiente_trabajoid": 1,
-    "lugar":{
-       "calle":"Mata Negra",
-       "altura":"1233",
-       "localidadid":2
+    "lugar": {
+        "id": 1,
+        "nombre": "",
+        "calle": "Mitre",
+        "altura": "327",
+        "localidadid": 1,
+        "latitud": "",
+        "longitud": "",
+        "barrio": "",
+        "piso": "",
+        "depto": "",
+        "escalera": "",
     },
     "persona":{
         "nombre": "Diego",
@@ -161,10 +169,18 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
              "actividad": "Vende facturas, tortas y variedades de panes",
              "tipo_ambiente_trabajoid": 1
     },
-    "lugar":{
-                 "calle":"Mata Negra",
-                 "altura":"1233",
-                 "localidadid":2
+    "lugar": {
+        "id": 1,
+        "nombre": "",
+        "calle": "Mitre",
+        "altura": "327",
+        "localidadid": 1,
+        "latitud": "",
+        "longitud": "",
+        "barrio": "",
+        "piso": "",
+        "depto": "",
+        "escalera": "",
     },
     "persona":{
         "nombre": "Diego",
