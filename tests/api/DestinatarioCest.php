@@ -38,7 +38,7 @@ class DestinatarioCest
         $param=[
             "destinatario"=>[
 		"calificacion"=> 7,
-		"legajo"=> "usb123/7",
+		"legajo"=> "usb123/1",
                 "oficioid"=>1,
 		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
@@ -99,13 +99,13 @@ class DestinatarioCest
         
        
         //chequeamos lo guardado, no se testea la fecha de ingreso, ya que hay diferencia de segundos en chequear y nunca coincide
-        $model = Destinatario::findOne(['legajo'=>'usb123/7']);
+        $model = Destinatario::findOne(['legajo'=>'usb123/1']);
         $id = $model->id;
         $I->sendGET("/api/destinatarios/$id");
         $I->seeResponseContainsJson([
             'id' => $id,
             'oficioid' => 1,
-            'legajo' => 'usb123/7',
+            'legajo' => 'usb123/1',
             'calificacion' => 7,
             'profesionid' => 2,
             'origen' => 'un origen test',
