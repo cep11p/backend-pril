@@ -43,28 +43,7 @@ class DummyServicioRegistral extends Component implements IServicioRegistral
     
     public function actualizarPersona($data)
     {        
-        $client =   $this->_client;
-        try{
-            \Yii::error(json_encode($data));
-            $headers = [
-                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'],
-            ];          
-            
-            
-            $response = $client->request('PUT', 'http://api.registral.local/api/personas/'.$data['id'], ['json' => $data,'headers' => $headers]);
-            $respuesta = json_decode($response->getBody()->getContents(), true);
-            \Yii::error($respuesta);
-            
-            return $respuesta['data']['id'];
-        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
-                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
-        } catch (Exception $e) {
-                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
-                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
-                return false;
-        }
+        return 100;
        
     }
     

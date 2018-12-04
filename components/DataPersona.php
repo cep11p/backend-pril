@@ -49,7 +49,7 @@ return [
         "id"=>2,
         "nombre"=> "Pilar",
         "apellido"=> "Test",
-        "nro_documento"=> "29890123",
+        "nro_documento"=> "29890124",
         "fecha_nacimiento"=>"1980-12-12",
         "apodo"=>"rominochi",
         "telefono"=> "2920430690",

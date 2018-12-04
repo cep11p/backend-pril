@@ -133,7 +133,7 @@ class DestinatarioController extends ActiveController{
             //echo $exc->getTraceAsString();
             $transaction->rollBack();
             $mensaje =$exc->getMessage();
-            throw new \yii\web\HttpException(500, $mensaje);
+            throw new \yii\web\HttpException(400, $mensaje);
         }
 
     }
