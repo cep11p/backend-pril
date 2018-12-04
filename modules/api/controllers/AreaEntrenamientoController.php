@@ -101,7 +101,13 @@ class AreaEntrenamientoController extends ActiveController{
             
             /************ Validamos y Guardamos el Area de entrenamiento************/
             $model->setAttributes($param);
-            $model->fecha_inicial = date("Y-m-d H:i:s");
+            
+            if(isset($param['fecha_inicial']) && !empty($param['fecha_inicial'])){
+                $model->fecha_inicial = Yii::$app->formatter->asDatetime($param['fecha_inicial'] .' 03:00:00', 'php:Y-m-d H:i:s');
+            }else{
+                $model->fecha_inicial = date("Y-m-d H:i:s");
+            }
+            
             
             if(!$model->save()){
                 $arrayErrors=$model->getErrors();                
