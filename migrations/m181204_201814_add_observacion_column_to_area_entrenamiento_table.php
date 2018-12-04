@@ -12,7 +12,7 @@ class m181204_201814_add_observacion_column_to_area_entrenamiento_table extends 
      */
     public function safeUp()
     {
-        $this->addColumn('area_entrenamiento', 'obeservacion', $this->text());
+        $this->addColumn('area_entrenamiento', 'observacion', $this->text());
     }
 
     /**
@@ -20,6 +20,6 @@ class m181204_201814_add_observacion_column_to_area_entrenamiento_table extends 
      */
     public function safeDown()
     {
-        $this->dropColumn('area_entrenamiento', 'obeservacion');
+        $this->dropColumn('area_entrenamiento', 'observacion');
     }
 }

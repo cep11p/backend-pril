@@ -17,6 +17,8 @@ use Yii;
  * @property string $fecha_final
  * @property string $descripcion_baja
  * @property integer $ofertaid
+ * @property string $jornada
+ * @property string $observacion
  *
  * @property \app\models\Accion[] $accions
  * @property \app\models\Destinatario $destinatario
@@ -46,7 +48,7 @@ abstract class AreaEntrenamiento extends \yii\db\ActiveRecord
             [['tarea', 'planid', 'destinatarioid', 'ofertaid'], 'required'],
             [['planid', 'destinatarioid', 'ofertaid'], 'integer'],
             [['fecha_inicial', 'fecha_final'], 'safe'],
-            [['descripcion_baja'], 'string'],
+            [['descripcion_baja', 'jornada', 'observacion'], 'string'],
             [['tarea'], 'string', 'max' => 45],
             [['destinatarioid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Destinatario::className(), 'targetAttribute' => ['destinatarioid' => 'id']],
             [['ofertaid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Oferta::className(), 'targetAttribute' => ['ofertaid' => 'id']],
@@ -68,6 +70,8 @@ abstract class AreaEntrenamiento extends \yii\db\ActiveRecord
             'fecha_final' => 'Fecha Final',
             'descripcion_baja' => 'Descripcion Baja',
             'ofertaid' => 'Ofertaid',
+            'jornada' => 'Jornada',
+            'observacion' => 'Observacion',
         ];
     }
 
