@@ -1,6 +1,6 @@
 <?php
 use Helper\Api;
-use app\models\Oferta;
+//use app\models\Oferta;
 
 class OfertaCest
 {
@@ -20,7 +20,7 @@ class OfertaCest
     
     public function _after(ApiTester $I)
     { 
-        $I->unloadFixtures([new  app\tests\fixtures\OfertaFixture]);
+//        $I->unloadFixtures([new  app\tests\fixtures\OfertaFixture]);
     }
     
     public function crearOfertaConCampoVacios(ApiTester $I)
@@ -101,6 +101,36 @@ class OfertaCest
         
         $I->seeResponseContainsJson([            
             'message' => 'Se registra una Oferta'
+        ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+    }
+    
+    public function modificarOferta(ApiTester $I)
+    {
+        $I->wantTo('Modificar una oferta');
+        $params=[
+            "ambiente_trabajoid"=> 1,
+            "nombre_sucursal"=> "Sucursal 1 - Paderia Mitre Modificado",
+            "puesto"=> "cajera otro",
+            "area"=>"nueva area",
+            "fecha_final"=> "",
+            "demanda_laboral"=> "Falta dividir responsabilidades",
+            "objetivo"=> "Poder dar una oportunidad de trabajo",
+            "dia_horario"=> "lunes a viernes 10 a 12:30",
+            "lugar"=> [
+                "calle"=>"algo",
+                "altura"=>"1234",
+                "localidadid"=>1
+            ],
+            "tarea"=> "tareas de cajera"
+        ];
+        
+        $I->sendPUT('/api/ofertas/1', $params);
+        
+        $I->seeResponseContainsJson([            
+            'message' => 'Se guarda una Oferta'
         ]);
         
         $I->seeResponseCodeIs(200);
