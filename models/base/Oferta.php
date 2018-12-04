@@ -18,9 +18,7 @@ use Yii;
  * @property string $fecha_final
  * @property string $demanda_laboral
  * @property string $objetivo
- * @property string $dia_horario
  * @property integer $lugarid
- * @property string $tarea
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property \app\models\AmbienteTrabajo $ambienteTrabajo
@@ -48,7 +46,7 @@ abstract class Oferta extends \yii\db\ActiveRecord
             [['ambiente_trabajoid', 'puesto', 'fecha_inicial', 'demanda_laboral', 'lugarid'], 'required'],
             [['ambiente_trabajoid', 'lugarid'], 'integer'],
             [['fecha_inicial', 'fecha_final'], 'safe'],
-            [['demanda_laboral', 'objetivo', 'dia_horario', 'tarea'], 'string'],
+            [['demanda_laboral', 'objetivo'], 'string'],
             [['nombre_sucursal'], 'string', 'max' => 200],
             [['puesto', 'area'], 'string', 'max' => 300],
             [['ambiente_trabajoid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\AmbienteTrabajo::className(), 'targetAttribute' => ['ambiente_trabajoid' => 'id']]
@@ -70,9 +68,7 @@ abstract class Oferta extends \yii\db\ActiveRecord
             'fecha_final' => 'Fecha Final',
             'demanda_laboral' => 'Demanda Laboral',
             'objetivo' => 'Objetivo',
-            'dia_horario' => 'Dia Horario',
             'lugarid' => 'Lugarid',
-            'tarea' => 'Tarea',
         ];
     }
 
