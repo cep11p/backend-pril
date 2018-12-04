@@ -20,7 +20,7 @@ class AmbienteTrabajoCest
 
     public function _after(ApiTester $I)
     {
-        $I->unloadFixtures([new  app\tests\fixtures\DestinatarioFixture]);
+        $I->unloadFixtures([new  app\tests\fixtures\AmbienteTrabajoFixture]);
     }
 
     // tests
