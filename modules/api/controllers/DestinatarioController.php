@@ -57,7 +57,6 @@ class DestinatarioController extends ActiveController{
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['update']);
-        unset($actions['view']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -80,24 +79,6 @@ class DestinatarioController extends ActiveController{
         }
 
         return $data;
-    }   
-    
-    /**
-     * Se recibe una id y se buscar el destinatario para ser mostrado
-     * @param int $id
-     * @return array con los datos de un agente
-     */
-    public function actionView($id)
-    {        
-        $model = Destinatario::findOne(['id'=>$id]);
-        if($model){
-            $resultado = $model->toArray();
-        }else{
-            throw new \yii\web\HttpException(400, "El Destinatario no existe!");
-        }        
-        
-        return $resultado;
-
     }
     
     /**
