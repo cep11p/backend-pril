@@ -57,6 +57,7 @@ class DestinatarioController extends ActiveController{
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['update']);
+        unset($actions['view']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -160,6 +161,25 @@ class DestinatarioController extends ActiveController{
             $mensaje =$exc->getMessage();
             throw new \yii\web\HttpException(500, $mensaje);
         }
+
+    }
+    
+    public function actionView($id)
+    {        
+        $model = Destinatario::findOne(['id'=>$id]);
+        if($model){
+            $resultado = $model->toArray();
+            $persona = $model->getPersona();
+            #vinculamos el lugar a la persona
+            if(count($persona)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra la persona {$resultado['personaid']}, que está vinculada con el Desintario!!");
+            }
+            $resultado['persona'] = $persona;
+        }else{
+            throw new \yii\web\HttpException(400, "La Persona no existe!");
+        }        
+        
+        return $resultado;
 
     }
     
