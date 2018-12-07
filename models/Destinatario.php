@@ -212,9 +212,9 @@ class Destinatario extends BaseDestinatario
             'oficio'=> function($model){
                 return $model->oficio->nombre;
             },
-            'persona'=> function($model){
-                return $model->persona;
-            }
+//            'persona'=> function($model){
+//                return $model->persona;
+//            }
         ]);
         
         return $resultado;

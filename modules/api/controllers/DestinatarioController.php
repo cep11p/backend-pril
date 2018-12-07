@@ -66,19 +66,20 @@ class DestinatarioController extends ActiveController{
     {
         $searchModel = new \app\models\DestinatarioSearch();
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
-        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM destinatario')->queryScalar();
-        
-        $data = array('success'=>false);
-        if($resultado->getTotalCount()){
-            $data['success']='true';
-            $data['total_filtrado']=$resultado->totalCount;            
-            $data['total_general']=intval($total);    
-            $data['coleccion']=$resultado->models;
-        } else {
-            $data['mesagge'] = "No se encontró ningun destinatario!";
-        }
-
-        return $data;
+//        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM destinatario')->queryScalar();
+//        
+//        $data = array('success'=>false);
+//        if($resultado->getTotalCount()){
+//            $data['success']='true';
+//            $data['total_filtrado']=$resultado->totalCount;            
+//            $data['total_general']=intval($total);    
+//            $data['coleccion']=$resultado->models;
+//        } else {
+//            $data['mesagge'] = "No se encontró ningun destinatario!";
+//        }
+//
+//        return $data;
+        return $resultado;
     }
     
     /**

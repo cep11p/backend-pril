@@ -113,10 +113,34 @@ class DestinatarioSearch extends Destinatario
             return $dataProvider;
         }
         
+        /********** Se Obtiene una coleccion de Personas **********/
+        if(isset($params['global_param']) && !empty($params['global_param'])){
+            $persona_params["global_param"] = $params['global_param'];
+        }
+        
+        if(isset($params['localidadid']) && !empty($params['localidadid'])){
+            $persona_params['localidadid'] = $params['localidadid'];
+        }
+        
+        if(isset($params['calle']) && !empty($params['calle'])){
+            $persona_params['calle'] = $params['calle'];    
+        }
+        
+        $coleccion_persona = array();
+        $lista_personaid = array();
+        if (isset($persona_params)) {
+            
+            $coleccion_persona = $personaForm->buscarPersonaEnRegistral($persona_params);
+            $lista_personaid = $this->obtenerListaIds($coleccion_persona);
+
+            if (count($lista_personaid) < 1) {
+                $query->where('0=1');
+            }
+        }
+        /********** Fin de coleccion de Personas **************/
         
         
-        
-        // grid filtering conditions
+        /*********** Se filtran los Destinatarios **************/
         $query->andFilterWhere([
             'id' => $this->id,
             'oficioid' => $this->oficioid,
@@ -138,35 +162,86 @@ class DestinatarioSearch extends Destinatario
             ->andFilterWhere(['like', 'banco_alias', $this->banco_alias])
             ->andFilterWhere(['like', 'conocimientos_basicos', $this->conocimientos_basicos]);
         
-        if(isset($params['global_param']) && !empty($params['global_param'])){
-            $persona_params["global_param"] = $params['global_param'];
+        
+        
+        
+        #Criterio de lista de personas.... lista de personaid
+        if(count($lista_personaid)>0){
+            $query->andWhere(array('in', 'personaid', $lista_personaid));
+        }
+        /******************** Fin de filtrado de Destinatarios **************/
+        
+        /******* Se obtiene la coleccion de Destinaraios filtrados ******/
+        $coleccion_destinatario = array();
+        foreach ($dataProvider->getModels() as $value) {
+            $coleccion_destinatario[] = $value->toArray();
         }
         
-        if(isset($params['localidadid']) && !empty($params['localidadid'])){
-            $persona_params['localidadid'] = $params['localidadid'];
+        /************ Se vincunlan las personas correspondiente a cada Desinatario ****************/
+        if(count($coleccion_persona)>0){
+            $coleccion_destinatario = $this->vincularPersona($coleccion_destinatario, $coleccion_persona);
+        }else{
+            $coleccion_persona = $this->obtenerPersonaVinculada($coleccion_destinatario);
+            $coleccion_destinatario = $this->vincularPersona($coleccion_destinatario, $coleccion_persona);
+        } 
+        
+        $data['total_filtrado']=$dataProvider->totalCount;
+        $data['success']=(count($coleccion_destinatario)>0)?true:false;
+        $data['resultado']=$coleccion_destinatario;
+        
+        return $data;
+    }
+    
+    /**
+     * De una coleccion de persona, se obtienen una lista de ids
+     * @param array $coleccion lista de personas
+     * @return array
+     */
+    private function obtenerListaIds($coleccion = array()) {
+        
+        $lista_ids = array();
+        foreach ($coleccion as $col) {
+            $lista_ids[] = $col['id'];
         }
         
-        if(isset($params['calle']) && !empty($params['calle'])){
-            $persona_params['calle'] = $params['calle'];    
-        }
-        
-        if(isset($persona_params)){
-            $coleccionPersonas = $personaForm->buscarPersonaEnRegistral($persona_params);
-            
-            if($coleccionPersonas){
-                foreach ($coleccionPersonas as $persona) {
-                    $listaid[] = $persona['id'];
+        return $lista_ids;    
+    }
+    
+    /**
+     * Se vinculan las personas a la lista de destinatarios
+     * @param array $coleccion_destinatario
+     * @param array $coleccion_persona
+     * @return array
+     */
+    private function vincularPersona($coleccion_destinatario = array(), $coleccion_persona = array()) {
+        $i=0;
+        foreach ($coleccion_destinatario as $destinatario) {
+            foreach ($coleccion_persona as $persona) {
+                if(isset($destinatario['personaid']) && isset($persona['id']) && $destinatario['personaid']==$persona['id']){                    
+                    $destinatario['persona'] = $persona;
+                    $coleccion_destinatario[$i] = $destinatario;
                 }
-            }else{
-                $query->where('0=1');
             }
-            
+            $i++;
         }
         
-        if(count($listaid)>0){
-            $query->andWhere(array('in', 'personaid', $listaid));
+        return $coleccion_destinatario;
+    }
+    
+    /**
+     * Se obtienen las persoans que están vinculados a la lista de destinatarios
+     * @param array $coleccion_destinatario
+     * @return array
+     */
+    private function obtenerPersonaVinculada($coleccion_destinatario = array()) {
+        $personaForm = new PersonaForm();
+        $ids='';
+        foreach ($coleccion_destinatario as $destinatario) {
+            $ids .= (empty($ids))?$destinatario['personaid']:','.$destinatario['personaid'];
         }
-                
-        return $dataProvider;
+        
+        $coleccion_persona = $personaForm->buscarPersonaEnRegistral(array("ids"=>$ids));
+        
+        return $coleccion_persona;
     }
 }
