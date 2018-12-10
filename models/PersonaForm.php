@@ -188,13 +188,16 @@ class PersonaForm extends Model
     }
     
     public function buscarPersonaEnRegistral($param){
-        $resultado = [];
+        $resultado = array();
         $response = \Yii::$app->registral->buscarPersona($param); 
         
-        
-        
         if(isset($response['estado']) && $response['estado']==true){
-            $resultado = $response['resultado'];
+            
+            foreach ($response['resultado'] as $persona) {                
+                unset($persona['hogar']);
+                
+                $resultado[] = $persona;
+            }
         }
         
         return $resultado;

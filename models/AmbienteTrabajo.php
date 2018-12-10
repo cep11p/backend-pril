@@ -54,6 +54,7 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
             $resultado = $arrayPersona;
         }        
         unset($resultado['lugar']);
+        unset($resultado['estudios']);
         
         return $resultado;
         

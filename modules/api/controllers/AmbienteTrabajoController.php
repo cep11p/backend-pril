@@ -69,19 +69,20 @@ class AmbienteTrabajoController extends ActiveController{
     {
         $searchModel = new \app\models\AmbienteTrabajoSearch();
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
-        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM ambiente_trabajo')->queryScalar();
-        
-        $data = array('success'=>false);
-        if($resultado->getTotalCount()){
-            $data['success']='true';
-            $data['total_filtrado']=$resultado->totalCount;            
-            $data['total_general']=intval($total);    
-            $data['coleccion']=$resultado->models;
-        } else {
-            $data['mesagge'] = "No se encontró ningun Ambiente de trabajo!";
-        }
-
-        return $data;
+//        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM ambiente_trabajo')->queryScalar();
+//        
+//        $data = array('success'=>false);
+//        if($resultado->getTotalCount()){
+//            $data['success']='true';
+//            $data['total_filtrado']=$resultado->totalCount;            
+//            $data['total_general']=intval($total);    
+//            $data['coleccion']=$resultado->models;
+//        } else {
+//            $data['mesagge'] = "No se encontró ningun Ambiente de trabajo!";
+//        }
+//
+//        return $data;
+        return $resultado;
     }
     
     /**
