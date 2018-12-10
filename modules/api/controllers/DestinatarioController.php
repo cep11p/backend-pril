@@ -67,19 +67,7 @@ class DestinatarioController extends ActiveController{
     {
         $searchModel = new \app\models\DestinatarioSearch();
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
-//        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM destinatario')->queryScalar();
-//        
-//        $data = array('success'=>false);
-//        if($resultado->getTotalCount()){
-//            $data['success']='true';
-//            $data['total_filtrado']=$resultado->totalCount;            
-//            $data['total_general']=intval($total);    
-//            $data['coleccion']=$resultado->models;
-//        } else {
-//            $data['mesagge'] = "No se encontró ningun destinatario!";
-//        }
-//
-//        return $data;
+        
         return $resultado;
     }
     
@@ -170,13 +158,15 @@ class DestinatarioController extends ActiveController{
         if($model){
             $resultado = $model->toArray();
             $persona = $model->getPersona();
+            
             #vinculamos el lugar a la persona
             if(count($persona)<1){
                 throw new \yii\web\HttpException(404, "No se encuentra la persona {$resultado['personaid']}, que está vinculada con el Desintario!!");
             }
+            
             $resultado['persona'] = $persona;
         }else{
-            throw new \yii\web\HttpException(400, "La Persona no existe!");
+            throw new \yii\web\HttpException(400, "El destinatario no existe!");
         }        
         
         return $resultado;
