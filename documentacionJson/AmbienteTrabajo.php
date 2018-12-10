@@ -38,7 +38,6 @@
                     "generoid": 1,
                     "email": null,
                     "cuil": "21298001007",
-                    "estudios": [],
                     "sexo": "Mujer",
                     "genero": "Masculino",
                     "estado_civil": "Soltero/a"
@@ -86,7 +85,6 @@
                     "generoid": 1,
                     "email": "algo@correo.com.ar",
                     "cuil": "20367655678",
-                    "estudios": [],
                     "sexo": "Mujer",
                     "genero": "Masculino",
                     "estado_civil": "Soltero/a"
@@ -233,7 +231,6 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
         "generoid": 1,
         "email": null,
         "cuil": "21298001007",
-        "estudios": [],
         "sexo": "Mujer",
         "genero": "Masculino",
         "estado_civil": "Soltero/a"
