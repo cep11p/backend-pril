@@ -19,7 +19,7 @@ class OfertaSearch extends Oferta
     {
         return [
             [['id', 'ambiente_trabajoid', 'lugarid'], 'integer'],
-            [['nombre_sucursal', 'puesto', 'area', 'fecha_inicial', 'fecha_final', 'demanda_laboral', 'objetivo', 'dia_horario', 'tarea'], 'safe'],
+            [['nombre_sucursal', 'puesto', 'area', 'fecha_inicial', 'fecha_final', 'demanda_laboral', 'objetivo'], 'safe'],
         ];
     }
 
@@ -71,9 +71,7 @@ class OfertaSearch extends Oferta
             ->andFilterWhere(['like', 'puesto', $this->puesto])
             ->andFilterWhere(['like', 'area', $this->area])
             ->andFilterWhere(['like', 'demanda_laboral', $this->demanda_laboral])
-            ->andFilterWhere(['like', 'objetivo', $this->objetivo])
-            ->andFilterWhere(['like', 'dia_horario', $this->dia_horario])
-            ->andFilterWhere(['like', 'tarea', $this->tarea]);
+            ->andFilterWhere(['like', 'objetivo', $this->objetivo]);
 
         return $dataProvider;
     }
@@ -106,9 +104,7 @@ class OfertaSearch extends Oferta
             ->andFilterWhere(['like', 'puesto', $this->puesto])
             ->andFilterWhere(['like', 'area', $this->area])
             ->andFilterWhere(['like', 'demanda_laboral', $this->demanda_laboral])
-            ->andFilterWhere(['like', 'objetivo', $this->objetivo])
-            ->andFilterWhere(['like', 'dia_horario', $this->dia_horario])
-            ->andFilterWhere(['like', 'tarea', $this->tarea]);
+            ->andFilterWhere(['like', 'objetivo', $this->objetivo]);
 
         return $dataProvider;
     }
