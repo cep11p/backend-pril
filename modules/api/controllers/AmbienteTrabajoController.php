@@ -59,6 +59,7 @@ class AmbienteTrabajoController extends ActiveController{
     {
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['view']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -156,6 +157,34 @@ class AmbienteTrabajoController extends ActiveController{
             $mensaje =$exc->getMessage();
             throw new \yii\web\HttpException(500, $mensaje);
         }
+
+    }
+    
+    public function actionView($id)
+    {        
+        $model = AmbienteTrabajo::findOne(['id'=>$id]);
+        if($model){
+            $resultado = $model->toArray();
+            $lugar = $model->getLugar();
+            $persona = $model->getPersona();
+            
+            #vinculamos el lugar del ambiente de trabajo
+            if(count($lugar)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra el lugar {$resultado['lugarid']}, que está vinculada con el Ambiente de trabajo!!");
+            }
+            
+            #vinculamos la persona (representante del ambiente de trabajo)
+            if(count($persona)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra la persona {$resultado['personaid']}, que es el representante del ambiente de trabajo!!");
+            }
+            
+            $resultado['persona'] = $persona;            
+            $resultado['lugar'] = $lugar;
+        }else{
+            throw new \yii\web\HttpException(400, "El ambiente de trabajo no existe!");
+        }        
+        
+        return $resultado;
 
     }
 }

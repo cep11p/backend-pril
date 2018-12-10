@@ -62,14 +62,7 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
     
     public function fields()
     {        
-        $resultado = ArrayHelper::merge(parent::fields(), [
-            'persona'=> function($model){
-                return $model->persona;
-            },
-            'lugar'=> function($model){
-                return $model->lugar;
-            }
-        ]);
+        $resultado = ArrayHelper::merge(parent::fields(), []);
         
         return $resultado;
     
