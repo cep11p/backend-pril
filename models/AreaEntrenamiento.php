@@ -38,12 +38,12 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
             'plan'=> function($model){
                 return $model->plan->monto;
             },
-            'ambiente_trabajo'=> function($model){
-                return $model->oferta->ambienteTrabajo->nombre;
-            },
-            'destinatario'=> function($model){
-                return $model->destinatario->persona['nombre'];
-            }
+//            'ambiente_trabajo'=> function($model){
+//                return $model->oferta->ambienteTrabajo->nombre;
+//            },
+//            'destinatario'=> function($model){
+//                return $model->destinatario->persona['nombre'];
+//            }
         ]);
         
         return $resultado;

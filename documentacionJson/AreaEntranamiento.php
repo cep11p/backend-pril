@@ -48,8 +48,6 @@ Esta accion crea un area de entrenamiento
     "jornada": "una jornada",
     "observacion": "una observacion",
     "plan": "2000",
-    "ambiente_trabajo": "Panaderia San Fernando",
-    "destinatario": "Rodrigo Ezequiel",
     "destintario": {
         "id": 2,
         "oficioid": 1,
