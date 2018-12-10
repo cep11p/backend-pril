@@ -60,6 +60,7 @@ class AreaEntrenamientoController extends ActiveController{
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['update']);
+        unset($actions['view']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -182,6 +183,34 @@ class AreaEntrenamientoController extends ActiveController{
             $mensaje =$exc->getMessage();
             throw new \yii\web\HttpException(500, $mensaje);
         }
+
+    }
+    
+    public function actionView($id)
+    {        
+        $model = AreaEntrenamiento::findOne(['id'=>$id]);
+        if($model){
+            $resultado = $model->toArray();
+            $oferta = $model->oferta->toArray();
+            $destinatario = $model->destinatario->toArray();
+            
+            #vinculamos la oferta del area de entrenamiento
+            if(count($oferta)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra la oferta {$resultado['ofertaid']}, que se vincula con el Area de entrenamiento!!");
+            }
+            
+            #vinculamos la persona (representante del ambiente de trabajo)
+            if(count($destinatario)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra el destinatario {$resultado['destinatarioid']}, que se vincula con el area de entrenamiento!!");
+            }
+            
+            $resultado['destintario'] = $destinatario;            
+            $resultado['oferta'] = $oferta;
+        }else{
+            throw new \yii\web\HttpException(400, "El ambiente de trabajo no existe!");
+        }        
+        
+        return $resultado;
 
     }
 }
