@@ -35,15 +35,15 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
-            'plan'=> function($model){
+            'plan_nombre'=> function($model){
+                return $model->plan->nombre;
+            },
+            'plan_monto'=> function($model){
                 return $model->plan->monto;
             },
-//            'ambiente_trabajo'=> function($model){
-//                return $model->oferta->ambienteTrabajo->nombre;
-//            },
-//            'destinatario'=> function($model){
-//                return $model->destinatario->persona['nombre'];
-//            }
+            'plan_hora_semanal'=> function($model){
+                return $model->plan->hora_semanal;
+            },
         ]);
         
         return $resultado;

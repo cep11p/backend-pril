@@ -91,21 +91,40 @@ class OfertaSearch extends Oferta
             // $query->where('0=1');
             return $dataProvider;
         }
+        
+        if($params['ids']){
+            #Se realiza un filtrado de multiples ids
+            $lista_id = explode(",", $params['ids']);
+            $query->andWhere(array('in', 'id', $lista_id));
+        }else{
+            #Se realiza un filtrado con los siguientes criterios
+            $query->andFilterWhere([
+                'id' => $this->id,
+                'ambiente_trabajoid' => $this->ambiente_trabajoid,
+                'fecha_inicial' => $this->fecha_inicial,
+                'fecha_final' => $this->fecha_final,
+                'lugarid' => $this->lugarid,
+            ]);
 
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'ambiente_trabajoid' => $this->ambiente_trabajoid,
-            'fecha_inicial' => $this->fecha_inicial,
-            'fecha_final' => $this->fecha_final,
-            'lugarid' => $this->lugarid,
-        ]);
+            $query->andFilterWhere(['like', 'nombre_sucursal', $this->nombre_sucursal])
+                ->andFilterWhere(['like', 'puesto', $this->puesto])
+                ->andFilterWhere(['like', 'area', $this->area])
+                ->andFilterWhere(['like', 'demanda_laboral', $this->demanda_laboral])
+                ->andFilterWhere(['like', 'objetivo', $this->objetivo]);
+        }
 
-        $query->andFilterWhere(['like', 'nombre_sucursal', $this->nombre_sucursal])
-            ->andFilterWhere(['like', 'puesto', $this->puesto])
-            ->andFilterWhere(['like', 'area', $this->area])
-            ->andFilterWhere(['like', 'demanda_laboral', $this->demanda_laboral])
-            ->andFilterWhere(['like', 'objetivo', $this->objetivo]);
+        
+        /******* Se obtiene la coleccion filtrada******/
+        $coleccion_oferta = array();
+        foreach ($dataProvider->getModels() as $value) {
+            $coleccion_oferta[] = $value->toArray();
+        }
+        
 
-        return $dataProvider;
+        $data['total_filtrado']=$dataProvider->totalCount;
+        $data['success']=(count($coleccion_oferta)>0)?true:false;
+        $data['resultado']=$coleccion_oferta;
+        
+        return $data;
     }
 }
