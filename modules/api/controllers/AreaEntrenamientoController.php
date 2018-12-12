@@ -70,19 +70,8 @@ class AreaEntrenamientoController extends ActiveController{
     {        
         $searchModel = new \app\models\AreaEntrenamientoSearch();
         $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
-        $total = Yii::$app->db->createCommand('SELECT COUNT(*) FROM area_entrenamiento')->queryScalar();
-        
-        $data = array('success'=>false);
-        if($resultado->getTotalCount()){
-            $data['success']='true';
-            $data['total_filtrado']=$resultado->totalCount;            
-            $data['total_general']=intval($total);    
-            $data['coleccion']=$resultado->models;
-        } else {
-            $data['mesagge'] = "No se encontró ningun Area de entrenamiento!";
-        }
 
-        return $data;
+        return $resultado;
     }
     
     /**
@@ -193,6 +182,7 @@ class AreaEntrenamientoController extends ActiveController{
             $resultado = $model->toArray();
             $oferta = $model->oferta->toArray();
             $destinatario = $model->destinatario->toArray();
+            $destinatario['persona'] = $model->destinatario->persona;
             
             #vinculamos la oferta del area de entrenamiento
             if(count($oferta)<1){
