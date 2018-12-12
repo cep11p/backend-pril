@@ -141,34 +141,44 @@ class DestinatarioSearch extends Destinatario
         
         
         /*********** Se filtran los Destinatarios **************/
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'oficioid' => $this->oficioid,
-            'calificacion' => $this->calificacion,
-            'profesionid' => $this->profesionid,
-            'fecha_ingreso' => $this->fecha_ingreso,
-            'fecha_presentacion' => $this->fecha_presentacion,
-            'personaid' => $this->personaid,
-            'experiencia_laboral' => $this->experiencia_laboral,
-        ]);
+        
+        
+        if(isset($params['ids'])){
+            #Se realiza un filtrado de multiples ids
+            $lista_id = explode(",", $params['ids']);
+            $query->andWhere(array('in', 'id', $lista_id));
+        }else{
+            #Se realiza un filtrado con los siguientes criterios
+            $query->andFilterWhere([
+                'id' => $this->id,
+                'oficioid' => $this->oficioid,
+                'calificacion' => $this->calificacion,
+                'profesionid' => $this->profesionid,
+                'fecha_ingreso' => $this->fecha_ingreso,
+                'fecha_presentacion' => $this->fecha_presentacion,
+                'personaid' => $this->personaid,
+                'experiencia_laboral' => $this->experiencia_laboral,
+            ]);
 
-        $query->andFilterWhere(['like', 'legajo', $this->legajo])
-            ->andFilterWhere(['like', 'origen', $this->origen])
-            ->andFilterWhere(['like', 'observacion', $this->observacion])
-            ->andFilterWhere(['like', 'deseo_lugar_entrenamiento', $this->deseo_lugar_entrenamiento])
-            ->andFilterWhere(['like', 'deseo_actividad', $this->deseo_actividad])
-            ->andFilterWhere(['like', 'banco_cbu', $this->banco_cbu])
-            ->andFilterWhere(['like', 'banco_nombre', $this->banco_nombre])
-            ->andFilterWhere(['like', 'banco_alias', $this->banco_alias])
-            ->andFilterWhere(['like', 'conocimientos_basicos', $this->conocimientos_basicos]);
-        
-        
-        
-        
-        #Criterio de lista de personas.... lista de personaid
-        if(count($lista_personaid)>0){
-            $query->andWhere(array('in', 'personaid', $lista_personaid));
+            $query->andFilterWhere(['like', 'legajo', $this->legajo])
+                ->andFilterWhere(['like', 'origen', $this->origen])
+                ->andFilterWhere(['like', 'observacion', $this->observacion])
+                ->andFilterWhere(['like', 'deseo_lugar_entrenamiento', $this->deseo_lugar_entrenamiento])
+                ->andFilterWhere(['like', 'deseo_actividad', $this->deseo_actividad])
+                ->andFilterWhere(['like', 'banco_cbu', $this->banco_cbu])
+                ->andFilterWhere(['like', 'banco_nombre', $this->banco_nombre])
+                ->andFilterWhere(['like', 'banco_alias', $this->banco_alias])
+                ->andFilterWhere(['like', 'conocimientos_basicos', $this->conocimientos_basicos]);
+
+
+
+
+            #Criterio de lista de personas.... lista de personaid
+            if(count($lista_personaid)>0){
+                $query->andWhere(array('in', 'personaid', $lista_personaid));
+            }
         }
+        
         /******************** Fin de filtrado de Destinatarios **************/
         
         /******* Se obtiene la coleccion de Destinaraios filtrados ******/
