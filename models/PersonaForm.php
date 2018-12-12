@@ -244,9 +244,8 @@ class PersonaForm extends Model
             $personaArray = $response['resultado'][0];
             
             #Sacamos el parametro lugar que para pril es irrelevante
-            if(isset($personaArray['hogar'])){
-                unset($personaArray['hogar']);
-            }
+            unset($personaArray['apodo']);
+            unset($personaArray['hogar']);
         }
         
         return $personaArray;
