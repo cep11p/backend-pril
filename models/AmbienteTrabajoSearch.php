@@ -277,7 +277,7 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
     
     
     /**
-     * De una coleccion de lugares, se obtienen una lista de ids
+     * De una coleccion, se obtienen una lista de ids
      * @param array $coleccion lista de Lugar
      * @return array
      */
