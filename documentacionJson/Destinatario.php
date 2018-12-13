@@ -172,57 +172,58 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
 @method POST
 @param
 {
-	"destinatario":{
-		"calificacion": 7,
-		"legajo": "usb123/7",
-		"profesionid":1,
-		"oficioid": 2,
-		"fecha_presentacion":"2000-12-12",
-		"fecha_ingreso": "2000-12-12",
-		"origen": "un origen",
-		"deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
-		"deseo_actividad": "La actividad que desea realizar",
-		"experiencia_laboral": 1,
-		"banco_cbu": "54321987654",
-		"banco_nombre": "Patagonia",
-		"banco_alias": "CAMION-RODILLO-RUEDA",
-		"observacion": "Una observacion"
-	},
-	"persona":{
-	    "nombre": "Romina",
-	    "apellido": "Rodríguez",
-	    "nro_documento": "29890098",
-	    "fecha_nacimiento":"1980-12-12",
-	    "apodo":"rominochi",
-	    "telefono": "2920430690",
-	    "celular": "2920412127",
-	    "situacion_laboralid": 1,
-	    "estado_civilid": 1,
-	    "sexoid": 2,
-	    "tipo_documentoid": 1,
-	    "generoid": 1,
-	    "email":"algo@correo.com.ar",
-	    "cuil":"20367655678",
-	    "estudios": [{
-	    	"nivel_educativoid":4,
-	    	"titulo":"tecnico en desarrollo web",
-	    	"completo":1,
-	    	"en_curso":0,
-	    	"anio":"2014"
-	    }],
-	    "lugar": {
-	    	"barrio":"Don bosco",
-	    	"calle":"Mitre",
-	    	"altura":"327",
-	    	"piso":"A",
-	    	"depto":"",
-		"escalera":"",
-	    	"localidadid":1,
-	    	"latitud":"-123123",
-		"longitud":"321123"
-	    }
+    "destinatario":{
+        "calificacion": 7,
+        "legajo": "usb123/7",
+        "profesionid":1,
+        "oficioid": 2,
+        "fecha_presentacion":"2000-12-12",
+        "fecha_ingreso": "2000-12-12",
+        "origen": "un origen",
+        "deseo_lugar_entrenamiento": "Donde desea realizar el entrenamiento",
+        "deseo_actividad": "La actividad que desea realizar",
+        "experiencia_laboral": 1,
+        "banco_cbu": "54321987654",
+        "banco_nombre": "Patagonia",
+        "banco_alias": "CAMION-RODILLO-RUEDA",
+        "observacion": "Una observacion",
+        "persona":{
+            "nombre": "Romina",
+            "apellido": "Rodríguez",
+            "nro_documento": "29890098",
+            "fecha_nacimiento":"1980-12-12",
+            "apodo":"rominochi",
+            "telefono": "2920430690",
+            "celular": "2920412127",
+            "situacion_laboralid": 1,
+            "estado_civilid": 1,
+            "sexoid": 2,
+            "tipo_documentoid": 1,
+            "generoid": 1,
+            "email":"algo@correo.com.ar",
+            "cuil":"20367655678",
+            "estudios": [{
+                "nivel_educativoid":4,
+                "titulo":"tecnico en desarrollo web",
+                "completo":1,
+                "en_curso":0,
+                "anio":"2014"
+            }],
+            "lugar": {
+                "barrio":"Don bosco",
+                "calle":"Mitre",
+                "altura":"327",
+                "piso":"A",
+                "depto":"",
+                "escalera":"",
+                "localidadid":1,
+                "latitud":"-123123",
+                "longitud":"321123"
+            }
 
-	}
+        }
+    }
+	
 		
 }
  * 
@@ -235,52 +236,7 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
 @method PUT
 @param
 {
-    "persona": {
-        "id": 29,
-        "nombre": "Alejandra",
-        "apellido": "Rodríguez",
-        "apodo": "rominochi",
-        "nro_documento": "29890010",
-        "fecha_nacimiento": "1980-12-12",
-        "estado_civilid": 1,
-        "telefono": "2920430690",
-        "celular": "2920412127",
-        "sexoid": 2,
-        "tipo_documentoid": 1,
-        "nucleoid": 17,
-        "situacion_laboralid": 1,
-        "generoid": 1,
-        "email": "algo@correo.com.ar",
-        "estudios": [
-            {
-                "id": 31,
-                "titulo": "tecnico en desarrollo web",
-                "completo": 1,
-                "en_curso": 0,
-                "nivel_educativoid": 4
-            },
-            {
-                "id": 32,
-                "titulo": "nutricionista",
-                "completo": 1,
-                "en_curso": 0,
-                "nivel_educativoid": 4
-            }
-        ],
-        "lugar": {
-            "id": 23,
-            "nombre": null,
-            "calle": "saavedra",
-            "altura": "327",
-            "localidadid": 1,
-            "latitud": "-123123",
-            "longitud": "321123",
-            "barrio": "Don bosco",
-            "piso": "2",
-            "depto": "",
-            "escalera": ""
-        }
-    },
+    
     "destinatario": {
         "id": 3,
         "oficioid": 2,
@@ -297,7 +253,53 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
         "banco_cbu": "54321987654",
         "banco_nombre": "Patagonia",
         "banco_alias": "CAMION-RODILLO-RUEDA",
-        "experiencia_laboral": 1
+        "experiencia_laboral": 1,
+        "persona": {
+            "id": 29,
+            "nombre": "Alejandra",
+            "apellido": "Rodríguez",
+            "apodo": "rominochi",
+            "nro_documento": "29890010",
+            "fecha_nacimiento": "1980-12-12",
+            "estado_civilid": 1,
+            "telefono": "2920430690",
+            "celular": "2920412127",
+            "sexoid": 2,
+            "tipo_documentoid": 1,
+            "nucleoid": 17,
+            "situacion_laboralid": 1,
+            "generoid": 1,
+            "email": "algo@correo.com.ar",
+            "estudios": [
+                {
+                    "id": 31,
+                    "titulo": "tecnico en desarrollo web",
+                    "completo": 1,
+                    "en_curso": 0,
+                    "nivel_educativoid": 4
+                },
+                {
+                    "id": 32,
+                    "titulo": "nutricionista",
+                    "completo": 1,
+                    "en_curso": 0,
+                    "nivel_educativoid": 4
+                }
+            ],
+            "lugar": {
+                "id": 23,
+                "nombre": null,
+                "calle": "saavedra",
+                "altura": "327",
+                "localidadid": 1,
+                "latitud": "-123123",
+                "longitud": "321123",
+                "barrio": "Don bosco",
+                "piso": "2",
+                "depto": "",
+                "escalera": ""
+            }
+        }
     }
     
 }
