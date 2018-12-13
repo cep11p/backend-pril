@@ -109,14 +109,11 @@ class Destinatario extends BaseDestinatario
         /*************** Lugar/Hogar/Nucleo ******************/
         //se debe hacer un buscado de nucleo mediante los datos de direccion que tiene lugar[]
         if($lugarForm->validate()){
-            $lugarEncontrado = $lugarForm->buscarLugarEnSistemaLugar();
+            $lugarEncontrado = $lugarForm->buscarLugarIdenticoEnSistemaLugar();
             //Verificamos si existe el lugar y seteamos el hogar con el nucleo que corresponde
-            if($lugarEncontrado!=null){
+            if(isset($lugarEncontrado['id'])){
                 
-                if(count($lugarEncontrado)>1){
-                    throw new Exception("error!... existe un lugar duplicado");
-                }
-                $hogarForm->lugarid = $lugarEncontrado[0]['id'];
+                $hogarForm->lugarid = $lugarEncontrado['id'];
                 $hogarEncontrado = $hogarForm->buscarHogarEnSistemaRegistral();
                 
                 if($hogarEncontrado!=null){

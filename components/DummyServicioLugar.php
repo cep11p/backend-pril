@@ -77,6 +77,13 @@ class DummyServicioLugar extends Component implements IServicioLugar
        
     }
     
+    public function buscarLugarIdentico($param)
+    {
+        
+        die("hacer la funcion de simulacion");
+       
+    }
+    
     public function buscarLocalidad($param)
     {
         

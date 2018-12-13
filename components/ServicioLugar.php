@@ -110,6 +110,39 @@ class ServicioLugar extends Component implements IServicioLugar
        
     }
     
+    /**
+     * Vamos a buscar un lugar identico al criterio de busquedad
+     * @param array $param
+     * @return array
+     */
+    public function buscarLugarIdentico($param)
+    {
+        
+        $criterio = $this->crearCriterioBusquedad($param);
+        $client =   $this->_client;
+        try{
+            $headers = [
+//                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_LUGAR'],
+                'Content-Type'=>'application/json'
+            ];          
+            
+            $response = $client->request('GET', 'http://api.lugar.local/api/lugar/buscar-identico?'.$criterio, ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            \Yii::info($respuesta);
+            
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return false;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
     public function buscarLocalidad($param)
     {
         

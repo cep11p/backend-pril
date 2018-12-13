@@ -63,7 +63,7 @@ class LugarForm extends Model
     }
     
     /**
-     * Vamos a ver si existe un lugar identico en el sistema lugar, es decir
+     * Vamos a filtrar lugares según el criterio, es decir
      * que vamos a chequear si coinciden los atributos
      * @return LugarForm $lugarEncontrado;
      */
@@ -82,6 +82,23 @@ class LugarForm extends Model
         }
         
         return $resultado;
+    }
+    
+    /**
+     * Vamos a ver si existe un lugar identico en el sistema lugar, es decir
+     * que vamos a buscar un lugar unico
+     * @return LugarForm $lugarEncontrado;
+     */
+    public function buscarLugarIdenticoEnSistemaLugar($params = null) {
+        
+        $response = array();
+        if(isset($params)){
+            $response = \Yii::$app->lugar->buscarLugarIdentico($params);   
+        }else{
+            $response = \Yii::$app->lugar->buscarLugarIdentico($this->attributes);
+        }
+        
+        return $response;
     }
     
     public function buscarLugarPorIdEnSistemaLugar($id) {
