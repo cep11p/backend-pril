@@ -222,9 +222,7 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
             }
 
         }
-    }
-	
-		
+    }	
 }
  * 
  */

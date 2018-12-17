@@ -75,16 +75,16 @@ class Destinatario extends BaseDestinatario
         } 
         
         ####### Instanciamos atributos de PersonaForm #########
-        if(isset($param['persona'])){
-            $personaForm->setAttributes($param['persona']);
+        if(isset($param['destinatario']['persona'])){
+            $personaForm->setAttributes($param['destinatario']['persona']);
         }           
         if(!$personaForm->validate()){
             $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
         }   
         
         ####### Instanciamos atributos de LugarForm #########
-        if(isset($param['persona']['lugar'])){
-            $lugarForm->setAttributes($param['persona']['lugar']);
+        if(isset($param['destinatario']['persona']['lugar'])){
+            $lugarForm->setAttributes($param['destinatario']['persona']['lugar']);
         }                
         
         if(!$lugarForm->validate()){
@@ -98,12 +98,11 @@ class Destinatario extends BaseDestinatario
         }
 
         /********************** Instanciamos un coleccion de Estudios *********************/
-        if(isset($param['persona']['estudios'])){
+        if(isset($param['destinatario']['persona']['estudios'])){
             $coleccionEstudio = array();
-            foreach ($param['persona']['estudios'] as $estudio) {
+            foreach ($param['destinatario']['persona']['estudios'] as $estudio) {
                 $coleccionEstudio[] = $this->serializarEstudio($estudio);
-            } 
-            $param_persona['estudios'] = $coleccionEstudio;           
+            }      
         }
         
         /*************** Lugar/Hogar/Nucleo ******************/
@@ -131,7 +130,7 @@ class Destinatario extends BaseDestinatario
         }
         
         $param_persona = $personaForm->toArray();
-        $param_persona['estudios'] = $coleccionEstudio;
+        $param_persona['estudios'] = (isset($coleccionEstudio))?$coleccionEstudio:array();
         $param_persona['hogar'] = $hogarForm->toArray();
         $param_persona['lugar'] = $lugarForm->toArray();
         $param_persona['nucleo'] = $nucleoForm->toArray();
