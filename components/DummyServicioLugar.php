@@ -79,8 +79,21 @@ class DummyServicioLugar extends Component implements IServicioLugar
     
     public function buscarLugarIdentico($param)
     {
+        #injectamos el array de datos (mock)
+        $data = require(\Yii::getAlias('@app').'/components/DataLugar.php');   
         
-        die("hacer la funcion de simulacion");
+        
+        $arrayEncontrado = Help::filtrarArrayAsociativo($data, $param);
+        
+        $response = $coleccion = array(
+            "success"=>true,
+            "resultado"=>array(),
+        );
+        if(isset($arrayEncontrado)){
+            $response['resultado'][] = $arrayEncontrado;
+        }
+        
+        return $response;
        
     }
     

@@ -57,19 +57,19 @@ class DestinatarioCest
         
         $I->seeResponseContainsJson([
             'message' => '{'
-            . '"persona":{'
-                . '"nombre":["Nombre no puede estar vac\u00edo."],'
-                . '"apellido":["Apellido no puede estar vac\u00edo."],'
-                . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
-                . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
-                . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
-                . '"email":["Email no puede estar vac\u00edo."],'
-                . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
-                . '"generoid":["Generoid no puede estar vac\u00edo."]},'
-                . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
-                . '"altura":["Altura no puede estar vac\u00edo."],'
-                . '"localidadid":["Localidadid no puede estar vac\u00edo."]}'
+                . '"persona":{'
+                    . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                    . '"apellido":["Apellido no puede estar vac\u00edo."],'
+                    . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
+                    . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
+                    . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
+                    . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
+                    . '"generoid":["Generoid no puede estar vac\u00edo."]},'
+                    . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
+                    . '"altura":["Altura no puede estar vac\u00edo."],'
+                    . '"localidadid":["Localidadid no puede estar vac\u00edo."]}'
             . '}'
+
         ]);
         
         $I->seeResponseCodeIs(400);
@@ -86,24 +86,25 @@ class DestinatarioCest
         
         $I->seeResponseContainsJson([
             'message' => '{'
-            . '"destinatario":{'
-                . '"legajo":["Legajo no puede estar vac\u00edo."],'
-                . '"fecha_ingreso":["Fecha Ingreso no puede estar vac\u00edo."],'
-                . '"fecha_presentacion":["Fecha Presentacion no puede estar vac\u00edo."]},'
-            . '"persona":{'
-                . '"nombre":["Nombre no puede estar vac\u00edo."],'
-                . '"apellido":["Apellido no puede estar vac\u00edo."],'
-                . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
-                . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
-                . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
-                . '"email":["Email no puede estar vac\u00edo."],'
-                . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
-                . '"generoid":["Generoid no puede estar vac\u00edo."]},'
-                . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
-                . '"altura":["Altura no puede estar vac\u00edo."],'
-                . '"localidadid":["Localidadid no puede estar vac\u00edo."]'
+                . '"destinatario":{'
+                    . '"legajo":["Legajo no puede estar vac\u00edo."],'
+                    . '"fecha_ingreso":["Fecha Ingreso no puede estar vac\u00edo."],'
+                    . '"fecha_presentacion":["Fecha Presentacion no puede estar vac\u00edo."]'
+                . '},'
+                . '"persona":{'
+                    . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                    . '"apellido":["Apellido no puede estar vac\u00edo."],'
+                    . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
+                    . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
+                    . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
+                    . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
+                    . '"generoid":["Generoid no puede estar vac\u00edo."]},'
+                    . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
+                    . '"altura":["Altura no puede estar vac\u00edo."],'
+                    . '"localidadid":["Localidadid no puede estar vac\u00edo."]'
                 . '}'
             . '}'
+
         ]);
         
         $I->seeResponseCodeIs(400);
@@ -128,43 +129,43 @@ class DestinatarioCest
 		"banco_cbu"=> "54321987654",
 		"banco_nombre"=> "Patagonia",
 		"banco_alias"=> "CAMION-RODILLO-RUEDA",
-		"observacion"=> "Una observacion"
-            ],
-            "persona"=>[
-                "nombre"=> "Pilar",
-                "apellido"=> "Test",
-                "nro_documento"=> "29890123",
-                "fecha_nacimiento"=>"1980-12-12",
-                "apodo"=>"rominochi",
-                "telefono"=> "2920430690",
-                "celular"=> "2920412127",
-                "situacion_laboralid"=> 1,
-                "estado_civilid"=> 1,
-                "sexoid"=> 2,
-                "tipo_documentoid"=> 1,
-                "generoid"=> 1,
-                "email"=>"algo@correo.com.ar",
-                "cuil"=>"20367655678",
-                "estudios"=> [[
-                    "nivel_educativoid"=>4,
-                    "titulo"=>"tecnico en desarrollo web",
-                    "completo"=>1,
-                    "en_curso"=>0,
-                    "anio"=>"2014"
-                ]],
-                "lugar"=> [
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                ]
+		"observacion"=> "Una observacion",
+                "persona"=>[
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "fecha_nacimiento"=>"1980-12-12",
+                    "apodo"=>"rominochi",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=>"algo@correo.com.ar",
+                    "cuil"=>"20367655678",
+                    "estudios"=> [[
+                        "nivel_educativoid"=>4,
+                        "titulo"=>"tecnico en desarrollo web",
+                        "completo"=>1,
+                        "en_curso"=>0,
+                        "anio"=>"2014"
+                    ]],
+                    "lugar"=> [
+                        "barrio"=>"Don bosco",
+                        "calle"=>"Mitre",
+                        "altura"=>"327",
+                        "piso"=>"A",
+                        "depto"=>"",
+                        "escalera"=>"",
+                        "localidadid"=>1,
+                        "latitud"=>"-123123",
+                        "longitud"=>"321123"
+                    ]
 
-            ]
+                ]
+            ]            
         ];
         
         $I->sendPOST('/api/destinatarios', $param);
@@ -184,7 +185,7 @@ class DestinatarioCest
     public function crearDestinatarioConPersonaNueva(ApiTester $I)
     {
         $I->wantTo('Se agrega un Destinatario');
-        $param=[
+        $param=array(
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/1",
@@ -198,44 +199,38 @@ class DestinatarioCest
 		"banco_cbu"=> "54321987654",
 		"banco_nombre"=> "Patagonia",
 		"banco_alias"=> "CAMION-RODILLO-RUEDA",
-		"observacion"=> "Una observacion"
-            ],
-            "persona"=>[
-                "nombre"=> "Pilar",
-                "apellido"=> "Test",
-                "nro_documento"=> "29890123",
-                "fecha_nacimiento"=>"1980-12-12",
-                "apodo"=>"rominochi",
-                "telefono"=> "2920430690",
-                "celular"=> "2920412127",
-                "situacion_laboralid"=> 1,
-                "estado_civilid"=> 1,
-                "sexoid"=> 2,
-                "tipo_documentoid"=> 1,
-                "generoid"=> 1,
-                "email"=>"algo@correo.com.ar",
-                "cuil"=>"20367655678",
-                "estudios"=> [[
-                    "nivel_educativoid"=>4,
-                    "titulo"=>"tecnico en desarrollo web",
-                    "completo"=>1,
-                    "en_curso"=>0,
-                    "anio"=>"2014"
-                ]],
-                "lugar"=> [
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
+		"observacion"=> "Una observacion",
+                "persona"=>[
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "fecha_nacimiento"=>"1980-12-12",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=>"algo@correo.com.ar",
+                    "cuil"=>"20367655678",
+                    "estudios"=> [
+                        ["nivel_educativoid"=>4,"titulo"=>"tecnico en desarrollo web","completo"=>1,"en_curso"=>0,"anio"=>"2014"]
+                    ],
+                    "lugar"=> [
+                        "barrio"=>"Don bosco",
+                        "calle"=>"Mitre",
+                        "altura"=>"327",
+                        "piso"=>"A",
+                        "depto"=>"",
+                        "escalera"=>"",
+                        "localidadid"=>1,
+                        "latitud"=>"-123123",
+                        "longitud"=>"321123"
+                    ]
                 ]
-
             ]
-        ];
+        );
         
         $I->sendPOST('/api/destinatarios', $param);
         
@@ -276,7 +271,6 @@ class DestinatarioCest
                 'apellido' => 'Test',
                 'nro_documento' => '29890123',
                 'fecha_nacimiento' => '1980-12-12',
-                'apodo' => 'rominochi',
                 'telefono' => '2920430690',
                 'celular' => '2920412127',
                 'situacion_laboralid' => 1,
@@ -320,44 +314,44 @@ class DestinatarioCest
 		"banco_cbu"=> "54321987654",
 		"banco_nombre"=> "Patagonia",
 		"banco_alias"=> "CAMION-RODILLO-RUEDA",
-		"observacion"=> "Una observacion"
-            ],
-            "persona"=>[
-                "id"=>2,
-                "nombre"=> "Pilar",
-                "apellido"=> "Test",
-                "nro_documento"=> "29890124",
-                "fecha_nacimiento"=>"1980-12-12",
-                "apodo"=>"rominochi",
-                "telefono"=> "2920430690",
-                "celular"=> "2920412127",
-                "situacion_laboralid"=> 1,
-                "estado_civilid"=> 1,
-                "sexoid"=> 2,
-                "tipo_documentoid"=> 1,
-                "generoid"=> 1,
-                "email"=>"algo@correo.com.ar",
-                "cuil"=>"20367655678",
-                "estudios"=> [[
-                    "nivel_educativoid"=>4,
-                    "titulo"=>"tecnico en desarrollo web",
-                    "completo"=>1,
-                    "en_curso"=>0,
-                    "anio"=>"2014"
-                ]],
-                "lugar"=> [
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                ]
+		"observacion"=> "Una observacion",
+                "persona"=>[
+                    "id"=>2,
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890124",
+                    "fecha_nacimiento"=>"1980-12-12",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=>"algo@correo.com.ar",
+                    "cuil"=>"20367655678",
+                    "estudios"=> [[
+                        "nivel_educativoid"=>4,
+                        "titulo"=>"tecnico en desarrollo web",
+                        "completo"=>1,
+                        "en_curso"=>0,
+                        "anio"=>"2014"
+                    ]],
+                    "lugar"=> [
+                        "barrio"=>"Don bosco",
+                        "calle"=>"Mitre",
+                        "altura"=>"327",
+                        "piso"=>"A",
+                        "depto"=>"",
+                        "escalera"=>"",
+                        "localidadid"=>1,
+                        "latitud"=>"-123123",
+                        "longitud"=>"321123"
+                    ]
 
+                ]
             ]
+            
         ];
         
         $I->sendPOST('/api/destinatarios', $param);
@@ -399,7 +393,6 @@ class DestinatarioCest
                 'apellido' => 'Test',
                 'nro_documento' => '29890123',
                 'fecha_nacimiento' => '1980-12-12',
-                'apodo' => 'rominochi',
                 'telefono' => '2920430690',
                 'celular' => '2920412127',
                 'situacion_laboralid' => 1,
@@ -443,43 +436,43 @@ class DestinatarioCest
 		"banco_cbu"=> "54321987654",
 		"banco_nombre"=> "Patagonia",
 		"banco_alias"=> "CAMION-RODILLO-RUEDA",
-		"observacion"=> "Una observacion"
-            ],
-            "persona"=>[
-                "nombre"=> "Pilar",
-                "apellido"=> "Test",
-                "nro_documento"=> "29890123",
-                "fecha_nacimiento"=>"1980-12-12",
-                "apodo"=>"rominochi",
-                "telefono"=> "2920430690",
-                "celular"=> "2920412127",
-                "situacion_laboralid"=> 1,
-                "estado_civilid"=> 1,
-                "sexoid"=> 2,
-                "tipo_documentoid"=> 1,
-                "generoid"=> 1,
-                "email"=>"algo@correo.com.ar",
-                "cuil"=>"20367655678",
-                "estudios"=> [[
-                    "nivel_educativoid"=>4,
-                    "titulo"=>"tecnico en desarrollo web",
-                    "completo"=>1,
-                    "en_curso"=>0,
-                    "anio"=>"2014"
-                ]],
-                "lugar"=> [
-                    "barrio"=>"Don bosco",
-                    "calle"=>"Mitre",
-                    "altura"=>"327",
-                    "piso"=>"A",
-                    "depto"=>"",
-                    "escalera"=>"",
-                    "localidadid"=>1,
-                    "latitud"=>"-123123",
-                    "longitud"=>"321123"
-                ]
+		"observacion"=> "Una observacion",
+                "persona"=>[
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "fecha_nacimiento"=>"1980-12-12",
+                    "apodo"=>"rominochi",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=>"algo@correo.com.ar",
+                    "cuil"=>"20367655678",
+                    "estudios"=> [[
+                        "nivel_educativoid"=>4,
+                        "titulo"=>"tecnico en desarrollo web",
+                        "completo"=>1,
+                        "en_curso"=>0,
+                        "anio"=>"2014"
+                    ]],
+                    "lugar"=> [
+                        "barrio"=>"Don bosco",
+                        "calle"=>"Mitre",
+                        "altura"=>"327",
+                        "piso"=>"A",
+                        "depto"=>"",
+                        "escalera"=>"",
+                        "localidadid"=>1,
+                        "latitud"=>"-123123",
+                        "longitud"=>"321123"
+                    ]
 
-            ]
+                ]
+            ]            
         ];
         
         $I->sendPUT('/api/destinatarios/1', $param);
