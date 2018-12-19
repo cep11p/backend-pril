@@ -183,19 +183,44 @@ class AreaEntrenamientoController extends ActiveController{
             $oferta = $model->oferta->toArray();
             $destinatario = $model->destinatario->toArray();
             $destinatario['persona'] = $model->destinatario->persona;
+            $ambiente_trabajo = $model->oferta->ambienteTrabajo;
+            $representante = $ambiente_trabajo->persona;
             
-            #vinculamos la oferta del area de entrenamiento
+            #chequeamos si existe la oferta
             if(count($oferta)<1){
                 throw new \yii\web\HttpException(404, "No se encuentra la oferta {$resultado['ofertaid']}, que se vincula con el Area de entrenamiento!!");
             }
             
-            #vinculamos la persona (representante del ambiente de trabajo)
+            #chequeamos si existe la persona (representante del ambiente de trabajo)
             if(count($destinatario)<1){
                 throw new \yii\web\HttpException(404, "No se encuentra el destinatario {$resultado['destinatarioid']}, que se vincula con el area de entrenamiento!!");
             }
             
+            #chequeamos si existe el ambiente de trabajo
+            if(count($ambiente_trabajo)<1){
+                throw new \yii\web\HttpException(404, "No se encuentra el ambiente de trabajo {$oferta['ambiente_trabajoid']}, que se vincula con la oferta!!");
+            }
+            
+            #chequeamos si existe el representante del ambiente de trabajo
+            if(!isset($representante)){
+                throw new \yii\web\HttpException(404, "No se encuentra el representante {$ambiente_trabajo['personaid']}, que se vincula con el ambiente de trabajo {$ambiente_trabajo['nombre']}!!");
+            }
+            
             $resultado['destintario'] = $destinatario;            
             $resultado['oferta'] = $oferta;
+            unset($resultado['oferta']['ambiente_trabajo']);
+            $resultado['ambiente_trabajo']["nombre"] = $ambiente_trabajo->nombre;
+            $resultado['ambiente_trabajo']["cuit"] = $ambiente_trabajo->cuit;
+            $resultado['ambiente_trabajo']["legajo"] = $ambiente_trabajo->legajo;
+            
+            $representante = $ambiente_trabajo->persona;
+            $resultado['ambiente_trabajo']["persona"]['nombre'] = $representante['nombre'];
+            $resultado['ambiente_trabajo']["persona"]['apellido'] = $representante['apellido'];
+            $resultado['ambiente_trabajo']["persona"]['nro_documento'] = $representante['nro_documento'];
+            $resultado['ambiente_trabajo']["persona"]['telefono'] = $representante['telefono'];
+            $resultado['ambiente_trabajo']["persona"]['celular'] = $representante['celular'];
+            $resultado['ambiente_trabajo']["persona"]['email'] = $representante['email'];
+            
         }else{
             throw new \yii\web\HttpException(400, "El ambiente de trabajo no existe!");
         }        
