@@ -21,6 +21,11 @@
                 "actividad": "Vende facturas, tortas y variedades de panes",
                 "tipo_ambiente_trabajoid": 1,
                 "lugarid": 1,
+                "telefono1:"(2998) 123456789",
+                "telefono2:"(2998) 123456789",
+                "telefono3:"(2998) 123456789",
+                "fax:"(2998) 123456789",
+                "email:"mi_correo@correo.com",
                 "persona": {
                     "id": 1,
                     "nombre": "Romina Belen",
@@ -68,6 +73,11 @@
                 "actividad": "Vende facturas, tortas y variedades de panes",
                 "tipo_ambiente_trabajoid": 1,
                 "lugarid": 9,
+                 "telefono1:"(2998) 123456789",
+                "telefono2:"(2998) 123456789",
+                "telefono3:"(2998) 123456789",
+                "fax:"(2998) 123456789",
+                "email:"mi_correo@correo.com",
                 "persona": {
                     "id": 5,
                     "nombre": "Diego",
@@ -121,6 +131,11 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
     "cuit":"20123456789",
     "actividad": "Vende facturas, tortas y variedades de panes",
     "tipo_ambiente_trabajoid": 1,
+    "telefono1:"(2998) 123456789",
+    "telefono2:"(2998) 123456789",
+    "telefono3:"(2998) 123456789",
+    "fax:"(2998) 123456789",
+    "email:"mi_correo@correo.com",
     "lugar": {
         "id": 1,
         "nombre": "",
@@ -159,13 +174,18 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
 @method PUT
 {
     "ambiente_trabajo":{
-             "nombre": "Panaderia San Fernando",
-             "calificacion": 7,
-             "legajo": "asb123/7",
-             "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
-             "cuit":"20123456789",
-             "actividad": "Vende facturas, tortas y variedades de panes",
-             "tipo_ambiente_trabajoid": 1
+            "nombre": "Panaderia San Fernando",
+            "calificacion": 7,
+            "legajo": "asb123/7",
+            "observacion":"es una empresa que realiza actividades de panaderia y pasteleria",
+            "cuit":"20123456789",
+            "actividad": "Vende facturas, tortas y variedades de panes",
+            "tipo_ambiente_trabajoid": 1,
+            "telefono1:"(2998) 123456789",
+            "telefono2:"(2998) 123456789",
+            "telefono3:"(2998) 123456789",
+            "fax:"(2998) 123456789",
+            "email:"mi_correo@correo.com",
     },
     "lugar": {
         "id": 1,
@@ -214,6 +234,11 @@ Esta accion crea un ambiente de trabajo asociado con un lugarid, donde en el mis
     "actividad": "Vende facturas, tortas y variedades de panes",
     "tipo_ambiente_trabajoid": 1,
     "lugarid": 1,
+    "telefono1:"(2998) 123456789",
+    "telefono2:"(2998) 123456789",
+    "telefono3:"(2998) 123456789",
+    "fax:"(2998) 123456789",
+    "email:"mi_correo@correo.com",
     "persona": {
         "id": 1,
         "nombre": "Romina Belen",

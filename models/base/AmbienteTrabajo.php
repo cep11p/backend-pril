@@ -19,6 +19,11 @@ use Yii;
  * @property string $actividad
  * @property integer $tipo_ambiente_trabajoid
  * @property integer $lugarid
+ * @property string $telefono1
+ * @property string $telefono2
+ * @property string $telefono3
+ * @property string $email
+ * @property string $fax
  *
  * @property \app\models\TipoAmbienteTrabajo $tipoAmbienteTrabajo
  * @property \app\models\Oferta[] $ofertas
@@ -48,6 +53,8 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
             [['observacion', 'actividad'], 'string'],
             [['nombre'], 'string', 'max' => 200],
             [['legajo', 'cuit'], 'string', 'max' => 45],
+            [['telefono1', 'telefono2', 'telefono3', 'fax'], 'string', 'max' => 20],
+            [['email'], 'string', 'max' => 50],
             [['legajo'], 'unique'],
             [['tipo_ambiente_trabajoid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\TipoAmbienteTrabajo::className(), 'targetAttribute' => ['tipo_ambiente_trabajoid' => 'id']]
         ];
@@ -69,6 +76,11 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
             'actividad' => 'Actividad',
             'tipo_ambiente_trabajoid' => 'Tipo Ambiente Trabajoid',
             'lugarid' => 'Lugarid',
+            'telefono1' => 'Telefono1',
+            'telefono2' => 'Telefono2',
+            'telefono3' => 'Telefono3',
+            'email' => 'Email',
+            'fax' => 'Fax',
         ];
     }
 
