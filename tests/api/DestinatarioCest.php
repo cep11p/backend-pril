@@ -6,7 +6,10 @@ date_default_timezone_set ('America/Argentina/Buenos_Aires');
 
 class DestinatarioCest
 {
-    
+    /**
+     *
+     * @var Helper\Api
+     */    
     protected $api;
     
     public function _before(ApiTester $I,Api $api)
@@ -23,10 +26,6 @@ class DestinatarioCest
         ];
     }
     
-    public function _after(ApiTester $I)
-    { 
-//        $I->unloadFixtures([new  app\tests\fixtures\DestinatarioFixture]);
-    }
     
 
     /**
@@ -77,6 +76,9 @@ class DestinatarioCest
         
     }
     
+    /**
+     * @param ApiTester $I
+     */ 
     public function crearDestinatarioSinDatos(ApiTester $I)
     {
         $I->wantTo('Se registra un destinatario sin Datos');
@@ -112,6 +114,9 @@ class DestinatarioCest
         
     }
     
+     /**
+     * @param ApiTester $I
+     */ 
     public function crearDestinatarioConLegajoExistente(ApiTester $I)
     {
         $I->wantTo('Se registra un destinatario con legajo existente');
@@ -296,9 +301,15 @@ class DestinatarioCest
         $I->seeResponseCodeIs(200);        
         
     }
-    
+ 
+     /**
+     * @param ApiTester $I
+     */
     public function crearDestinatarioConPersonaExistente(ApiTester $I)
     {
+        $I->haveFixtures([
+            'destinatarios' => app\tests\fixtures\DestinatarioFixture::className(),
+        ]);        
         $I->wantTo('Se agrega un Destinatario con persona existente');
         $param=[
             "destinatario"=>[
@@ -419,8 +430,15 @@ class DestinatarioCest
         
     }
     
+    
+     /**
+     * @param ApiTester $I
+     */
     public function modificarDestinatarioConPersonaMock(ApiTester $I)
     {
+        $I->haveFixtures([
+            'destinatarios' => app\tests\fixtures\DestinatarioFixture::className(),
+        ]);
         $I->wantTo('Se modifica un Destinatario con persona mock');
         $param=[
             "destinatario"=>[

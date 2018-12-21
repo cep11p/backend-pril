@@ -19,7 +19,6 @@
 class ApiTester extends \Codeception\Actor
 {
     use _generated\ApiTesterActions;
-    use \yii\test\FixtureTrait;
     
 
    /**

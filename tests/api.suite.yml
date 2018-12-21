@@ -3,7 +3,7 @@ modules:
     enabled:
         - \Helper\Api
         - Yii2:
-            part: ORM
+            part: [ORM,fixtures]
         - REST:
             url: http://api.pril.local/index-test.php
             depends: 

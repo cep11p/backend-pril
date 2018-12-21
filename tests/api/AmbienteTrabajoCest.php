@@ -14,14 +14,13 @@ class AmbienteTrabajoCest
     public function _fixtures()
     {
         return [
+            'oferta'=> \app\tests\fixtures\OfertaFixture::className(),
+            'destinatario'=> app\tests\fixtures\DestinatarioFixture::className(),
+            'area'=> \app\tests\fixtures\AreaEntrenamientoFixture::className(),
             'ambientes_trasbajos' => \app\tests\fixtures\AmbienteTrabajoFixture::className(),
         ];
     }
 
-    public function _after(ApiTester $I)
-    {
-        $I->unloadFixtures([new  app\tests\fixtures\AmbienteTrabajoFixture]);
-    }
 
     // tests
     public function agregarUnAmbienteTrabajoConCamposVacios(ApiTester $I)
@@ -44,7 +43,6 @@ class AmbienteTrabajoCest
                             . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
                             . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
                             . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
-                            . '"email":["Email no puede estar vac\u00edo."],'
                             . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
                             . '"generoid":["Generoid no puede estar vac\u00edo."]},'
                         . '"ambiente_trabajo":{'
