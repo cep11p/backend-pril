@@ -60,6 +60,7 @@ class AmbienteTrabajoController extends ActiveController{
         $actions = parent::actions();
         unset($actions['create']);
         unset($actions['view']);
+        unset($actions['update']);
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         return $actions;
     
@@ -107,6 +108,105 @@ class AmbienteTrabajoController extends ActiveController{
             if(isset($param['persona'])){
                 $personaForm->setAttributes($param['persona']);
             }
+            if(!$personaForm->save()){
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
+            }            
+            
+            
+            /************ Validamos todos los campos de AmbienteTrabajo************/
+            $model->setAttributes($param);
+            $model->personaid = $personaForm->id;
+            
+            
+            if(!$model->validate()){ 
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array('ambiente_trabajo' => $model->getErrors()));
+            }           
+            
+            /*********** Fin de la Validacion******/
+            
+            //verificamos si hay errores para mostrar
+            if(count($arrayErrors)>0){
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            $lugarid = intval(\Yii::$app->lugar->crearLugar($lugarForm));
+            $model->lugarid = $lugarid;
+            
+            if(!$model->save()){
+                $arrayErrors['ambiente_trabajo']=$model->getErrors();                
+                throw new Exception(json_encode($arrayErrors));
+            }
+            
+            
+            $transaction->commit();
+            
+            $resultado['success']=true;
+            $resultado['data']['id']=$model->id;
+            
+            return  $resultado;
+           
+        }catch (Exception $exc) {
+            //echo $exc->getTraceAsString();
+            $transaction->rollBack();
+            $mensaje =$exc->getMessage();
+            throw new \yii\web\HttpException(500, $mensaje);
+        }
+
+    }
+    
+    /**
+     * Se modifica el ambiente de trabajo
+     * @param int $id
+     * @return array
+     * @throws \yii\web\HttpException
+     * @throws Exception
+     */
+    public function actionUpdate($id)
+    {
+        $resultado['message']='Se modifica un Ambiente de Trabajo';
+        $param = Yii::$app->request->post();
+        $transaction = Yii::$app->db->beginTransaction();
+        $arrayErrors = array();
+        try {
+            
+            $model = AmbienteTrabajo::findOne(["id"=>$id]);
+            
+            if($model==NULL){
+                $msj = 'El ambiente de trabajo con el id '.$id.' no existe!';
+                throw new Exception($msj);
+            }
+            
+            $lugarForm = new LugarForm();
+            $personaForm = new PersonaForm();
+            /************ Validamos todos los campos de Lugar (ambiente de trabajo)************/
+            if(isset($param['lugar'])){
+                $lugarForm->setAttributes($param['lugar']);
+            }
+            
+            if(!$lugarForm->validate()){
+                $arrayErrors = ArrayHelper::merge($arrayErrors, array('lugar' => $lugarForm->getErrors()));
+            }            
+            
+            /************ Validamos todos los campos de Representante************/
+            if(isset($param['persona']['id'])){
+                $personaForm->buscarPersonaPorIdEnRegistral($param['persona']['id']);
+                
+                #nos aseguramos que persona exista
+                if(!isset($personaForm->id)){
+                    $msj = 'La persona con el id '.$param['persona']['id'] .' no existe!';
+                    throw new Exception($msj);
+                }
+                #evitamos que se modifique la persona
+                if($personaForm->existeModificacion($param['persona'])){
+                    $msj = 'No se permite modificar la persona';
+                    throw new Exception($msj);
+                }
+            #asignamos una persona totalmente nueva    
+            }else if(isset($param['persona'])){
+                $personaForm->setAttributes($param['persona']);
+            }
+            
+            
             if(!$personaForm->save()){
                 $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
             }            
