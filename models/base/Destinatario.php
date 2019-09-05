@@ -10,7 +10,6 @@ use Yii;
  * This is the base-model class for table "destinatario".
  *
  * @property integer $id
- * @property integer $oficioid
  * @property string $legajo
  * @property integer $calificacion
  * @property integer $profesionid
@@ -28,7 +27,6 @@ use Yii;
  * @property string $conocimientos_basicos
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
- * @property \app\models\Oficio $oficio
  * @property \app\models\Profesion $profesion
  * @property string $aliasModel
  */
@@ -51,15 +49,14 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['oficioid', 'calificacion', 'profesionid', 'personaid', 'experiencia_laboral'], 'integer'],
             [['legajo', 'fecha_ingreso', 'fecha_presentacion'], 'required'],
+            [['calificacion', 'profesionid', 'personaid', 'experiencia_laboral'], 'integer'],
             [['fecha_ingreso', 'fecha_presentacion'], 'safe'],
             [['observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad', 'conocimientos_basicos'], 'string'],
             [['legajo'], 'string', 'max' => 50],
             [['origen', 'banco_cbu', 'banco_nombre', 'banco_alias'], 'string', 'max' => 200],
             [['legajo'], 'unique'],
             [['personaid'], 'unique'],
-            [['oficioid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Oficio::className(), 'targetAttribute' => ['oficioid' => 'id']],
             [['profesionid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Profesion::className(), 'targetAttribute' => ['profesionid' => 'id']]
         ];
     }
@@ -71,7 +68,6 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'oficioid' => 'Oficioid',
             'legajo' => 'Legajo',
             'calificacion' => 'Calificacion',
             'profesionid' => 'Profesionid',
@@ -106,14 +102,6 @@ abstract class Destinatario extends \yii\db\ActiveRecord
     public function getAreaEntrenamientos()
     {
         return $this->hasMany(\app\models\AreaEntrenamiento::className(), ['destinatarioid' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getOficio()
-    {
-        return $this->hasOne(\app\models\Oficio::className(), ['id' => 'oficioid']);
     }
 
     /**
