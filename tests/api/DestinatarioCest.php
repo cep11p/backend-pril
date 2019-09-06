@@ -38,8 +38,6 @@ class DestinatarioCest
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/1",
-                "oficioid"=>1,
-		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"origen"=> "un origen test",
 		"deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
@@ -124,8 +122,6 @@ class DestinatarioCest
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/6",
-                "oficioid"=>1,
-		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"origen"=> "un origen test",
 		"deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
@@ -194,8 +190,6 @@ class DestinatarioCest
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/1",
-                "oficioid"=>1,
-		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"origen"=> "un origen test",
 		"deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
@@ -253,10 +247,8 @@ class DestinatarioCest
         $I->sendGET("/api/destinatarios/$id");
         $I->seeResponseContainsJson([
             'id' => $id,
-            'oficioid' => 1,
             'legajo' => 'usb123/1',
             'calificacion' => 7,
-            'profesionid' => 2,
             'origen' => 'un origen test',
             'observacion' => 'Una observacion',
             'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
@@ -268,8 +260,6 @@ class DestinatarioCest
             'banco_alias' => 'CAMION-RODILLO-RUEDA',
             'experiencia_laboral' => 0,
             'conocimientos_basicos' => null,
-            'profesion' => 'Académico/a',
-            'oficio' => 'Albañil',
             "persona"=>[
                 'id' => 100,
                 'nombre' => 'Pilar',
@@ -315,8 +305,6 @@ class DestinatarioCest
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/1",
-                "oficioid"=>1,
-		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"origen"=> "un origen test",
 		"deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
@@ -381,10 +369,8 @@ class DestinatarioCest
         $I->sendGET("/api/destinatarios/$id");
         $I->seeResponseContainsJson([
             'id' => $id,
-            'oficioid' => 1,
             'legajo' => 'usb123/1',
             'calificacion' => 7,
-            'profesionid' => 2,
             'origen' => 'un origen test',
             'observacion' => 'Una observacion',
             'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
@@ -396,8 +382,6 @@ class DestinatarioCest
             'banco_alias' => 'CAMION-RODILLO-RUEDA',
             'experiencia_laboral' => 0,
             'conocimientos_basicos' => null,
-            'profesion' => 'Académico/a',
-            'oficio' => 'Albañil',
             "persona"=>[
                 'id' => 100,
                 'nombre' => 'Pilar',
@@ -444,8 +428,6 @@ class DestinatarioCest
             "destinatario"=>[
 		"calificacion"=> 7,
 		"legajo"=> "usb123/1",
-                "oficioid"=>1,
-		"profesionid"=>2,
 		"fecha_presentacion"=>"2000-12-12",
 		"origen"=> "un origen test modificado",
 		"deseo_lugar_entrenamiento"=> "Donde desea realizar el entrenamiento",
@@ -509,10 +491,8 @@ class DestinatarioCest
         $I->sendGET("/api/destinatarios/$id");
         $I->seeResponseContainsJson([
             'id' => $id,
-            'oficioid' => 1,
             'legajo' => 'usb123/1',
             'calificacion' => 7,
-            'profesionid' => 2,
             'origen' => 'un origen test modificado',
             'observacion' => 'Una observacion',
             'deseo_lugar_entrenamiento' => 'Donde desea realizar el entrenamiento',
@@ -524,8 +504,6 @@ class DestinatarioCest
             'banco_alias' => 'CAMION-RODILLO-RUEDA',
             'experiencia_laboral' => 0,
             'conocimientos_basicos' => null,
-            'profesion' => 'Académico/a',
-            'oficio' => 'Albañil',
         ]);
         $I->seeResponseCodeIs(200);        
         

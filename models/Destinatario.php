@@ -202,12 +202,12 @@ class Destinatario extends BaseDestinatario
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
-            'profesion'=> function($model){
-                return $model->profesion->nombre;
-            },
-            'oficio'=> function($model){
-                return $model->oficio->nombre;
-            },
+//            'profesion'=> function($model){
+//                return $model->profesion->nombre;
+//            },
+//            'oficio'=> function($model){
+//                return $model->oficio->nombre;
+//            },
 //            'persona'=> function($model){
 //                return $model->persona;
 //            }

@@ -3,10 +3,8 @@
 return [    
     "destinatario1" => [
         "id" => 1,
-        "oficioid" => 1,
         "legajo" => 'usb123/6',
         "calificacion" => 1,
-        "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
         "origen" => "un origen fixture",
         "observacion" => 1,
@@ -21,10 +19,8 @@ return [
     ],
     "destinatario2" => [
         "id" => 2,
-        "oficioid" => 1,
         "legajo" => 'usb123/7',
         "calificacion" => 1,
-        "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
         "origen" => "un origen fixture",
         "observacion" => 1,
@@ -39,10 +35,8 @@ return [
     ],
     "destinatario3" => [
         "id" => 3,
-        "oficioid" => 1,
         "legajo" => 'usb123/8',
         "calificacion" => 1,
-        "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
         "origen" => "un origen fixture",
         "observacion" => 1,
@@ -57,10 +51,8 @@ return [
     ],
     "destinatario4" => [
         "id" => 4,
-        "oficioid" => 1,
         "legajo" => 'usb123/9',
         "calificacion" => 1,
-        "profesionid" => 1,
         "fecha_ingreso" => date("Y-m-d H:i:s"),
         "origen" => "un origen fixture",
         "observacion" => 1,

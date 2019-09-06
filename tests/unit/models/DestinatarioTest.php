@@ -23,49 +23,21 @@ class DestinatarioTest extends \Codeception\Test\Unit
     public function testDisparaExcepcionSiDatosVacios()
     {
 //        
-        $msj= '{"destinatario":{'
-                . '"legajo":["Legajo cannot be blank."],'
-                . '"fecha_ingreso":["Fecha Ingreso cannot be blank."],'
-                . '"fecha_presentacion":["Fecha Presentacion cannot be blank."]'
-            . '},'
-            . '"persona":{'
-                . '"nombre":["Nombre cannot be blank."],'
-                . '"apellido":["Apellido cannot be blank."],'
-                . '"nro_documento":["Nro Documento cannot be blank."],'
-                . '"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],'
-                . '"estado_civilid":["Estado Civilid cannot be blank."],'
-                . '"email":["Email cannot be blank."],'
-                . '"sexoid":["Sexoid cannot be blank."],'
-                . '"generoid":["Generoid cannot be blank."]},'
-                . '"lugar":{"calle":["Calle cannot be blank."],'
-                . '"altura":["Altura cannot be blank."],'
-                . '"localidadid":["Localidadid cannot be blank."]}'
-            . '}';
+        $msj= '{"destinatario":{"legajo":["Legajo cannot be blank."],"fecha_ingreso":["Fecha Ingreso cannot be blank."],"fecha_presentacion":["Fecha Presentacion cannot be blank."]},"persona":{"nombre":["Nombre cannot be blank."],"apellido":["Apellido cannot be blank."],"nro_documento":["Nro Documento cannot be blank."],"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],"estado_civilid":["Estado Civilid cannot be blank."],"sexoid":["Sexoid cannot be blank."],"generoid":["Generoid cannot be blank."],"email":["Email cannot be blank."]},"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}';
         $this->tester->expectException(new \yii\base\Exception($msj),function(){
             $param=[];
             $model = new Destinatario;
             $model->setAttributesAndValidate($param);
         });
+//        '{"destinatario":{"legajo":["Legajo cannot be blank."],"fecha_ingreso":["Fecha Ingreso cannot be blank."],"fecha_presentacion":["Fecha Presentacion cannot be blank."]},"persona":{"nombre":["Nombre cannot be blank."],"apellido":["Apellido cannot be blank."],"nro_documento":["Nro Documento cannot be blank."],"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],"estado_civilid":["Estado Civilid cannot be blank."],"sexoid":["Sexoid cannot be blank."],"generoid":["Generoid cannot be blank."],"email":["Email cannot be blank."]},"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}'
+//        '{"destinatario":{"legajo":["Legajo cannot be blank."],"fecha_ingreso":["Fecha Ingreso cannot be blank."],"fecha_presentacion":["Fecha Presentacion cannot be blank."]},"persona":{"nombre":["Nombre cannot be blank."],"apellido":["Apellido cannot be blank."],"nro_documento":["Nro Documento cannot be blank."],"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],"estado_civilid":["Estado Civilid cannot be blank."],"email":["Email cannot be blank."],"sexoid":["Sexoid cannot be blank."],"generoid":["Generoid cannot be blank."]},"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}'
 
     }
     
     public function testDisparaExcepcionSiDatosPersonaVacios()
     {
 
-        
-        $msj = '{"persona":{'
-                . '"nombre":["Nombre cannot be blank."],'
-                . '"apellido":["Apellido cannot be blank."],'
-                . '"nro_documento":["Nro Documento cannot be blank."],'
-                . '"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],'
-                . '"estado_civilid":["Estado Civilid cannot be blank."],'
-                . '"email":["Email cannot be blank."],'
-                . '"sexoid":["Sexoid cannot be blank."],'
-                . '"generoid":["Generoid cannot be blank."]},'
-                . '"lugar":{"calle":["Calle cannot be blank."],'
-                . '"altura":["Altura cannot be blank."],'
-                . '"localidadid":["Localidadid cannot be blank."]}'
-            . '}';
+        $msj = '{"persona":{"nombre":["Nombre cannot be blank."],"apellido":["Apellido cannot be blank."],"nro_documento":["Nro Documento cannot be blank."],"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],"estado_civilid":["Estado Civilid cannot be blank."],"sexoid":["Sexoid cannot be blank."],"generoid":["Generoid cannot be blank."],"email":["Email cannot be blank."]},"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}';
         
         $this->tester->expectException(new \yii\base\Exception($msj),function(){
             $param=[
@@ -94,7 +66,8 @@ class DestinatarioTest extends \Codeception\Test\Unit
     
     public function testDisparaExcepcionSiDatosLugarVacios()
     {
-
+//        '{"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}'
+//        '{"persona":{"nombre":["Nombre cannot be blank."],"apellido":["Apellido cannot be blank."],"nro_documento":["Nro Documento cannot be blank."],"fecha_nacimiento":["Fecha Nacimiento cannot be blank."],"estado_civilid":["Estado Civilid cannot be blank."],"sexoid":["Sexoid cannot be blank."],"generoid":["Generoid cannot be blank."],"email":["Email cannot be blank."]},"lugar":{"calle":["Calle cannot be blank."],"altura":["Altura cannot be blank."],"localidadid":["Localidadid cannot be blank."]}}'
         
         $msj = '{"lugar":{"calle":["Calle cannot be blank."],'
                 . '"altura":["Altura cannot be blank."],'
@@ -117,24 +90,25 @@ class DestinatarioTest extends \Codeception\Test\Unit
                     "banco_cbu"=> "54321987654",
                     "banco_nombre"=> "Patagonia",
                     "banco_alias"=> "CAMION-RODILLO-RUEDA",
-                    "observacion"=> "Una observacion"
+                    "observacion"=> "Una observacion",
+                    "persona"=>[
+                        "nombre"=>"Carlos",
+                        "apodo"=>"Kar",
+                        "apellido"=>"Lopez",
+                        "nro_documento"=>"36765567",
+                        "fecha_nacimiento"=>"07/05/1995",
+                        "estado_civilid"=>"1",
+                        "telefono"=>"",
+                        "celular"=>"(2920) 15412228",
+                        "sexoid"=>"1",
+                        "tipo_documentoid"=>1,
+                        "nucleoid"=>null,
+                        "situacion_laboralid"=>1,
+                        "generoid"=>1,
+                        "email"=>"uncorre@hotmail.com",
+                    ]
                 ],
-                "persona"=>[
-                    "nombre"=>"Carlos",
-                    "apodo"=>"Kar",
-                    "apellido"=>"Lopez",
-                    "nro_documento"=>"36765567",
-                    "fecha_nacimiento"=>"07/05/1995",
-                    "estado_civilid"=>"1",
-                    "telefono"=>"",
-                    "celular"=>"(2920) 15412228",
-                    "sexoid"=>"1",
-                    "tipo_documentoid"=>1,
-                    "nucleoid"=>null,
-                    "situacion_laboralid"=>1,
-                    "generoid"=>1,
-                    "email"=>"uncorre@hotmail.com",
-                ]
+                
             ];
             $model = new Destinatario;
             $model->setAttributesAndValidate($param);
@@ -166,25 +140,26 @@ class DestinatarioTest extends \Codeception\Test\Unit
                     "banco_cbu"=> "54321987654",
                     "banco_nombre"=> "Patagonia",
                     "banco_alias"=> "CAMION-RODILLO-RUEDA",
-                    "observacion"=> "Una observacion"
+                    "observacion"=> "Una observacion",
+                    "persona"=>[
+                        "id"=>0,
+                        "nombre"=>"Carlos",
+                        "apodo"=>"Kar",
+                        "apellido"=>"Lopez",
+                        "nro_documento"=>"36765567",
+                        "fecha_nacimiento"=>"07/05/1995",
+                        "estado_civilid"=>"1",
+                        "telefono"=>"",
+                        "celular"=>"(2920) 15412228",
+                        "sexoid"=>"1",
+                        "tipo_documentoid"=>1,
+                        "nucleoid"=>null,
+                        "situacion_laboralid"=>1,
+                        "generoid"=>1,
+                        "email"=>"uncorre@hotmail.com",
+                    ]
                 ],
-                "persona"=>[
-                    "id"=>0,
-                    "nombre"=>"Carlos",
-                    "apodo"=>"Kar",
-                    "apellido"=>"Lopez",
-                    "nro_documento"=>"36765567",
-                    "fecha_nacimiento"=>"07/05/1995",
-                    "estado_civilid"=>"1",
-                    "telefono"=>"",
-                    "celular"=>"(2920) 15412228",
-                    "sexoid"=>"1",
-                    "tipo_documentoid"=>1,
-                    "nucleoid"=>null,
-                    "situacion_laboralid"=>1,
-                    "generoid"=>1,
-                    "email"=>"uncorre@hotmail.com",
-                ]
+                
             ];
             $model = new Destinatario;
             $model->setAttributesAndValidate($param); // no me toma la instancia con ServicioPersona
@@ -211,9 +186,8 @@ class DestinatarioTest extends \Codeception\Test\Unit
                 "banco_cbu"=> "54321987654",
                 "banco_nombre"=> "Patagonia",
                 "banco_alias"=> "CAMION-RODILLO-RUEDA",
-                "observacion"=> "Una observacion"
-            ],
-            "persona"=>[
+                "observacion"=> "Una observacion",
+                "persona"=>[
                     "nombre"=>"Carlos",
                     "apodo"=>"Kar",
                     "apellido"=>"Lopez",
@@ -234,6 +208,8 @@ class DestinatarioTest extends \Codeception\Test\Unit
                         "localidadid"=>1,
                     ]
                 ]
+            ],
+            
         ];
         $model = new Destinatario;
         $model->setAttributesAndValidate($param);

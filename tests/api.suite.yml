@@ -5,7 +5,7 @@ modules:
         - Yii2:
             part: [ORM,fixtures]
         - REST:
-            url: http://api.pril.local/index-test.php
+            url: http://pril/index-test.php
             depends: 
                - PhpBrowser
                - Yii2
