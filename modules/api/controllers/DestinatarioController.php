@@ -152,6 +152,12 @@ class DestinatarioController extends ActiveController{
 
     }
     
+    /**
+     * Vamos a detallar los datos de un destinatario
+     * @param int $id
+     * @return array json
+     * @throws \yii\web\HttpException
+     */
     public function actionView($id)
     {        
         $model = Destinatario::findOne(['id'=>$id]);
