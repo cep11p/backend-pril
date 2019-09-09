@@ -53,20 +53,18 @@ class DestinatarioCest
         $I->sendPOST('/api/destinatarios', $param);
         
         $I->seeResponseContainsJson([
-            'message' => '{'
-                . '"persona":{'
-                    . '"nombre":["Nombre no puede estar vac\u00edo."],'
-                    . '"apellido":["Apellido no puede estar vac\u00edo."],'
-                    . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
-                    . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
-                    . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
-                    . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
-                    . '"generoid":["Generoid no puede estar vac\u00edo."]},'
-                    . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
-                    . '"altura":["Altura no puede estar vac\u00edo."],'
-                    . '"localidadid":["Localidadid no puede estar vac\u00edo."]}'
-            . '}'
-
+            'message' => '{"persona":'
+                . '{"nombre":["Nombre no puede estar vac\u00edo."],'
+                . '"apellido":["Apellido no puede estar vac\u00edo."],'
+                . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
+                . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
+                . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
+                . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
+                . '"generoid":["Generoid no puede estar vac\u00edo."],'
+                . '"email":["Email no puede estar vac\u00edo."]},'
+                . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
+                . '"altura":["Altura no puede estar vac\u00edo."],'
+                . '"localidadid":["Localidadid no puede estar vac\u00edo."]}}'
         ]);
         
         $I->seeResponseCodeIs(400);
@@ -86,24 +84,22 @@ class DestinatarioCest
         
         $I->seeResponseContainsJson([
             'message' => '{'
-                . '"destinatario":{'
-                    . '"legajo":["Legajo no puede estar vac\u00edo."],'
-                    . '"fecha_ingreso":["Fecha Ingreso no puede estar vac\u00edo."],'
-                    . '"fecha_presentacion":["Fecha Presentacion no puede estar vac\u00edo."]'
-                . '},'
-                . '"persona":{'
-                    . '"nombre":["Nombre no puede estar vac\u00edo."],'
-                    . '"apellido":["Apellido no puede estar vac\u00edo."],'
-                    . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
-                    . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
-                    . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
-                    . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
-                    . '"generoid":["Generoid no puede estar vac\u00edo."]},'
-                    . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
-                    . '"altura":["Altura no puede estar vac\u00edo."],'
-                    . '"localidadid":["Localidadid no puede estar vac\u00edo."]'
-                . '}'
-            . '}'
+            . '"destinatario":{'
+                . '"legajo":["Legajo no puede estar vac\u00edo."],'
+                . '"fecha_ingreso":["Fecha Ingreso no puede estar vac\u00edo."],'
+                . '"fecha_presentacion":["Fecha Presentacion no puede estar vac\u00edo."]},'
+            . '"persona":{"nombre":["Nombre no puede estar vac\u00edo."],'
+                . '"apellido":["Apellido no puede estar vac\u00edo."],'
+                . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
+                . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
+                . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
+                . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
+                . '"generoid":["Generoid no puede estar vac\u00edo."],'
+                . '"email":["Email no puede estar vac\u00edo."]},'
+                . '"lugar":{"calle":["Calle no puede estar vac\u00edo."],'
+                . '"altura":["Altura no puede estar vac\u00edo."],'
+                . '"localidadid":["Localidadid no puede estar vac\u00edo."]}}'
+
 
         ]);
         

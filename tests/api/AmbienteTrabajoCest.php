@@ -33,25 +33,22 @@ class AmbienteTrabajoCest
         $I->seeResponseContainsJson([
             
             'message' => 
-                        '{"lugar":{'
-                            . '"calle":["Calle no puede estar vac\u00edo."],'
+                         '{"lugar":'
+                            . '{"calle":["Calle no puede estar vac\u00edo."],'
                             . '"altura":["Altura no puede estar vac\u00edo."],'
                             . '"localidadid":["Localidadid no puede estar vac\u00edo."]},'
-                        . '"persona":{'
-                            . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                        . '"persona":'
+                            . '{"nombre":["Nombre no puede estar vac\u00edo."],'
                             . '"apellido":["Apellido no puede estar vac\u00edo."],'
                             . '"nro_documento":["Nro Documento no puede estar vac\u00edo."],'
                             . '"fecha_nacimiento":["Fecha Nacimiento no puede estar vac\u00edo."],'
                             . '"estado_civilid":["Estado Civilid no puede estar vac\u00edo."],'
                             . '"sexoid":["Sexoid no puede estar vac\u00edo."],'
-                            . '"generoid":["Generoid no puede estar vac\u00edo."]},'
-                        . '"ambiente_trabajo":{'
-                            . '"nombre":["Nombre no puede estar vac\u00edo."],'
+                            . '"generoid":["Generoid no puede estar vac\u00edo."],'
+                            . '"email":["Email no puede estar vac\u00edo."]},'
+                            . '"ambiente_trabajo":{"nombre":["Nombre no puede estar vac\u00edo."],'
                             . '"legajo":["Legajo no puede estar vac\u00edo."],'
-                            . '"tipo_ambiente_trabajoid":["Tipo Ambiente Trabajoid no puede estar vac\u00edo."]}}'
-
-
-            
+                            . '"tipo_ambiente_trabajoid":["Tipo Ambiente Trabajoid no puede estar vac\u00edo."]}}'      
             ]);
         
         $I->seeResponseCodeIs(500);
