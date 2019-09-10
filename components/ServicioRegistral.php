@@ -43,17 +43,18 @@ class ServicioRegistral extends Component implements IServicioRegistral
             \Yii::error(json_encode($data));
             $headers = [
                 'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
-           ];          
+           ];
             
-            
-            $response = $client->request('POST', 'http://api.registral.local/api/personas', ['json' => $data,'headers' => $headers]);
+            $response = $client->request('POST', \Yii::$app->params['URL_REGISTRAL'].'/api/personas', ['json' => $data,'headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
+             
             \Yii::error($respuesta);
             return $respuesta['data']['id'];
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
                 \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
+                return $resultado;
         } catch (Exception $e) {
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
                 \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
@@ -72,7 +73,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
             ];          
             
             
-            $response = $client->request('PUT', 'http://api.registral.local/api/personas/'.$data['id'], ['json' => $data,'headers' => $headers]);
+            $response = $client->request('PUT', \Yii::$app->params['URL_REGISTRAL'].'/api/personas/'.$data['id'], ['json' => $data,'headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
@@ -99,7 +100,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/personas/buscar-por-documento/'.$nro_documento, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/personas/buscar-por-documento/'.$nro_documento, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
@@ -126,7 +127,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/personas?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/personas?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -160,7 +161,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/nucleos?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/nucleos?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -186,7 +187,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/nucleos?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/nucleos?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -212,7 +213,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/nivel-educativo?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/nivel-educativo?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -242,7 +243,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/hogar?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/hogar?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -269,7 +270,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/persona?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/persona?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -303,7 +304,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
 //                'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/sexo?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/sexo?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
@@ -337,7 +338,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
 //                'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/genero?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/genero?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
@@ -371,7 +372,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
 //                'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/estado-civil?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/estado-civil?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
@@ -398,7 +399,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
 //                'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.registral.local/api/nivel-educativos?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/nivel-educativos?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::error($respuesta);
             
