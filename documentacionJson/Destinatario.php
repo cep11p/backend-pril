@@ -22,10 +22,8 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
     "coleccion": [
     {
             "id": 1,
-            "oficioid": 1,
             "legajo": "usb123/6",
             "calificacion": 1,
-            "profesionid": 1,
             "fecha_ingreso": "2018-11-05 16:11:50",
             "origen": "un origen fixture",
             "observacion": "1",
@@ -38,8 +36,6 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
             "banco_alias": "1",
             "experiencia_laboral": 1,
             "conocimientos_basicos": null,
-            "profesion": "Abogado/a",
-            "oficio": "Albañil",
             "persona": {
                 "id": 2,
                 "nombre": "Nahuel Ezequiel",
@@ -98,10 +94,8 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
         },
     {
             "id": 2,
-            "oficioid": 1,
             "legajo": "usb123/7",
             "calificacion": 1,
-            "profesionid": 1,
             "fecha_ingreso": "2018-11-05 16:11:50",
             "origen": "un origen fixture",
             "observacion": "1",
@@ -114,8 +108,6 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
             "banco_alias": "1",
             "experiencia_laboral": 1,
             "conocimientos_basicos": null,
-            "profesion": "Abogado/a",
-            "oficio": "Albañil",
             "persona": {
                 "id": 3,
                 "nombre": "Rodrigo Ezequiel",
@@ -175,8 +167,6 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
     "destinatario":{
         "calificacion": 7,
         "legajo": "usb123/7",
-        "profesionid":1,
-        "oficioid": 2,
         "fecha_presentacion":"2000-12-12",
         "fecha_ingreso": "2000-12-12",
         "origen": "un origen",
@@ -187,7 +177,7 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
         "banco_nombre": "Patagonia",
         "banco_alias": "CAMION-RODILLO-RUEDA",
         "observacion": "Una observacion",
-        "persona":{
+        "persona":{    
             "nombre": "Romina",
             "apellido": "Rodríguez",
             "nro_documento": "29890098",
@@ -201,6 +191,7 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
             "tipo_documentoid": 1,
             "generoid": 1,
             "email":"algo@correo.com.ar",
+            "red_social":"algodesocial",
             "cuil":"20367655678",
             "estudios": [{
                 "nivel_educativoid":4,
@@ -209,6 +200,16 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
                 "en_curso":0,
                 "anio":"2014"
             }],
+            "lista_red_social": [
+                {
+                "tipo_red_socialid":1,
+                "perfil":"cep11p"
+                },
+                {
+                "tipo_red_socialid":2,
+                "perfil":"kar2000"
+                }
+            ]
             "lugar": {
                 "barrio":"Don bosco",
                 "calle":"Mitre",
@@ -219,8 +220,7 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
                 "localidadid":1,
                 "latitud":"-123123",
                 "longitud":"321123"
-            }
-
+            }    
         }
     }	
 }
@@ -237,10 +237,8 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
     
     "destinatario": {
         "id": 3,
-        "oficioid": 2,
         "legajo": "usb123/7",
         "calificacion": 7,
-        "profesionid": 1,
         "fecha_ingreso": "2018-09-26 00:00:00",
         "origen": "un origen",
         "observacion": "Una observacion",
@@ -309,10 +307,8 @@ La Url quedaria algo asi, (no importa el orden) api/destinatarios?page=1&global_
 @return 
 {
     "id": 1,
-    "oficioid": 1,
     "legajo": "usb123/6",
     "calificacion": 1,
-    "profesionid": 1,
     "fecha_ingreso": "2018-10-30 17:05:30",
     "origen": "un origen fixture",
     "observacion": "1",
