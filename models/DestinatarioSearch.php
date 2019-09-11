@@ -18,7 +18,7 @@ class DestinatarioSearch extends Destinatario
     public function rules()
     {
         return [
-            [['id', 'oficioid', 'calificacion', 'profesionid', 'personaid', 'experiencia_laboral'], 'integer'],
+            [['id', 'calificacion', 'personaid', 'experiencia_laboral'], 'integer'],
             [['legajo', 'fecha_ingreso', 'origen', 'observacion', 'deseo_lugar_entrenamiento', 'deseo_actividad', 'fecha_presentacion', 'banco_cbu', 'banco_nombre', 'banco_alias', 'conocimientos_basicos'], 'safe'],
         ];
     }
@@ -60,9 +60,7 @@ class DestinatarioSearch extends Destinatario
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'oficioid' => $this->oficioid,
             'calificacion' => $this->calificacion,
-            'profesionid' => $this->profesionid,
             'fecha_ingreso' => $this->fecha_ingreso,
             'fecha_presentacion' => $this->fecha_presentacion,
             'personaid' => $this->personaid,
@@ -151,9 +149,7 @@ class DestinatarioSearch extends Destinatario
             #Se realiza un filtrado con los siguientes criterios
             $query->andFilterWhere([
                 'id' => $this->id,
-                'oficioid' => $this->oficioid,
                 'calificacion' => $this->calificacion,
-                'profesionid' => $this->profesionid,
                 'fecha_ingreso' => $this->fecha_ingreso,
                 'fecha_presentacion' => $this->fecha_presentacion,
                 'personaid' => $this->personaid,
