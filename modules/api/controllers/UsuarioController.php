@@ -69,7 +69,7 @@ class UsuarioController extends ActiveController
         
         
         $payload = [
-            'exp'=>time()+3600,
+            'exp'=>time()+3600*8,
             'usuario'=>$usuario->username,
             'uid' => $usuario->id  
         ];
