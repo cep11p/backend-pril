@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use Yii;
 use yii\base\Model;
 
+use yii\base\Exception;
 /**
  * This is the model class for table "persona".
  */
@@ -39,10 +40,7 @@ class PersonaForm extends Model
             [['email'], 'string', 'max' => 200],            
             [['email'], 'email'],
             [['fecha_nacimiento'], 'date', 'format' => 'php:Y-m-d'],
-            ['nro_documento', 'match', 'pattern' => "/^[0-9]+$/"],
-            ['id', 'existeEnRegistral'],
-            ['nucleoid', 'existeNucleoEnRegistral','skipOnEmpty' => true],
-            ['nro_documento', 'existeNroDocumentoEnRegistral'],
+            ['nro_documento', 'match', 'pattern' => "/^[0-9]+$/"]
         ];
     }
     
@@ -67,6 +65,55 @@ class PersonaForm extends Model
         
         
         return $resultado;
+    }
+    
+    public function setAttributesAndSave($param = array()) {
+        
+        
+        ####### Instanciamos atributos de PersonaForm #########
+        $this->setAttributes($param);
+        if(!$this->validate()){
+            $arrayErrors = ArrayHelper::merge($arrayErrors, $this->getErrors());
+        }   
+        
+        ####### Instanciamos atributos de LugarForm #########
+        $lugarForm = new LugarForm();
+        if(isset($param['lugar'])){
+            $lugarForm->setAttributes($param['lugar']);
+        }                
+        
+        if(!$lugarForm->validate()){
+            $arrayErrors=ArrayHelper::merge($arrayErrors, $lugarForm->getErrors());
+        } 
+        
+        ###### chequeamos si existen errores ###############        
+        if(count($arrayErrors)>0){
+            throw new Exception(json_encode($arrayErrors));
+        }
+        
+        #Preparamos los parametros para interoperar con registral
+        $param_persona = $this->toArray();
+        $param_persona['estudios'] = (isset($param['estudios']))?$param['estudios']:array();
+        $param_persona['lista_red_social'] = (isset($param['lista_red_social']))?$param['lista_red_social']:array();
+        $param_persona['lugar'] = $lugarForm->toArray();
+        
+        /*************** Ejecutamos la interoperabilidad ************************/
+        //Si es una persona con id entonces ya existe en Registral
+        if(isset($this->id) && !empty($this->id)){
+            $resultado = \Yii::$app->registral->actualizarPersona($param_persona);
+            if(isset($resultado->message)){
+                throw new Exception($resultado->message);
+            }
+            $this->id = intval($resultado);
+            
+        }else{
+            $resultado = \Yii::$app->registral->crearPersona($param_persona);
+            if(isset($resultado->message)){
+                throw new Exception($resultado->message);
+            }
+            $this->id = intval($resultado);
+        }
+        
     }
     
     /**
@@ -273,37 +320,7 @@ class PersonaForm extends Model
         }
     }
     
-    /**
-     * Una validacion Rule()
-     */
-    public function existeEnRegistral(){
-        $response = \Yii::$app->registral->buscarPersonaPorId($this->id);       
-        
-        if(isset($response['estado']) && $response['estado']!=true){
-            $this->addError('id', 'La persona con el id '.$this->id.' no existe!');
-        }
-    }
-    public function existeNucleoEnRegistral(){
-        $response = \Yii::$app->registral->buscarNucleo(array("id"=>$this->nucleoid));       
-        
-        if(isset($response['estado']) && $response['estado']!=true){
-            $this->addError('nucleoid', 'El nucleo con el id '.$this->nucleoid.' no existe!');
-        }
-    }
-    public function existeNroDocumentoEnRegistral(){
-        
-        if(!isset($this->id)){
-            $response = \Yii::$app->registral->buscarPersonaPorNroDocumento($this->nro_documento);       
-            if(isset($response['estado']) && $response['estado']==true){
-                $this->addError('nro_documento', 'El nro de documento '.$this->nro_documento.' ya está en uso!');
-            }
-        }else{
-            $response = \Yii::$app->registral->buscarPersonaPorNroDocumento($this->nro_documento);    
-            if(isset($response['estado']) && $response['estado']==true && $this->id != $response['resultado'][0]['id']){
-                $this->addError('nro_documento', 'El nro de documento '.$this->nro_documento.' ya está en uso!');
-            }
-        }
-    }
+   
     
     /**
      * vamos a cheaquear si existen cambios en los atributos
