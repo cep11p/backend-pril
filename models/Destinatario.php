@@ -59,7 +59,7 @@ class Destinatario extends BaseDestinatario
         ####### Instanciamos atributos de Destinatario #########
         if(isset($param['destinatario'])){            
             parent::setAttributes($param['destinatario']);
-            $this->fecha_ingreso = date('Y-m-d H:i:s');
+            $this->fecha_ingreso = (empty($this->fecha_ingreso))?date('Y-m-d H:i:s'):$this->fecha_ingreso;
             
             $this->experiencia_laboral = (isset($param['destinatario']['experiencia_laboral']) && ($param['destinatario']['experiencia_laboral']===true))?1:0;
             
@@ -87,7 +87,7 @@ class Destinatario extends BaseDestinatario
     public function getPersona(){
         $resultado = null;
         $model = new PersonaForm();
-        $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+        $arrayPersona = $model->buscarPersonaPorIdEnRegistral($this->personaid);
 
         if($arrayPersona){
             $resultado = $arrayPersona;

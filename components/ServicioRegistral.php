@@ -129,7 +129,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/personas?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL'].'/api/personas/'.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
