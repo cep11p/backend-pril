@@ -6,6 +6,87 @@
 @url http://api.pril.local/api/area-entrenamientos
 @method GET
 {
+    "total_filtrado": 4,
+    "success": true,
+    "resultado": [
+    {
+        "id": 1,
+        "destinatarioid": 1,
+        "ofertaid": 4,
+        "fecha_inicial": "2018-12-12 00:00:00",
+        "fecha_final": null,
+        "tarea": "una tarea fixture",
+        "plan_nombre": "Plan A",
+        "plan_monto": "2000",
+        "plan_hora_semanal": "10hs",
+        "estado": "Vigente (estatico)",
+        "destinatario": {
+            "id": 1,
+            "persona": {
+                "nro_documento": null,
+                "nombre": null,
+                "apellido": null
+            }
+        },
+        "oferta": {
+            "id": 4,
+            "ambiente_trabajoid": 2,
+            "ambiente_trabajo": "Panaderia Boomble",
+            "nombre_sucursal": "Sucursal Nº 1"
+        }
+    },
+    {
+        "id": 2,
+        "destinatarioid": 2,
+        "ofertaid": 3,
+        "fecha_inicial": "2017-10-12 00:00:00",
+        "fecha_final": null,
+        "tarea": "una tarea fixture",
+        "plan_nombre": "Plan A",
+        "plan_monto": "2000",
+        "plan_hora_semanal": "10hs",
+        "estado": "Vigente (estatico)",
+        "destinatario": {
+            "id": 2,
+            "persona": {
+                "nro_documento": null,
+                "nombre": null,
+                "apellido": null
+            }
+        },
+        "oferta": {
+            "id": 3,
+            "ambiente_trabajoid": 1,
+            "ambiente_trabajo": "Panaderia San Fernando",
+            "nombre_sucursal": "Sucursal Nº 2"
+        }
+    },
+    {
+        "id": 3,
+        "destinatarioid": 3,
+        "ofertaid": 2,
+        "fecha_inicial": "2017-10-12 00:00:00",
+        "fecha_final": null,
+        "tarea": "una tarea fixture",
+        "plan_nombre": "Plan A",
+        "plan_monto": "2000",
+        "plan_hora_semanal": "10hs",
+        "estado": "Vigente (estatico)",
+        "destinatario": {
+            "id": 3,
+            "persona": {
+                "nro_documento": null,
+                "nombre": null,
+                "apellido": null
+            }
+        },
+        "oferta": {
+            "id": 2,
+            "ambiente_trabajoid": 1,
+            "ambiente_trabajo": "Panaderia San Fernando",
+            "nombre_sucursal": "Sucursal Nº 2"
+        }
+    }
 }
 **/
 

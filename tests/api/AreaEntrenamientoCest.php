@@ -1,0 +1,261 @@
+<?php
+
+use Helper\Api;
+use app\models\AmbienteTrabajo;
+class AreaEntrenamientoCest
+{
+    public function _before(ApiTester $I,Api $api)
+    {
+        $I->wantTo('Login');
+        $token = $api->generarToken();
+        $I->amBearerAuthenticated($token);
+    }
+    
+    public function _fixtures()
+    {
+        return [
+            'area_entrenamiento'=> \app\tests\fixtures\AreaEntrenamientoFixture::className(),
+//            'destinatario'=> app\tests\fixtures\DestinatarioFixture::className(),
+//            'area'=> \app\tests\fixtures\AreaEntrenamientoFixture::className(),
+//            'ambientes_trasbajos' => \app\tests\fixtures\AmbienteTrabajoFixture::className(),
+        ];
+    }
+
+
+    // tests
+    public function agregarUnAreaEntrenamientoConCamposVacios(ApiTester $I)
+    {
+        $I->wantTo('Agregar Un Area de entranamiento con los campos vacios');
+        $param=[];
+        
+        $I->sendPOST('/api/area-entrenamientos', $param);
+        
+        $I->seeResponseContainsJson([
+                'message' => '{"tarea":["Tarea no puede estar vac\u00edo."],"planid":["Planid no puede estar vac\u00edo."],"destinatarioid":["Destinatarioid no puede estar vac\u00edo."],"ofertaid":["Ofertaid no puede estar vac\u00edo."]}'
+            ]);
+        
+        $I->seeResponseCodeIs(500);
+        
+    }
+    
+    public function agregarUnAreaEntrenamiento(ApiTester $I)
+    {
+        $I->wantTo('Agregar Un Area de entranamiento con los campos vacios');
+        $param=[
+            "tarea"=>"una tarea",
+            "planid"=>1,
+            "ofertaid"=>1,
+            "destinatarioid"=>2,
+            "fecha_inicial"=>"2018-12-12",
+            "observacion"=>"una observacion",
+            "jornada"=>"una jornada"
+        ];
+        
+        $I->sendPOST('/api/area-entrenamientos', $param);
+        
+        $I->seeResponseContainsJson([
+                'message' => 'Se registra un Area de entrenamiento'
+            ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+    }
+    /**
+     * Si los campos de lugar estan vacios se debe notificar
+     * @param ApiTester $I
+     */
+//    public function agregarUnAmbienteTrabajoConCamposDeLugarVacio(ApiTester $I)
+//    {
+//        $I->wantTo('Agregar Un Ambiente de trabajo con los Campos De Lugar Vacio');
+//        $param=[
+//                "nombre"=> "Panaderia San Fernando",
+//                "calificacion"=> 7,
+//                "legajo"=> "asb123/7",
+//                "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+//                "cuit"=>"20123456789",
+//                "actividad"=> "Vende facturas, tortas y variedades de panes",
+//                "tipo_ambiente_trabajoid"=> 1,
+//                "persona"=>[
+//                    "nombre"=> "Diego",
+//                    "apellido"=> "Matinez",
+//                    "nro_documento"=> "27890098",
+//                    "fecha_nacimiento"=>"1980-12-12",
+//                    "apodo"=>"rominochi",
+//                    "telefono"=> "2920430690",
+//                    "celular"=> "2920412127",
+//                    "situacion_laboralid"=> 1,
+//                    "estado_civilid"=> 1,
+//                    "sexoid"=> 2,
+//                    "tipo_documentoid"=> 1,
+//                    "generoid"=> 1,
+//                    "email"=>"algo@correo.com.ar",
+//                    "cuil"=>"20367655678"
+//
+//                ]   
+//            ];
+//        
+//        $I->sendPOST('/api/ambiente-trabajos', $param);
+//        
+//        $I->seeResponseContainsJson([
+//            'message' => '{"lugar":{"calle":["Calle no puede estar vac\u00edo."],"altura":["Altura no puede estar vac\u00edo."],"localidadid":["Localidadid no puede estar vac\u00edo."]}}',
+//        ]);
+//        
+//        $I->seeResponseCodeIs(500);
+//        
+//    }
+    /**
+     * Si localidadid no existe, deberia ser notificado
+     * @param ApiTester $I
+     */
+//    public function agregarUnAmbienteTrabajoConLocalidadNoExistente(ApiTester $I)
+//    {
+//        $I->wantTo('Agregar Un Ambiente de trabajo con localidad no existente');
+//        $param=[
+//            "nombre"=> "Panaderia San Fernando",
+//            "calificacion"=> 7,
+//            "legajo"=> "asb123/7",
+//            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+//            "cuit"=>"20123456789",
+//            "actividad"=> "Vende facturas, tortas y variedades de panes",
+//            "tipo_ambiente_trabajoid"=> 1,
+//            "lugar"=>[
+//                "calle"=>"Mata Negra",
+//                "altura"=>"123",
+//                "localidadid"=>0
+//            ],
+//            "persona"=>[
+//                "nombre"=> "Diego",
+//                "apellido"=> "Matinez",
+//                "nro_documento"=> "27890098",
+//                "fecha_nacimiento"=>"1980-12-12",
+//                "apodo"=>"rominochi",
+//                "telefono"=> "2920430690",
+//                "celular"=> "2920412127",
+//                "situacion_laboralid"=> 1,
+//                "estado_civilid"=> 1,
+//                "sexoid"=> 2,
+//                "tipo_documentoid"=> 1,
+//                "generoid"=> 1,
+//                "email"=>"algo@correo.com.ar",
+//                "cuil"=>"20367655678"
+//            ]
+//        ];
+//        
+//        $I->sendPOST('/api/ambiente-trabajos', $param);
+//        
+//        $I->seeResponseContainsJson([
+//            'message' => '{"lugar":{"id":["La localidad con el id  no existe!"]}}',
+//        ]);
+//        
+//        $I->seeResponseCodeIs(500);
+//        
+//    }
+    
+//    public function agregarUnAmbienteTrabajoConLugaridIncorrecto(ApiTester $I)
+//    {
+//        $I->wantTo('Agregar Un Ambiente de trabajo con lugarid incorrecto');
+//        $param=[
+//            "nombre"=> "Panaderia San Fernando",
+//            "calificacion"=> 7,
+//            "legajo"=> "asb123/7",
+//            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+//            "cuit"=>"20123456789",
+//            "actividad"=> "Vende facturas, tortas y variedades de panes",
+//            "tipo_ambiente_trabajoid"=> 1,
+//            "lugarid"=>0,
+//            "lugar"=>[
+//                "calle"=>"Mata Negra",
+//                "altura"=>"123",
+//                "localidadid"=>1
+//            ],
+//            "persona"=>[
+//                "nombre"=> "Diego",
+//                "apellido"=> "Matinez",
+//                "nro_documento"=> "27890098",
+//                "fecha_nacimiento"=>"1980-12-12",
+//                "apodo"=>"rominochi",
+//                "telefono"=> "2920430690",
+//                "celular"=> "2920412127",
+//                "situacion_laboralid"=> 1,
+//                "estado_civilid"=> 1,
+//                "sexoid"=> 2,
+//                "tipo_documentoid"=> 1,
+//                "generoid"=> 1,
+//                "email"=>"algo@correo.com.ar",
+//                "cuil"=>"20367655678"
+//
+//            ]
+//        ];
+//        
+//        $I->sendPOST('/api/ambiente-trabajos', $param);
+//        
+//        $I->seeResponseContainsJson([
+//            'message' => '{"ambiente_trabajo":{"lugarid":["No se pudo registrar el Lugar correctamente en el Sistema Lugar."]}}',
+//        ]);
+//        
+//        $I->seeResponseCodeIs(500);
+//    
+//    }
+    
+//    public function agregarUnAmbienteTrabajo(ApiTester $I)
+//    {
+//        $I->wantTo('Agregar Un Ambiente');
+//        $param=[
+//            "nombre"=> "Panaderia San Fernando",
+//            "calificacion"=> 7,
+//            "legajo"=> "asb123/7",
+//            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+//            "cuit"=>"20123456789",
+//            "actividad"=> "Vende facturas, tortas y variedades de panes",
+//            "tipo_ambiente_trabajoid"=> 1,
+//            "lugar"=>[
+//                "calle"=>"Mata Negra",
+//                "altura"=>"123",
+//                "localidadid"=>1
+//            ],
+//            "persona"=>[
+//                "nombre"=> "Diego",
+//                "apellido"=> "Matinez",
+//                "nro_documento"=> "27890098",
+//                "fecha_nacimiento"=>"1980-12-12",
+//                "apodo"=>"rominochi",
+//                "telefono"=> "2920430690",
+//                "celular"=> "2920412127",
+//                "situacion_laboralid"=> 1,
+//                "estado_civilid"=> 1,
+//                "sexoid"=> 2,
+//                "tipo_documentoid"=> 1,
+//                "generoid"=> 1,
+//                "email"=>"algo@correo.com.ar",
+//                "cuil"=>"20367655678"
+//
+//            ]
+//        ];
+//        
+//        $I->sendPOST('/api/ambiente-trabajos', $param);
+//        $I->seeResponseContainsJson([
+//            'message' => 'Se guarda un Ambiente de Trabajo',
+//            'success' => true
+//        ]);
+//        
+//        $I->seeResponseCodeIs(200);
+//        
+//        //chequeamos lo guardado
+//        $model = AmbienteTrabajo::findOne(['legajo'=>'asb123/7']);
+//        $id = $model->id;
+//        $I->sendGET("/api/ambiente-trabajos/$id");
+//        $I->seeResponseContainsJson([
+//            'id' => $id,
+//            "nombre"=> "Panaderia San Fernando",
+//            "calificacion"=> 7,
+//            "legajo"=> "asb123/7",
+//            "observacion"=>"es una empresa que realiza actividades de panaderia y pasteleria",
+//            "cuit"=>"20123456789",
+//            "actividad"=> "Vende facturas, tortas y variedades de panes",
+//            "tipo_ambiente_trabajoid"=> 1,
+//        ]);
+//        $I->seeResponseCodeIs(200);
+//    
+//    }
+    
+}
