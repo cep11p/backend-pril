@@ -48,7 +48,7 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nombre', 'legajo', 'tipo_ambiente_trabajoid'], 'required'],
+            [['nombre', 'tipo_ambiente_trabajoid'], 'required'],
             [['calificacion', 'personaid', 'tipo_ambiente_trabajoid', 'lugarid'], 'integer'],
             [['observacion', 'actividad'], 'string'],
             [['nombre'], 'string', 'max' => 200],

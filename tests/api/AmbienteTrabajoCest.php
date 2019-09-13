@@ -47,7 +47,6 @@ class AmbienteTrabajoCest
                             . '"generoid":["Generoid no puede estar vac\u00edo."],'
                             . '"email":["Email no puede estar vac\u00edo."]},'
                             . '"ambiente_trabajo":{"nombre":["Nombre no puede estar vac\u00edo."],'
-                            . '"legajo":["Legajo no puede estar vac\u00edo."],'
                             . '"tipo_ambiente_trabajoid":["Tipo Ambiente Trabajoid no puede estar vac\u00edo."]}}'      
             ]);
         
