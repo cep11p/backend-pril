@@ -31,7 +31,7 @@ class Destinatario extends BaseDestinatario
             [
                 # custom validation rules
                 [['fecha_presentacion'], 'date', 'format' => 'php:Y-m-d'],
-                [['fecha_ingreso'], 'date', 'format' => 'php:Y-m-d H:i:s'],
+                [['fecha_ingreso'], 'date', 'format' => 'php:Y-m-d'],
                 ['personaid', 'compare','compareValue'=>0,'operator'=>'!=','message' => 'No se pudo registrar la persona correctamente en el Sistema Registral.'],
             ]
         );
@@ -59,7 +59,7 @@ class Destinatario extends BaseDestinatario
         ####### Instanciamos atributos de Destinatario #########
         if(isset($param['destinatario'])){            
             parent::setAttributes($param['destinatario']);
-            $this->fecha_ingreso = (empty($this->fecha_ingreso))?date('Y-m-d H:i:s'):$this->fecha_ingreso;
+            $this->fecha_ingreso = (empty($this->fecha_ingreso))?date('Y-m-d'):$this->fecha_ingreso;
             
             $this->experiencia_laboral = (isset($param['destinatario']['experiencia_laboral']) && ($param['destinatario']['experiencia_laboral']===true))?1:0;
             
@@ -69,11 +69,10 @@ class Destinatario extends BaseDestinatario
         } 
         
         ####### Instanciamos atributos de PersonaForm #########
-        if(isset($param['destinatario']['persona'])){
-            $personaForm->setAttributesAndSave($param['destinatario']['persona']);
-            $this->personaid = $personaForm->id;
-        }   
+        $personaParam = (isset($param['destinatario']['persona']))?$param['destinatario']['persona']:array();
+        $personaForm->setAttributesAndSave($personaParam,$arrayErrors);
         
+        $this->personaid = $personaForm->id;
        
         ###### chequeamos si existen errores ###############        
         if(count($arrayErrors)>0){
@@ -81,8 +80,8 @@ class Destinatario extends BaseDestinatario
         }       
         
     }
-    
-   
+
+
     /** para obtener este dato se requiere hacer una interoperabilidad con el sistema Registral**/
     public function getPersona(){
         $resultado = null;

@@ -67,7 +67,7 @@ class PersonaForm extends Model
         return $resultado;
     }
     
-    public function setAttributesAndSave($param = array()) {
+    public function setAttributesAndSave($param = array(), $arrayErrors = array()) {
         
         
         ####### Instanciamos atributos de PersonaForm #########
