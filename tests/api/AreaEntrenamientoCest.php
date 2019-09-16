@@ -61,6 +61,116 @@ class AreaEntrenamientoCest
         
     }
     
+    public function vistaAreaEntrenamiento(ApiTester $I)
+    {
+        $I->wantTo('se visualiza un Area de entranamiento');
+        
+        $I->sendGET('/api/area-entrenamientos/5');
+        
+        $I->seeResponseContainsJson([            
+            "id"=> 5,
+            "tarea"=> "una tarea",
+            "planid"=> 1,
+            "destinatarioid"=> 2,
+            "fecha_inicial"=> "2018-12-12 03:00:00",
+            "fecha_final"=> null,
+            "descripcion_baja"=> null,
+            "ofertaid"=> 1,
+            "jornada"=> "una jornada",
+            "observacion"=> "una observacion",
+            "plan_nombre"=> "Plan A",
+            "plan_monto"=> "2000",
+            "plan_hora_semanal"=> "10hs",
+            "destintario"=> [
+                "id"=> 2,
+                "legajo"=> "usb123/7",
+                "calificacion"=> 1,
+                "fecha_ingreso"=> "2019-09-13",
+                "origen"=> "un origen fixture",
+                "observacion"=> "1",
+                "deseo_lugar_entrenamiento"=> "1",
+                "deseo_actividad"=> "1",
+                "fecha_presentacion"=> "2010-10-10",
+                "personaid"=> 3,
+                "banco_cbu"=> "1",
+                "banco_nombre"=> "1",
+                "banco_alias"=> "1",
+                "experiencia_laboral"=> 1,
+                "conocimientos_basicos"=> null,
+                "persona"=> [
+                    "id"=> 3,
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "fecha_nacimiento"=> "1980-12-12",
+                    "apodo"=> "rominochi",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=> "algo@correo.com.ar",
+                    "cuil"=> "20367655678",
+                    "estudios"=> [],
+                    "lugar"=> [
+                        "id"=> 3,
+                        "barrio"=> "Castello",
+                        "calle"=> "tres arroyos",
+                        "altura"=> "765",
+                        "piso"=> "",
+                        "depto"=> "",
+                        "escalera"=> "",
+                        "localidadid"=> 1,
+                        "localidad"=> "nombreDeLocalidad"
+                    ]
+                ]
+            ],
+            "oferta"=> [
+                "id"=> 1,
+                "ambiente_trabajoid"=> 1,
+                "nombre_sucursal"=> "Sucursal Nº 1",
+                "puesto"=> "cajera",
+                "area"=> "",
+                "fecha_inicial"=> "2018-09-13 14:34:45",
+                "fecha_final"=> null,
+                "demanda_laboral"=> "falta una cajera",
+                "objetivo"=> "conseguir personal especificamente para la caja",
+                "lugarid"=> 1,
+                "lugar"=> [
+                    "id"=> 1,
+                    "nombre"=> "",
+                    "barrio"=> "Don bosco",
+                    "calle"=> "Mitre",
+                    "altura"=> "327",
+                    "piso"=> "A",
+                    "depto"=> "",
+                    "escalera"=> "",
+                    "localidadid"=> 1,
+                    "latitud"=> "-123123",
+                    "longitud"=> "321123"
+                ]
+            ],
+            "ambiente_trabajo"=> [
+                "nombre"=> "Panaderia San Fernando",
+                "cuit"=> "20123456789",
+                "legajo"=> "asb123/8",
+                "persona"=> [
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "email"=> "algo@correo.com.ar"
+                ]
+            ]            
+        ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+    }
+    
     public function listarAreaEntrenamiento(ApiTester $I)
     {
         $I->wantTo('listar Area de entrenamiento');

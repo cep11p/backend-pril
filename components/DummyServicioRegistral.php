@@ -70,8 +70,7 @@ class DummyServicioRegistral extends Component implements IServicioRegistral
         $modelEncontrado = Help::filter_by_value($data, 'id', $id);        
         
         if($modelEncontrado){
-            $resultado['estado'] = true;
-            $resultado['resultado'] = $modelEncontrado;
+            $resultado = $modelEncontrado[0];
         }
         
         return $resultado;

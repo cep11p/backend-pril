@@ -288,8 +288,8 @@ class PersonaForm extends Model
          
         
         $personaArray = array();
-        if(isset($response['estado']) && $response['estado']==true){
-            $personaArray = $response['resultado'][0];
+        if(isset($response['id'])){
+            $personaArray = $response;
             
             #Sacamos el parametro lugar que para pril es irrelevante
             unset($personaArray['apodo']);

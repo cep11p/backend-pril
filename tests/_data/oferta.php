@@ -7,7 +7,7 @@ return [
         "nombre_sucursal" => 'Sucursal Nº 1',
         "puesto" => "cajera",
         "area" => "",
-        "fecha_inicial" => date("Y-m-d H:i:s"),
+        "fecha_inicial" => '2018-09-13 14:34:45',
         "fecha_final" => "",
         "demanda_laboral" => "falta una cajera",
         "objetivo" => "conseguir personal especificamente para la caja",
