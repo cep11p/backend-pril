@@ -201,6 +201,10 @@ class AmbienteTrabajoCest
             "cuit"=>"20123456789",
             "actividad"=> "Vende facturas, tortas y variedades de panes",
             "tipo_ambiente_trabajoid"=> 1,
+            "telefono1"=>"(2998) 123456789",
+            "telefono2"=>"(2998) 123456789",
+            "telefono3"=>"(2998) 123456789",
+            "fax"=>"(2998) 123456789",
             "lugar"=>[
                 "calle"=>"Mata Negra",
                 "altura"=>"123",
@@ -246,6 +250,11 @@ class AmbienteTrabajoCest
             "cuit"=>"20123456789",
             "actividad"=> "Vende facturas, tortas y variedades de panes",
             "tipo_ambiente_trabajoid"=> 1,
+            "telefono1"=>"(2998) 123456789",
+            "telefono2"=>"(2998) 123456789",
+            "telefono3"=>"(2998) 123456789",
+            "fax"=>"(2998) 123456789"
+            
         ]);
         $I->seeResponseCodeIs(200);
     
