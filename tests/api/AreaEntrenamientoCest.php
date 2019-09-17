@@ -61,23 +61,39 @@ class AreaEntrenamientoCest
         
     }
     
-    public function vistaAreaEntrenamiento(ApiTester $I)
+    public function modificarUnAreaEntrenamiento(ApiTester $I)
     {
-        $I->wantTo('se visualiza un Area de entranamiento');
+        $I->wantTo('Se modifica un Area de entranamiento');
+        $param=[
+            "tarea"=>"una tarea modificada",
+            "planid"=>1,
+            "ofertaid"=>1,
+            "destinatarioid"=>2,
+            "observacion"=>"una observacion modificada",
+            "jornada"=>"una jornada modificada"
+        ];
         
-        $I->sendGET('/api/area-entrenamientos/5');
+        $I->sendPUT('/api/area-entrenamientos/2',$param);
+        
+        $I->seeResponseContainsJson([
+                'message' => 'Se modifica el Area de entrenamiento'
+            ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+        $I->sendGET('/api/area-entrenamientos/2');
         
         $I->seeResponseContainsJson([            
-            "id"=> 5,
-            "tarea"=> "una tarea",
+            "id"=> 2,
+            "tarea"=> "una tarea modificada",
             "planid"=> 1,
             "destinatarioid"=> 2,
-            "fecha_inicial"=> "2018-12-12 03:00:00",
+            "fecha_inicial"=> "2017-10-12 00:00:00",
             "fecha_final"=> null,
             "descripcion_baja"=> null,
             "ofertaid"=> 1,
-            "jornada"=> "una jornada",
-            "observacion"=> "una observacion",
+            "jornada"=> "una jornada modificada",
+            "observacion"=> "una observacion modificada",
             "plan_nombre"=> "Plan A",
             "plan_monto"=> "2000",
             "plan_hora_semanal"=> "10hs",
@@ -85,7 +101,7 @@ class AreaEntrenamientoCest
                 "id"=> 2,
                 "legajo"=> "usb123/7",
                 "calificacion"=> 1,
-                "fecha_ingreso"=> "2019-09-13",
+                "fecha_ingreso"=> "2017-11-12",
                 "origen"=> "un origen fixture",
                 "observacion"=> "1",
                 "deseo_lugar_entrenamiento"=> "1",
@@ -133,7 +149,7 @@ class AreaEntrenamientoCest
                 "nombre_sucursal"=> "Sucursal Nº 1",
                 "puesto"=> "cajera",
                 "area"=> "",
-                "fecha_inicial"=> "2018-09-13 14:34:45",
+                "fecha_inicial"=> "2018-10-13 10:34:45",
                 "fecha_final"=> null,
                 "demanda_laboral"=> "falta una cajera",
                 "objetivo"=> "conseguir personal especificamente para la caja",
@@ -171,14 +187,126 @@ class AreaEntrenamientoCest
         
     }
     
+    public function vistaAreaEntrenamiento(ApiTester $I)
+    {
+        $I->wantTo('se visualiza un Area de entranamiento');
+        
+        $I->sendGET('/api/area-entrenamientos/4');
+        
+        $I->seeResponseContainsJson([            
+            "id"=> 4,
+            "tarea"=> "una tarea fixture",
+            "planid"=> 1,
+            "destinatarioid"=> 4,
+            "fecha_inicial"=> "2017-10-12 00:00:00",
+            "fecha_final"=> null,
+            "descripcion_baja"=> null,
+            "ofertaid"=> 1,
+            "jornada"=> "una jornada",
+            "observacion"=> "una observacion",
+            "plan_nombre"=> "Plan A",
+            "plan_monto"=> "2000",
+            "plan_hora_semanal"=> "10hs",
+            "destintario"=> [
+                "id"=> 4,
+                "legajo"=> "usb123/9",
+                "calificacion"=> 1,
+                "fecha_ingreso"=> "2019-01-12",
+                "origen"=> "un origen fixture",
+                "observacion"=> "1",
+                "deseo_lugar_entrenamiento"=> "1",
+                "deseo_actividad"=> "1",
+                "fecha_presentacion"=> "2010-10-10",
+                "personaid"=> 5,
+                "banco_cbu"=> "1",
+                "banco_nombre"=> "1",
+                "banco_alias"=> "1",
+                "experiencia_laboral"=> 1,
+                "conocimientos_basicos"=> null,
+                "persona"=> [
+                    "id"=> 5,
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "fecha_nacimiento"=> "1980-12-12",
+                    "apodo"=> "rominochi",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "situacion_laboralid"=> 1,
+                    "estado_civilid"=> 1,
+                    "sexoid"=> 2,
+                    "tipo_documentoid"=> 1,
+                    "generoid"=> 1,
+                    "email"=> "algo@correo.com.ar",
+                    "cuil"=> "20367655678",
+                    "estudios"=> [],
+                    "lugar"=> [
+                        "id"=> 5,
+                        "barrio"=> "San roque",
+                        "calle"=> "Italia",
+                        "altura"=> "300",
+                        "piso"=> "",
+                        "depto"=> "",
+                        "escalera"=> "",
+                        "localidadid"=> 1,
+                        "localidad"=> "nombreDeLocalidad"
+                    ]
+                ]
+            ],
+            "oferta"=> [
+                "id"=> 1,
+                "ambiente_trabajoid"=> 1,
+                "nombre_sucursal"=> "Sucursal Nº 1",
+                "puesto"=> "cajera",
+                "area"=> "",
+                "fecha_inicial"=> "2018-10-13 10:34:45",
+                "fecha_final"=> null,
+                "demanda_laboral"=> "falta una cajera",
+                "objetivo"=> "conseguir personal especificamente para la caja",
+                "lugarid"=> 1,
+                "lugar"=> [
+                    "id"=> 1,
+                    "nombre"=> "",
+                    "barrio"=> "Don bosco",
+                    "calle"=> "Mitre",
+                    "altura"=> "327",
+                    "piso"=> "A",
+                    "depto"=> "",
+                    "escalera"=> "",
+                    "localidadid"=> 1,
+                    "latitud"=> "-123123",
+                    "longitud"=> "321123"
+                ]
+            ],
+            "ambiente_trabajo"=> [
+                "nombre"=> "Panaderia San Fernando",
+                "cuit"=> "20123456789",
+                "legajo"=> "asb123/8",
+                "persona"=> [
+                    "nombre"=> "Pilar",
+                    "apellido"=> "Test",
+                    "nro_documento"=> "29890123",
+                    "telefono"=> "2920430690",
+                    "celular"=> "2920412127",
+                    "email"=> "algo@correo.com.ar"
+                ]
+            ]           
+        ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+    }
+    
     public function listarAreaEntrenamiento(ApiTester $I)
     {
         $I->wantTo('listar Area de entrenamiento');
         
+        $I->haveFixtures(["area_entrenamientos" => \app\tests\fixtures\AreaEntrenamientoFixture::className()]);
+        
         $I->sendGET('/api/area-entrenamientos');
         
         $I->seeResponseContainsJson([
-            "total_filtrado"=> 5,
+            "total_filtrado"=> 4,
             "success"=> true,
             "resultado"=> [
                 [
@@ -253,24 +381,6 @@ class AreaEntrenamientoCest
                         "nombre_sucursal"=> "Sucursal Nº 1"
                     ]
                 ],
-                [
-                    "id"=> 5,
-                    "destinatarioid"=> 2,
-                    "ofertaid"=> 1,
-                    "fecha_inicial"=> "2018-12-12 03:00:00",
-                    "fecha_final"=> null,
-                    "tarea"=> "una tarea",
-                    "plan_nombre"=> "Plan A",
-                    "plan_monto"=> "2000",
-                    "plan_hora_semanal"=> "10hs",
-                    "estado"=> "Vigente (estatico)",
-                    "oferta"=> [
-                        "id"=> 1,
-                        "ambiente_trabajoid"=> 1,
-                        "ambiente_trabajo"=> "Panaderia San Fernando",
-                        "nombre_sucursal"=> "Sucursal Nº 1"
-                    ]
-                ]
             ]
         ]);
         
