@@ -283,4 +283,73 @@ class OfertaCest
         $I->seeResponseCodeIs(200);
         
     }
+    
+    public function FiltrarOfertaPorIds(ApiTester $I)
+    {
+        $I->wantTo('Se filtra ofertas por ids');
+        
+        $I->sendGET('/api/ofertas?ids=1,4');
+        
+        $I->seeResponseContainsJson([            
+            "total_filtrado"=> 2,
+            "success"=> true,
+            "resultado"=> [
+                [
+                    "id"=> 1,
+                    "ambiente_trabajoid"=> 1,
+                    "nombre_sucursal"=> "Sucursal 1 - Paderia Mitre Modificado",
+                    "puesto"=> "cajera otro",
+                    "area"=> "nueva area",
+                    "fecha_inicial"=> '2018-10-13 10:34:45',
+                    "fecha_final"=> null,
+                    "demanda_laboral"=> "Falta dividir responsabilidades",
+                    "objetivo"=> "Poder dar una oportunidad de trabajo",
+                    "lugarid"=> 1,
+                    "lugar"=> [
+                        "id"=> 1,
+                        "nombre"=> "",
+                        "barrio"=> "Don bosco",
+                        "calle"=> "Mitre",
+                        "altura"=> "327",
+                        "piso"=> "A",
+                        "depto"=> "",
+                        "escalera"=> "",
+                        "localidadid"=> 1,
+                        "latitud"=> "-123123",
+                        "longitud"=> "321123"
+                    ],
+                    "ambiente_trabajo"=> "Panaderia San Fernando"
+                ],
+                [
+                    "id"=> 4,
+                    "ambiente_trabajoid"=> 2,
+                    "nombre_sucursal"=> "Sucursal Nº 1",
+                    "puesto"=> "Limipieza",
+                    "area"=> "",
+                    "fecha_inicial"=> '2019-09-16 16:03:49',
+                    "fecha_final"=> null,
+                    "demanda_laboral"=> "falta mantenimiento en la sucursal",
+                    "objetivo"=> "conseguir personal especificamente para limpieza",
+                    "lugarid"=> 3,
+                    "lugar"=> [
+                        "id"=> 3,
+                        "nombre"=> "",
+                        "barrio"=> "Don bosco",
+                        "calle"=> "Mitre",
+                        "altura"=> "327",
+                        "piso"=> "2",
+                        "depto"=> "A",
+                        "escalera"=> "",
+                        "localidadid"=> 1,
+                        "latitud"=> "-123123",
+                        "longitud"=> "321123"
+                    ],
+                    "ambiente_trabajo"=> "Panaderia Boomble"
+                ]
+            ]
+        ]);
+        
+        $I->seeResponseCodeIs(200);
+        
+    }
 }
