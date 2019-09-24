@@ -3,13 +3,13 @@ namespace app\modules\api\controllers;
 
 use yii\rest\ActiveController;
 use yii\web\Response;
+use Yii;
 
 /**Models**/
-use app\models\AmbienteTrabajo;
 
 class OficioController extends ActiveController{
     
-    public $modelClass = 'app\models\Oficio';
+    public $modelClass = 'app\models\Accion';
     
     public function behaviors()
     {
@@ -53,56 +53,21 @@ class OficioController extends ActiveController{
     public function actions()
     {
         $actions = parent::actions();
-//        unset($actions['create']);
-        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
+        unset($actions['create']);
+        unset($actions['update']);
+        unset($actions['delete']);
+        unset($actions['view']);
+        unset($actions['index']);
         return $actions;
     
     }
     
-    public function prepareDataProvider() 
+    public function actionIndex() 
     {
-        $searchModel = new \app\models\OficioSearch();
-//        return $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
-        $resultado = $searchModel->busquedadGeneral(\Yii::$app->request->queryParams);
+        $param = Yii::$app->request->queryParams;
         
-        $data = array();
-        if($resultado->getTotalCount()){      
-            $data=$resultado->models;
-        }
-
-        return $data;
+        $resultado = \Yii::$app->registral->buscarOficio($param);
+        
+        return $resultado;
     }   
-    
-    /**
-     * Se crea un Destinatario y se vincula con una Persona()
-     * @return array Un array con datos
-     * @throws \yii\web\HttpException
-     */
-    public function actionCreate()
-    {
-//        $resultado['message']='Se guarda un Oficio';
-//        $param = Yii::$app->request->post();
-//        $transaction = Yii::$app->db->beginTransaction();
-//        try {
-//            
-//            $model = new AmbienteTrabajo();
-//            $model->setAttributes($param);
-//            //Registrar y validar personaid
-//            
-//            
-//            $transaction->commit();
-//            
-//            $resultado['success']=true;
-//            $resultado['data']['id']=$model->personaid;
-//            
-//            return  $resultado;
-//           
-//        }catch (Exception $exc) {
-//            //echo $exc->getTraceAsString();
-//            $transaction->rollBack();
-//            $mensaje =$exc->getMessage();
-//            throw new \yii\web\HttpException(500, $mensaje);
-//        }
-
-    }
 }

@@ -126,15 +126,11 @@ $config = [
                 ],
                 [   
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'api/oficio'
-                ],
-                [   
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => 'api/profesion'
-                ],
-                [   
-                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/nivel-educativo'
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/oficio'
                 ],
             ],
         ],
