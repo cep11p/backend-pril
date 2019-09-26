@@ -477,9 +477,9 @@ class DestinatarioCest
         
     }
     
-     /**
-     * @param ApiTester $I
-     */
+    /**
+    * @param ApiTester $I
+    */
     public function viewDestinatario(ApiTester $I)
     {
         $I->haveFixtures([
@@ -511,6 +511,100 @@ class DestinatarioCest
                     'id' => 2
                 ],
             ]
+        );
+        
+        $I->seeResponseCodeIs(200);    
+        
+    }
+    
+    /**
+    * @param ApiTester $I
+    */
+    public function listaDestinatario(ApiTester $I)
+    {
+        $I->haveFixtures([
+            'destinatarios' => app\tests\fixtures\DestinatarioFixture::className(),
+        ]);
+        $I->wantTo('Se lista destinatarios');
+        
+        $I->sendGET('/api/destinatarios');
+        
+        $I->seeResponseContainsJson(
+                
+            [
+            "total_filtrado"=> 4,
+            "success"=> true,
+            "resultado"=> [
+                [
+                    "id"=> 1,
+                    "legajo"=> "usb123/6",
+                    "calificacion"=> 1,
+                    "fecha_ingreso"=> "2018-09-12",
+                    "origen"=> "un origen fixture",
+                    "observacion"=> "1",
+                    "deseo_lugar_entrenamiento"=> "1",
+                    "deseo_actividad"=> "1",
+                    "fecha_presentacion"=> "2010-10-10",
+                    "personaid"=> 2,
+                    "banco_cbu"=> "1",
+                    "banco_nombre"=> "1",
+                    "banco_alias"=> "1",
+                    "experiencia_laboral"=> 1,
+                    "conocimientos_basicos"=> null
+                ],
+                [
+                    "id"=> 2,
+                    "legajo"=> "usb123/7",
+                    "calificacion"=> 1,
+                    "fecha_ingreso"=> "2017-11-12",
+                    "origen"=> "un origen fixture",
+                    "observacion"=> "1",
+                    "deseo_lugar_entrenamiento"=> "1",
+                    "deseo_actividad"=> "1",
+                    "fecha_presentacion"=> "2010-10-10",
+                    "personaid"=> 3,
+                    "banco_cbu"=> "1",
+                    "banco_nombre"=> "1",
+                    "banco_alias"=> "1",
+                    "experiencia_laboral"=> 1,
+                    "conocimientos_basicos"=> null
+                ],
+                [
+                    "id"=> 3,
+                    "legajo"=> "usb123/8",
+                    "calificacion"=> 1,
+                    "fecha_ingreso"=> "2017-10-12",
+                    "origen"=> "un origen fixture",
+                    "observacion"=> "1",
+                    "deseo_lugar_entrenamiento"=> "1",
+                    "deseo_actividad"=> "1",
+                    "fecha_presentacion"=> "2010-10-10",
+                    "personaid"=> 4,
+                    "banco_cbu"=> "1",
+                    "banco_nombre"=> "1",
+                    "banco_alias"=> "1",
+                    "experiencia_laboral"=> 1,
+                    "conocimientos_basicos"=> null
+                ],
+                [
+                    "id"=> 4,
+                    "legajo"=> "usb123/9",
+                    "calificacion"=> 1,
+                    "fecha_ingreso"=> "2019-01-12",
+                    "origen"=> "un origen fixture",
+                    "observacion"=> "1",
+                    "deseo_lugar_entrenamiento"=> "1",
+                    "deseo_actividad"=> "1",
+                    "fecha_presentacion"=> "2010-10-10",
+                    "personaid"=> 5,
+                    "banco_cbu"=> "1",
+                    "banco_nombre"=> "1",
+                    "banco_alias"=> "1",
+                    "experiencia_laboral"=> 1,
+                    "conocimientos_basicos"=> null
+                ]
+            ]
+        ]
         );
         
         $I->seeResponseCodeIs(200);    

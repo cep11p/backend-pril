@@ -91,7 +91,6 @@ class DestinatarioSearch extends Destinatario
     {
         $personaForm = new PersonaForm();
         $query = Destinatario::find();
-        $listaid = array();
         
         // add conditions that should always apply here
 
