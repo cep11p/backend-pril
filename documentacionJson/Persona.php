@@ -1,7 +1,7 @@
 <?php
 
 /**** obtener lista de Personas ***
-@url ejemplo http://api.pril.local/api/personas?nombre=lorena&nro_documento=36849868
+@url ejemplo http://pril.local/api/personas?nombre=lorena&nro_documento=36849868
 @Method GET
 
 {
@@ -10,7 +10,7 @@
 **/
 
 /**** obtener Persona por nro_documento ***
-@url ejemplo http://api.pril.local/api/personas/buscar-por-documento/29800100
+@url ejemplo http://pril.local/api/personas/buscar-por-documento/29800100
 @Method GET
 {
     "success": true,
