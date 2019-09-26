@@ -476,4 +476,44 @@ class DestinatarioCest
         $I->seeResponseCodeIs(200);        
         
     }
+    
+     /**
+     * @param ApiTester $I
+     */
+    public function viewDestinatario(ApiTester $I)
+    {
+        $I->haveFixtures([
+            'destinatarios' => app\tests\fixtures\DestinatarioFixture::className(),
+        ]);
+        $I->wantTo('Se visualiza un destinatario');
+        
+        $I->sendGET('/api/destinatarios/1');
+        
+        $I->seeResponseContainsJson(
+                
+            [
+                "id"=> 1,
+                "legajo"=> "usb123/6",
+                "calificacion"=> 1,
+                "fecha_ingreso"=> "2018-09-12",
+                "origen"=> "un origen fixture",
+                "observacion"=> "1",
+                "deseo_lugar_entrenamiento"=> "1",
+                "deseo_actividad"=> "1",
+                "fecha_presentacion"=> "2010-10-10",
+                "personaid"=> 2,
+                "banco_cbu"=> "1",
+                "banco_nombre"=> "1",
+                "banco_alias"=> "1",
+                "experiencia_laboral"=> 1,
+                "conocimientos_basicos"=> null,
+                "persona"=> [
+                    'id' => 2
+                ],
+            ]
+        );
+        
+        $I->seeResponseCodeIs(200);    
+        
+    }
 }
