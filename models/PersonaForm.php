@@ -234,6 +234,7 @@ class PersonaForm extends Model
         
         if(isset($response['id'])){
             unset($response['hogar']);
+            $this->id = $response['id'];
         }
         
         return $response;
@@ -332,7 +333,7 @@ class PersonaForm extends Model
      */
     public function existeModificacion($params){
         $existeModificacion = false;
-        foreach ($this->attributes as $key => $value) {
+        foreach ($this->buscarPersonaPorIdEnRegistral($param['id']) as $key => $value) {
             if($params[$key] != $value){
                 $existeModificacion = true;
             }

@@ -176,9 +176,11 @@ class AmbienteTrabajoController extends ActiveController{
                 throw new Exception($msj);
             }
             
-            $lugarForm = new LugarForm();
+            
             $personaForm = new PersonaForm();
+            
             /************ Validamos todos los campos de Lugar (ambiente de trabajo)************/
+            $lugarForm = new LugarForm();
             if(isset($param['lugar'])){
                 $lugarForm->setAttributes($param['lugar']);
             }
@@ -189,28 +191,23 @@ class AmbienteTrabajoController extends ActiveController{
             
             /************ Validamos todos los campos de Representante************/
             if(isset($param['persona']['id'])){
-                $personaForm->buscarPersonaPorIdEnRegistral($param['persona']['id']);
+                $personaEncontrada = $personaForm->buscarPersonaPorIdEnRegistral($param['persona']['id']);
                 
                 #nos aseguramos que persona exista
-                if(!isset($personaForm->id)){
+                if(!isset($personaEncontrada['id'])){
                     $msj = 'La persona con el id '.$param['persona']['id'] .' no existe!';
                     throw new Exception($msj);
                 }
+                
                 #evitamos que se modifique la persona
                 if($personaForm->existeModificacion($param['persona'])){
                     $msj = 'No se permite modificar la persona';
                     throw new Exception($msj);
                 }
             #asignamos una persona totalmente nueva    
-            }else if(isset($param['persona'])){
-                $personaForm->setAttributes($param['persona']);
+            }else if(isset($param['persona'])){                
+                $personaForm->setAttributesAndSave($param['persona']);
             }
-            
-            
-            if(!$personaForm->save()){
-                $arrayErrors = ArrayHelper::merge($arrayErrors, array('persona' => $personaForm->getErrors()));
-            }            
-            
             
             /************ Validamos todos los campos de AmbienteTrabajo************/
             $model->setAttributes($param);
@@ -273,7 +270,7 @@ class AmbienteTrabajoController extends ActiveController{
             }
             
             #vinculamos la persona (representante del ambiente de trabajo)
-            if(count($persona)<1){
+            if(count($persona)<1 && isset($model->personaid)){
                 throw new \yii\web\HttpException(404, "No se encuentra la persona {$resultado['personaid']}, que es el representante del ambiente de trabajo!!");
             }
             

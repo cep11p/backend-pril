@@ -48,7 +48,12 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
     public function getPersona(){
         $resultado = null;
         $model = new PersonaForm();
-        $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+        if(isset($this->personaid)){
+            $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+        }else{
+            $resultado = [];
+        }
+        
 
         if($arrayPersona){
             $resultado = $arrayPersona;

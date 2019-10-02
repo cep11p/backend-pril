@@ -37,7 +37,7 @@ class ServicioLugar extends Component implements IServicioLugar
 //                'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.lugar.local/api/localidad?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://lugar/api/localidad?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -64,15 +64,16 @@ class ServicioLugar extends Component implements IServicioLugar
                 'Content-Type'=>'application/json'
            ];          
             
-            
-            $response = $client->request('POST', 'http://api.lugar.local/api/lugars', ['json' => $data,'headers' => $headers]);
+            $response = $client->request('POST', 'http://lugar/api/lugars', ['json' => $data,'headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
+            
             return $respuesta['data']['id'];
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
                 \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
-                return false;
+                return $resultado;
         } catch (Exception $e) {
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
                 \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
@@ -93,7 +94,7 @@ class ServicioLugar extends Component implements IServicioLugar
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.lugar.local/api/lugar?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://lugar/api/lugar?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -126,7 +127,7 @@ class ServicioLugar extends Component implements IServicioLugar
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.lugar.local/api/lugar/buscar-identico?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://lugar/api/lugar/buscar-identico?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -154,7 +155,7 @@ class ServicioLugar extends Component implements IServicioLugar
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.lugar.local/api/localidad?'.$criterio, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://lugar/api/localidad?'.$criterio, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
@@ -182,7 +183,7 @@ class ServicioLugar extends Component implements IServicioLugar
                 'Content-Type'=>'application/json'
             ];          
             
-            $response = $client->request('GET', 'http://api.lugar.local/api/lugar?id='.$id, ['headers' => $headers]);
+            $response = $client->request('GET', 'http://lugar/api/lugar?id='.$id, ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             \Yii::info($respuesta);
             
