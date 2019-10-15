@@ -57,6 +57,7 @@ class PersonaController extends ActiveController{
         unset($actions['create']);
         unset($actions['index']);
         unset($actions['update']);
+        unset($actions['view']);
         return $actions;
     
     }
