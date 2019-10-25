@@ -53,7 +53,7 @@ abstract class AmbienteTrabajo extends \yii\db\ActiveRecord
             [['observacion', 'actividad'], 'string'],
             [['nombre'], 'string', 'max' => 200],
             [['legajo', 'cuit'], 'string', 'max' => 45],
-            [['telefono1', 'telefono2', 'telefono3', 'fax'], 'string', 'max' => 20],
+            [['telefono1', 'telefono2', 'telefono3', 'fax'], 'string', 'max' => 25],
             [['email'], 'string', 'max' => 50],
             [['legajo'], 'unique'],
             [['tipo_ambiente_trabajoid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\TipoAmbienteTrabajo::className(), 'targetAttribute' => ['tipo_ambiente_trabajoid' => 'id']]
