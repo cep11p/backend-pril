@@ -68,7 +68,11 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
     
     public function fields()
     {        
-        $resultado = ArrayHelper::merge(parent::fields(), []);
+        $resultado = ArrayHelper::merge(parent::fields(), [
+            'tipo_ambiente_trabajo'=> function($model){
+                return $model->tipoAmbienteTrabajo->nombre;
+            }
+        ]);
         
         return $resultado;
     
