@@ -19,6 +19,7 @@ use Yii;
  * @property string $demanda_laboral
  * @property string $objetivo
  * @property integer $lugarid
+ * @property string $telefono
  *
  * @property \app\models\AreaEntrenamiento[] $areaEntrenamientos
  * @property \app\models\AmbienteTrabajo $ambienteTrabajo
@@ -49,6 +50,7 @@ abstract class Oferta extends \yii\db\ActiveRecord
             [['demanda_laboral', 'objetivo'], 'string'],
             [['nombre_sucursal'], 'string', 'max' => 200],
             [['puesto', 'area'], 'string', 'max' => 300],
+            [['telefono'], 'string', 'max' => 50],
             [['ambiente_trabajoid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\AmbienteTrabajo::className(), 'targetAttribute' => ['ambiente_trabajoid' => 'id']]
         ];
     }
@@ -69,6 +71,7 @@ abstract class Oferta extends \yii\db\ActiveRecord
             'demanda_laboral' => 'Demanda Laboral',
             'objetivo' => 'Objetivo',
             'lugarid' => 'Lugarid',
+            'telefono' => 'Telefono',
         ];
     }
 
