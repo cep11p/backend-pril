@@ -11,6 +11,9 @@ use yii\helpers\ArrayHelper;
  */
 class Oferta extends BaseOferta
 {
+    const ESTADO_VACANTE = 'vacante';
+    const ESTADO_VIGENTE = 'vigente';
+    const ESTADO_FINALIZADA = 'finalizada';
 
     public function behaviors()
     {
@@ -42,6 +45,35 @@ class Oferta extends BaseOferta
         
     }
     
+    /**
+     * Devolvemos el area de entrenamiento donde se encuentra la oferta
+     * @return object AreaEntrenamiento
+     */
+    public function getAreaEntrenamiento()
+    {
+        return $this->hasOne(\app\models\AreaEntrenamiento::className(), ['ofertaid' => 'id']);
+    }
+    
+    /**
+     * Realizamos un metodo para obtener el estado logico de oferta
+     * @return string
+     */
+    public function getEstado() {
+        $estado = '';
+        
+        if($this->areaEntrenamiento->id == null){
+            $estado = Oferta::ESTADO_VACANTE;
+        }
+        if(($this->areaEntrenamiento->fecha_final==null || $this->areaEntrenamiento->fecha_final > date('Y-m-d')) && $this->areaEntrenamiento->id != null){
+            $estado = Oferta::ESTADO_VIGENTE;
+        }
+        if(($this->areaEntrenamiento->fecha_final != null && $this->areaEntrenamiento->fecha_final < date('Y-m-d')) && $this->areaEntrenamiento->id != null){
+            $estado = Oferta::ESTADO_FINALIZADA;
+        }
+
+        return $estado;        
+    }
+    
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
@@ -50,6 +82,9 @@ class Oferta extends BaseOferta
             },
             'ambiente_trabajo'=> function($model){
                 return $model->ambienteTrabajo->nombre;
+            },
+            'estado'=> function($model){
+                return $model->estado;
             }
         ]);
         
