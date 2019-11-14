@@ -27,11 +27,18 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
         return ArrayHelper::merge(
             parent::rules(),
             [
-                # custom validation rules
+                ['destinatarioid', 'validarDestinatario'],
             ]
         );
     }
     
+    public function validarDestinatario() {
+        if($this->destinatario->personaid == $this->oferta->ambienteTrabajo->personaid ){
+            $this->addError('destintarioid', 'El destinatario no puede ser la misma persona que representa al ambiente de trabjo.');
+        }
+    }
+
+
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
