@@ -145,7 +145,7 @@ class OfertaCest
         $I->sendGET('/api/ofertas');
         
         $I->seeResponseContainsJson([            
-            "total_filtrado"=> 5,
+            "total_filtrado"=> 6,
             "success"=> true,
             "resultado"=> [
                 [
@@ -154,11 +154,12 @@ class OfertaCest
                     "nombre_sucursal"=> "Sucursal 1 - Paderia Mitre Modificado",
                     "puesto"=> "cajera otro",
                     "area"=> "nueva area",
-                    "fecha_inicial"=> '2018-10-13 10:34:45',
+                    "fecha_inicial"=> "2018-10-13 10:34:45",
                     "fecha_final"=> null,
                     "demanda_laboral"=> "Falta dividir responsabilidades",
                     "objetivo"=> "Poder dar una oportunidad de trabajo",
                     "lugarid"=> 1,
+                    "telefono"=> "",
                     "lugar"=> [
                         "id"=> 1,
                         "nombre"=> "",
@@ -172,7 +173,8 @@ class OfertaCest
                         "latitud"=> "-123123",
                         "longitud"=> "321123"
                     ],
-                    "ambiente_trabajo"=> "Panaderia San Fernando"
+                    "ambiente_trabajo"=> "Panaderia San Fernando",
+                    "estado"=> "vigente"
                 ],
                 [
                     "id"=> 2,
@@ -180,11 +182,12 @@ class OfertaCest
                     "nombre_sucursal"=> "Sucursal Nº 2",
                     "puesto"=> "cajera",
                     "area"=> "",
-                    "fecha_inicial"=> '2018-09-10 17:34:45',
+                    "fecha_inicial"=> "2018-09-10 17:34:45",
                     "fecha_final"=> null,
                     "demanda_laboral"=> "falta una cajera",
                     "objetivo"=> "conseguir personal especificamente para la caja",
                     "lugarid"=> 2,
+                    "telefono"=> "",
                     "lugar"=> [
                         "id"=> 2,
                         "nombre"=> "",
@@ -198,7 +201,8 @@ class OfertaCest
                         "latitud"=> "-123321",
                         "longitud"=> "321321"
                     ],
-                    "ambiente_trabajo"=> "Panaderia San Fernando"
+                    "ambiente_trabajo"=> "Panaderia San Fernando",
+                    "estado"=> "vigente"
                 ],
                 [
                     "id"=> 3,
@@ -206,11 +210,12 @@ class OfertaCest
                     "nombre_sucursal"=> "Sucursal Nº 2",
                     "puesto"=> "Limipieza",
                     "area"=> "",
-                    "fecha_inicial"=> '2018-09-13 09:34:45',
+                    "fecha_inicial"=> "2018-09-13 09:34:45",
                     "fecha_final"=> null,
                     "demanda_laboral"=> "falta mantenimiento en la sucursal",
                     "objetivo"=> "conseguir personal especificamente para limpieza",
                     "lugarid"=> 2,
+                    "telefono"=> "",
                     "lugar"=> [
                         "id"=> 2,
                         "nombre"=> "",
@@ -224,7 +229,8 @@ class OfertaCest
                         "latitud"=> "-123321",
                         "longitud"=> "321321"
                     ],
-                    "ambiente_trabajo"=> "Panaderia San Fernando"
+                    "ambiente_trabajo"=> "Panaderia San Fernando",
+                    "estado"=> "vigente"
                 ],
                 [
                     "id"=> 4,
@@ -232,11 +238,12 @@ class OfertaCest
                     "nombre_sucursal"=> "Sucursal Nº 1",
                     "puesto"=> "Limipieza",
                     "area"=> "",
-                    "fecha_inicial"=> '2019-09-16 16:03:49',
+                    "fecha_inicial"=> "2019-09-16 16:03:49",
                     "fecha_final"=> null,
                     "demanda_laboral"=> "falta mantenimiento en la sucursal",
                     "objetivo"=> "conseguir personal especificamente para limpieza",
                     "lugarid"=> 3,
+                    "telefono"=> "",
                     "lugar"=> [
                         "id"=> 3,
                         "nombre"=> "",
@@ -250,10 +257,39 @@ class OfertaCest
                         "latitud"=> "-123123",
                         "longitud"=> "321123"
                     ],
-                    "ambiente_trabajo"=> "Panaderia Boomble"
+                    "ambiente_trabajo"=> "Panaderia Boomble",
+                    "estado"=> "vigente"
                 ],
                 [
                     "id"=> 5,
+                    "ambiente_trabajoid"=> 2,
+                    "nombre_sucursal"=> "Sucursal Nº 1",
+                    "puesto"=> "Limipieza",
+                    "area"=> "",
+                    "fecha_inicial"=> "2019-11-15 16:25:45",
+                    "fecha_final"=> null,
+                    "demanda_laboral"=> "falta mantenimiento en la sucursal",
+                    "objetivo"=> "conseguir personal especificamente para limpieza",
+                    "lugarid"=> 3,
+                    "telefono"=> "",
+                    "lugar"=> [
+                        "id"=> 3,
+                        "nombre"=> "",
+                        "barrio"=> "Don bosco",
+                        "calle"=> "Mitre",
+                        "altura"=> "327",
+                        "piso"=> "2",
+                        "depto"=> "A",
+                        "escalera"=> "",
+                        "localidadid"=> 1,
+                        "latitud"=> "-123123",
+                        "longitud"=> "321123"
+                    ],
+                    "ambiente_trabajo"=> "Panaderia Boomble",
+                    "estado"=> "vacante"
+                ],
+                [
+                    "id"=> 6,
                     "ambiente_trabajoid"=> 1,
                     "nombre_sucursal"=> "Sucursal 1 - Paderia Mitre Modificado",
                     "puesto"=> "cajera otro",
@@ -262,6 +298,7 @@ class OfertaCest
                     "demanda_laboral"=> "Falta dividir responsabilidades",
                     "objetivo"=> "Poder dar una oportunidad de trabajo",
                     "lugarid"=> 1,
+                    "telefono"=> "",
                     "lugar"=> [
                         "id"=> 1,
                         "nombre"=> "",
@@ -275,7 +312,8 @@ class OfertaCest
                         "latitud"=> "-123123",
                         "longitud"=> "321123"
                     ],
-                    "ambiente_trabajo"=> "Panaderia San Fernando"
+                    "ambiente_trabajo"=> "Panaderia San Fernando",
+                    "estado"=> "vacante"
                 ]
             ]
         ]);

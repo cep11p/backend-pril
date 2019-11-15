@@ -40,11 +40,11 @@ class AreaEntrenamientoCest
     
     public function agregarUnAreaEntrenamiento(ApiTester $I)
     {
-        $I->wantTo('Agregar Un Area de entranamiento con los campos vacios');
+        $I->wantTo('Agregar Un Area de entranamiento');
         $param=[
             "tarea"=>"una tarea",
             "planid"=>1,
-            "ofertaid"=>1,
+            "ofertaid"=>5,
             "destinatarioid"=>2,
             "fecha_inicial"=>"2018-12-12",
             "observacion"=>"una observacion",
@@ -67,7 +67,7 @@ class AreaEntrenamientoCest
         $param=[
             "tarea"=>"una tarea modificada",
             "planid"=>1,
-            "ofertaid"=>1,
+            "ofertaid"=>3,
             "destinatarioid"=>2,
             "observacion"=>"una observacion modificada",
             "jornada"=>"una jornada modificada"
@@ -91,7 +91,7 @@ class AreaEntrenamientoCest
             "fecha_inicial"=> "2017-10-12 00:00:00",
             "fecha_final"=> null,
             "descripcion_baja"=> null,
-            "ofertaid"=> 1,
+            "ofertaid"=> 3,
             "jornada"=> "una jornada modificada",
             "observacion"=> "una observacion modificada",
             "plan_nombre"=> "Plan A",
@@ -144,29 +144,31 @@ class AreaEntrenamientoCest
                 ]
             ],
             "oferta"=> [
-                "id"=> 1,
+                "id"=> 3,
                 "ambiente_trabajoid"=> 1,
-                "nombre_sucursal"=> "Sucursal Nº 1",
-                "puesto"=> "cajera",
+                'nombre_sucursal' => 'Sucursal Nº 2',
+                'puesto' => 'Limipieza',
                 "area"=> "",
-                "fecha_inicial"=> "2018-10-13 10:34:45",
+                'fecha_inicial' => '2018-09-13 09:34:45',
                 "fecha_final"=> null,
-                "demanda_laboral"=> "falta una cajera",
-                "objetivo"=> "conseguir personal especificamente para la caja",
-                "lugarid"=> 1,
+                'demanda_laboral' => 'falta mantenimiento en la sucursal',
+                'objetivo' => 'conseguir personal especificamente para limpieza',
+                "lugarid"=> 2,
                 "lugar"=> [
-                    "id"=> 1,
+                    "id"=> 2,
                     "nombre"=> "",
-                    "barrio"=> "Don bosco",
-                    "calle"=> "Mitre",
-                    "altura"=> "327",
-                    "piso"=> "A",
+                    'barrio' => 'Ina Lauquen',
+                    'calle' => 'Saavedra',
+                    'altura' => '321',
+                    'piso' => '',
                     "depto"=> "",
                     "escalera"=> "",
                     "localidadid"=> 1,
-                    "latitud"=> "-123123",
-                    "longitud"=> "321123"
-                ]
+                    'latitud' => '-123321',
+                    'longitud' => '321321',
+                ],
+                    'telefono' => '',
+                    'estado' => 'vigente'
             ],
             "ambiente_trabajo"=> [
                 "nombre"=> "Panaderia San Fernando",
