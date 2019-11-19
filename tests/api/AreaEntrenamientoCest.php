@@ -38,6 +38,7 @@ class AreaEntrenamientoCest
         
     }
     
+        
     public function agregarUnAreaEntrenamiento(ApiTester $I)
     {
         $I->wantTo('Agregar Un Area de entranamiento');
@@ -58,6 +59,56 @@ class AreaEntrenamientoCest
             ]);
         
         $I->seeResponseCodeIs(200);
+        
+    }
+    
+    public function agregarUnAreaEntrenamientoConOfertaEnUso(ApiTester $I)
+    {
+        $I->wantTo('Agregar Un Area de entranamiento con oferta en uso');
+        $param=[
+            "tarea"=>"una tarea",
+            "planid"=>1,
+            "ofertaid"=>4,
+            "destinatarioid"=>2,
+            "fecha_inicial"=>"2018-12-12",
+            "observacion"=>"una observacion",
+            "jornada"=>"una jornada"
+        ];
+        
+        $I->sendPOST('/api/area-entrenamientos', $param);
+        
+        $I->seeResponseContainsJson([
+                'message' => '{"ofertaid":["Ofertaid \"4\" ya ha sido utilizado."]}'
+            ]);
+        
+        $I->seeResponseCodeIs(500);
+        
+    }
+    
+    public function agregarUnAreaEntrenamientoConDestinatarioEnAreaVigente(ApiTester $I)
+    {
+        $I->haveFixtures([
+            'area_entrenamiento'=> \app\tests\fixtures\AreaEntrenamientoFixture::className(),
+        ]);   
+        
+        $I->wantTo('Agregar Un Area de entranamiento con destinatario en area vigente');
+        $param=[
+            "tarea"=>"una tarea",
+            "planid"=>1,
+            "ofertaid"=>5,
+            "destinatarioid"=>4,
+            "fecha_inicial"=>"2018-12-12",
+            "observacion"=>"una observacion",
+            "jornada"=>"una jornada"
+        ];
+        
+        $I->sendPOST('/api/area-entrenamientos', $param);
+        
+        $I->seeResponseContainsJson([
+                'message' => '{"destinatarioid":["El destinatario se encuentra en una area de entrenamiento todav\u00eda vigente."]}'
+            ]);
+        
+        $I->seeResponseCodeIs(500);
         
     }
     
@@ -200,8 +251,8 @@ class AreaEntrenamientoCest
             "tarea"=> "una tarea fixture",
             "planid"=> 1,
             "destinatarioid"=> 4,
-            "fecha_inicial"=> "2017-10-12 00:00:00",
-            "fecha_final"=> null,
+            'fecha_inicial' => '2017-10-13 00:00:00',
+            'fecha_final' => '2019-11-19 00:00:00',
             "descripcion_baja"=> null,
             "ofertaid"=> 1,
             "jornada"=> "una jornada",
@@ -261,8 +312,8 @@ class AreaEntrenamientoCest
                 "nombre_sucursal"=> "Sucursal Nº 1",
                 "puesto"=> "cajera",
                 "area"=> "",
-                "fecha_inicial"=> "2018-10-13 10:34:45",
-                "fecha_final"=> null,
+                'fecha_inicial' => '2018-10-13 10:34:45',
+                'fecha_final' => null,
                 "demanda_laboral"=> "falta una cajera",
                 "objetivo"=> "conseguir personal especificamente para la caja",
                 "lugarid"=> 1,
@@ -369,8 +420,8 @@ class AreaEntrenamientoCest
                     "id"=> 4,
                     "destinatarioid"=> 4,
                     "ofertaid"=> 1,
-                    "fecha_inicial"=> "2017-10-12 00:00:00",
-                    "fecha_final"=> null,
+                    "fecha_inicial"=> "2017-10-13 00:00:00",
+                    'fecha_final' => '2019-11-19 00:00:00',
                     "tarea"=> "una tarea fixture",
                     "plan_nombre"=> "Plan A",
                     "plan_monto"=> "2000",

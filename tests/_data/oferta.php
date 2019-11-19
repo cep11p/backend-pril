@@ -49,6 +49,17 @@ return [
         "objetivo" => "conseguir personal especificamente para limpieza",
         "lugarid" => 3,
     ],
+    "oferta5" => [
+        "ambiente_trabajoid" => 2,
+        "nombre_sucursal" => 'Sucursal Nº 1',
+        "puesto" => "Limipieza",
+        "area" => "",
+        "fecha_inicial" => '2019-11-15 16:25:45',
+        "fecha_final" => "",
+        "demanda_laboral" => "falta mantenimiento en la sucursal",
+        "objetivo" => "conseguir personal especificamente para limpieza",
+        "lugarid" => 3,
+    ],
     
     
 ];

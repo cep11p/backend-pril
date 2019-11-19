@@ -6,7 +6,7 @@ return [
 	"planid"=>1,
 	"ofertaid"=>4,
 	"destinatarioid"=>1,
-	"fecha_inicial"=>"2018-12-12",
+	"fecha_inicial"=>"2018-12-12",	
 	"observacion"=>"una observacion",
 	"jornada"=>"una jornada"
     ],
@@ -33,7 +33,8 @@ return [
 	"planid"=>1,
 	"ofertaid"=>1,
 	"destinatarioid"=>4,
-	"fecha_inicial"=>"2017-10-12",
+	"fecha_inicial"=>"2017-10-13",
+        "fecha_final"=>date('Y-m-d'),
 	"observacion"=>"una observacion",
 	"jornada"=>"una jornada"
     ]       
