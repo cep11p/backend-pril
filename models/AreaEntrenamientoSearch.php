@@ -154,7 +154,7 @@ public function rules()
             $area_entrenamiento['plan_nombre'] = $area['plan_nombre'];
             $area_entrenamiento['plan_monto'] = $area['plan_monto'];
             $area_entrenamiento['plan_hora_semanal'] = $area['plan_hora_semanal'];
-            $area_entrenamiento['estado'] = "Vigente (estatico)";
+            $area_entrenamiento['estado'] = $area['estado'];
             $coleccion_area_entrenamiento[] = $area_entrenamiento;
         }
         

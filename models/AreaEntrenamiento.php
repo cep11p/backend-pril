@@ -46,7 +46,22 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
         }
     }
 
+    /**
+     * Realizamos un metodo para obtener el estado logico de area de entrenamiento
+     * @return string
+     */
+    public function getEstado() {
+        $estado = '';
+        if($this->fecha_final==null || $this->fecha_final > date('Y-m-d')){
+            $estado = Oferta::ESTADO_VIGENTE;
+        }
+        if($this->fecha_final != null && $this->fecha_final < date('Y-m-d')){
+            $estado = Oferta::ESTADO_FINALIZADA;
+        }
 
+        return $estado;        
+    }
+    
     public function fields()
     {        
         $resultado = ArrayHelper::merge(parent::fields(), [
@@ -59,6 +74,9 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
             'plan_hora_semanal'=> function($model){
                 return $model->plan->hora_semanal;
             },
+            'estado'=> function($model){
+                return $model->estado;
+            }
         ]);
         
         return $resultado;
