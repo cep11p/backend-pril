@@ -7,6 +7,7 @@ return [
 	"ofertaid"=>4,
 	"destinatarioid"=>1,
 	"fecha_inicial"=>"2018-12-12",	
+	"fecha_final"=>"2019-06-12",	
 	"observacion"=>"una observacion",
 	"jornada"=>"una jornada"
     ],
@@ -37,5 +38,5 @@ return [
         "fecha_final"=>date('Y-m-d'),
 	"observacion"=>"una observacion",
 	"jornada"=>"una jornada"
-    ]       
+    ],     
 ];

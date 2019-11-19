@@ -367,12 +367,12 @@ class AreaEntrenamientoCest
                     "destinatarioid"=> 1,
                     "ofertaid"=> 4,
                     "fecha_inicial"=> "2018-12-12 00:00:00",
-                    "fecha_final"=> null,
+                    'fecha_final' => '2019-06-12 00:00:00',
                     "tarea"=> "una tarea fixture",
                     "plan_nombre"=> "Plan A",
                     "plan_monto"=> "2000",
                     "plan_hora_semanal"=> "10hs",
-                    "estado"=> "Vigente (estatico)",
+                    "estado"=> "finalizada",
                     "oferta"=> [
                         "id"=> 4,
                         "ambiente_trabajoid"=> 2,
@@ -390,7 +390,7 @@ class AreaEntrenamientoCest
                     "plan_nombre"=> "Plan A",
                     "plan_monto"=> "2000",
                     "plan_hora_semanal"=> "10hs",
-                    "estado"=> "Vigente (estatico)",
+                    "estado"=> "vigente",
                     "oferta"=> [
                         "id"=> 3,
                         "ambiente_trabajoid"=> 1,
@@ -408,7 +408,7 @@ class AreaEntrenamientoCest
                     "plan_nombre"=> "Plan A",
                     "plan_monto"=> "2000",
                     "plan_hora_semanal"=> "10hs",
-                    "estado"=> "Vigente (estatico)",
+                    "estado"=> "vigente",
                     "oferta"=> [
                         "id"=> 2,
                         "ambiente_trabajoid"=> 1,
@@ -426,7 +426,7 @@ class AreaEntrenamientoCest
                     "plan_nombre"=> "Plan A",
                     "plan_monto"=> "2000",
                     "plan_hora_semanal"=> "10hs",
-                    "estado"=> "Vigente (estatico)",
+                    "estado"=> "vigente",
                     "oferta"=> [
                         "id"=> 1,
                         "ambiente_trabajoid"=> 1,
