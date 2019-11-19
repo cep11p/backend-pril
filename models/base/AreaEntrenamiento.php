@@ -50,6 +50,7 @@ abstract class AreaEntrenamiento extends \yii\db\ActiveRecord
             [['fecha_inicial', 'fecha_final'], 'safe'],
             [['descripcion_baja', 'jornada', 'observacion'], 'string'],
             [['tarea'], 'string', 'max' => 45],
+            [['ofertaid'], 'unique'],
             [['destinatarioid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Destinatario::className(), 'targetAttribute' => ['destinatarioid' => 'id']],
             [['ofertaid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Oferta::className(), 'targetAttribute' => ['ofertaid' => 'id']],
             [['planid'], 'exist', 'skipOnError' => true, 'targetClass' => \app\models\Plan::className(), 'targetAttribute' => ['planid' => 'id']]
