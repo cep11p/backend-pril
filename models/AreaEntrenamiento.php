@@ -36,6 +36,14 @@ class AreaEntrenamiento extends BaseAreaEntrenamiento
         if($this->destinatario->personaid == $this->oferta->ambienteTrabajo->personaid ){
             $this->addError('destintarioid', 'El destinatario no puede ser la misma persona que representa al ambiente de trabjo.');
         }
+        
+        $coleccion_area_entrenamiento = $this->destinatario->areaEntrenamientos;
+        foreach ($coleccion_area_entrenamiento as $area) {
+            if($area->fecha_final > date('Y-m-d')){
+                $this->addError('destinatarioid','El destinatario se encuentra en una area de entrenamiento todavía vigente.');
+                break;
+            }            
+        }
     }
 
 
