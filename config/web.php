@@ -136,6 +136,10 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/profesion'
                 ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/tipo-ambiente-trabajo'
+                ],
             ],
         ],
         
