@@ -113,6 +113,7 @@ class OfertaSearch extends Oferta
                 ->andFilterWhere(['like', 'objetivo', $this->objetivo]);
         }
         
+        $coleccion_oferta = array();
         foreach ($dataProvider->getModels() as $value) {
             if(!$params['estado']){
                 $coleccion_oferta[] = $value->toArray();
