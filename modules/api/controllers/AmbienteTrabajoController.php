@@ -9,6 +9,7 @@ use Yii;
 use app\models\AmbienteTrabajo;
 use app\models\LugarForm;
 use app\models\PersonaForm;
+use app\models\RepresentanteForm;
 use \yii\helpers\ArrayHelper;
 use yii\base\Exception;
 
@@ -93,7 +94,7 @@ class AmbienteTrabajoController extends ActiveController{
             
             $model = new AmbienteTrabajo();
             $lugarForm = new LugarForm();
-            $personaForm = new PersonaForm();
+            $personaForm = new RepresentanteForm();
             
             /************ Validamos todos los campos de Lugar************/
             if(isset($param['lugar'])){
@@ -262,7 +263,7 @@ class AmbienteTrabajoController extends ActiveController{
         if($model){
             $resultado = $model->toArray();
             $lugar = $model->getLugar();
-            $persona = $model->getPersona();
+            $persona = $model->getRepresentante();
             
             #vinculamos el lugar del ambiente de trabajo
             if(count($lugar)<1){

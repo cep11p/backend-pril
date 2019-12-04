@@ -45,11 +45,11 @@ class AmbienteTrabajo extends BaseAmbienteTrabajo
     }
     
     /** para obtener este dato se requiere hacer una interoperabilidad con el sistema Registral**/
-    public function getPersona(){
+    public function getRepresentante(){
         $resultado = null;
-        $model = new PersonaForm();
+        $model = new RepresentanteForm();
         if(isset($this->personaid)){
-            $arrayPersona = $model->obtenerPersonaConLugarYEstudios($this->personaid);
+            $arrayPersona = $model->obtenerRepresentante($this->personaid);
         }else{
             $resultado = [];
         }
