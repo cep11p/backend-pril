@@ -105,6 +105,7 @@ $config = [
                     'controller' => 'api/persona', 
                     'extraPatterns' => [
                         'GET buscar-por-documento/{nro_documento}' => 'buscar-por-documento',
+                        'OPTIONS buscar-por-documento/{nro_documento}' => 'buscar-por-documento',
                     ],                      
                     'tokens' => [ '{id}' => '<id:\\w+>', '{nro_documento}'=>'<nro_documento:\\w+>' ],
                 ],

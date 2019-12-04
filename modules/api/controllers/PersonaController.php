@@ -86,7 +86,7 @@ class PersonaController extends ActiveController{
     }
     
     /**
-     * Se busca una persona por numero documento
+     * Se busca una persona por numero documento, y se devuelve una sola persona
      * @param type $nro_documento
      * @Method GET
      * @url ejemplo http://api.pril.local/api/personas/buscar-por-documento/29800100
@@ -97,13 +97,11 @@ class PersonaController extends ActiveController{
         $resultado['estado']=false;   
         $resultado = \Yii::$app->registral->buscarPersonaPorNroDocumento($nro_documento);
         
-        if($resultado['estado']!=true){
-            $data['success']=false;            
-            $data['resultado']=[];
-            $data['message']="No se encontró ninguna persona!";   
-        }else{
-            $data['success']=true;
-            $data['resultado']=$resultado['resultado'];
+//        print_r($resultado);die();
+        
+        $data = array();
+        if(count($resultado)>0){
+            $data = $resultado;
         }
         
         return $data;
