@@ -120,20 +120,23 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
         
         /************** SE OBTIENE COLECCION de Personas(representante del A.T) **********************/
         if(isset($params['global_param']) && !empty($params['global_param'])){
-            $persona_params["global_param"] = $params['global_param'];
+            $global_params = $params['global_param'];
         }
         
         
         $coleccion_persona = array();
         $lista_personaid = array();
-        if (isset($persona_params)) {
+        if (isset($global_params)) {
             
-            $coleccion_persona = $personaForm->buscarPersonaEnRegistral($persona_params);
+            //Se busca en registral
+            $coleccion_persona = $personaForm->buscarPersonaEnRegistral(['global_param'=>$global_params]);
             $lista_personaid = $this->obtenerListaIds($coleccion_persona);
-
             if (count($lista_personaid) < 1) {
                 $query->where('0=1');
             }
+            
+            //buscamos en nombre de ambiente trabajo
+            $query->andFilterWhere(['like', 'nombre', $global_params]);
         }
         
         
@@ -145,16 +148,10 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
             'tipo_ambiente_trabajoid' => $this->tipo_ambiente_trabajoid,
             'lugarid' => $this->lugarid,
         ]);
-
-        $query->andFilterWhere(['like', 'nombre', $this->nombre])
-            ->andFilterWhere(['like', 'legajo', $this->legajo])
-            ->andFilterWhere(['like', 'observacion', $this->observacion])
-            ->andFilterWhere(['like', 'cuit', $this->cuit])
-            ->andFilterWhere(['like', 'actividad', $this->actividad]);
         
         #filtramos por ids de personas
         if(count($lista_personaid)>0){
-            $query->andWhere(array('in', 'personaid', $lista_personaid));
+            $query->orWhere(array('in', 'personaid', $lista_personaid));
         }
         
         #filtramos por ids de lugar
