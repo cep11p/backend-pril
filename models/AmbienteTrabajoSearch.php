@@ -77,12 +77,12 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
         $query = AmbienteTrabajo::find();
         $lugarForm = new LugarForm();
         $personaForm = new PersonaForm();
-        
+        $pagesize = (!isset($params['pagesize']) || !is_numeric($params['pagesize']) || $params['pagesize']==0)?20:intval($params['pagesize']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => $pagesize,
                 'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
             ],
         ]);
@@ -185,6 +185,9 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
             $coleccion_ambiente_trabajo = $this->vincularLugar($coleccion_ambiente_trabajo, $coleccion_lugar);
         } 
         
+        $paginas = ceil($dataProvider->totalCount/$pagesize);           
+        $data['pagesize']=$pagesize;            
+        $data['pages']=$paginas; 
         $data['total_filtrado']=$dataProvider->totalCount;
         $data['success']=(count($coleccion_ambiente_trabajo)>0)?true:false;
         $data['resultado']=$coleccion_ambiente_trabajo;

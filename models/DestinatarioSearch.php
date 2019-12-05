@@ -91,13 +91,14 @@ class DestinatarioSearch extends Destinatario
     {
         $personaForm = new PersonaForm();
         $query = Destinatario::find();
+        $pagesize = (!isset($params['pagesize']) || !is_numeric($params['pagesize']) || $params['pagesize']==0)?20:intval($params['pagesize']);
         
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => $pagesize,
                 'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
             ],
         ]);
@@ -190,6 +191,9 @@ class DestinatarioSearch extends Destinatario
             $coleccion_destinatario = $this->vincularPersona($coleccion_destinatario, $coleccion_persona);
         } 
         
+        $paginas = ceil($dataProvider->totalCount/$pagesize);           
+        $data['pagesize']=$pagesize;            
+        $data['pages']=$paginas;    
         $data['total_filtrado']=$dataProvider->totalCount;
         $data['success']=(count($coleccion_destinatario)>0)?true:false;
         $data['resultado']=$coleccion_destinatario;
