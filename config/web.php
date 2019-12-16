@@ -82,6 +82,10 @@ $config = [
                 ],
                 [   
                     'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/plan', 
+                ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/destinatario', 
 //                    'extraPatterns' => [
 //                        'GET buscarPersona/{id}' => 'mostrar',
