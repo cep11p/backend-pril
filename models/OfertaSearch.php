@@ -79,9 +79,14 @@ class OfertaSearch extends Oferta
     public function busquedadGeneral($params)
     {
         $query = Oferta::find();
+        $pagesize = (!isset($params['pagesize']) || !is_numeric($params['pagesize']) || $params['pagesize']==0)?20:intval($params['pagesize']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => $pagesize,
+                'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
+            ],
         ]);
 
         $this->load($params,'');
@@ -126,6 +131,9 @@ class OfertaSearch extends Oferta
             
         }
         
+        $paginas = ceil($dataProvider->totalCount/$pagesize);           
+        $data['pagesize']=$pagesize;            
+        $data['pages']=$paginas;
         $data['total_filtrado']= count($coleccion_oferta);
         $data['success']=(count($coleccion_oferta)>0)?true:false;
         $data['resultado']=$coleccion_oferta;
