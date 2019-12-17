@@ -244,7 +244,7 @@ class DestinatarioSearch extends Destinatario
      */
     private function getUltimoEstudio($estudios){
         $primera_vez = true;
-        $ultimo = array();
+        $ultimo = "";
         foreach ($estudios as $value) {
             if($primera_vez){
                 $ultimo = $value;
