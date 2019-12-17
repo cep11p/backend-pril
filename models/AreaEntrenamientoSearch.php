@@ -76,11 +76,12 @@ public function rules()
     {
         $personaForm = new PersonaForm();
         $query = AreaEntrenamiento::find();
+        $pagesize = (!isset($params['pagesize']) || !is_numeric($params['pagesize']) || $params['pagesize']==0)?20:intval($params['pagesize']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 20,
+                'pageSize' => $pagesize,
                 'page' => (isset($params['page']) && is_numeric($params['page']))?$params['page']:0
             ],
         ]);
@@ -151,9 +152,7 @@ public function rules()
             $area_entrenamiento['fecha_inicial'] = $area['fecha_inicial'];
             $area_entrenamiento['fecha_final'] = $area['fecha_final'];
             $area_entrenamiento['tarea'] = $area['tarea'];
-            $area_entrenamiento['plan_nombre'] = $area['plan_nombre'];
-            $area_entrenamiento['plan_monto'] = $area['plan_monto'];
-            $area_entrenamiento['plan_hora_semanal'] = $area['plan_hora_semanal'];
+            $area_entrenamiento['plan'] = $area['plan_nombre'];
             $area_entrenamiento['estado'] = $area['estado'];
             $coleccion_area_entrenamiento[] = $area_entrenamiento;
         }
@@ -167,6 +166,9 @@ public function rules()
         $coleccion_area_entrenamiento = $this->vincularOferta($coleccion_area_entrenamiento, $coleccion_oferta);
         
         /*********** Se arma el array a mostrar **********/
+        $paginas = ceil($dataProvider->totalCount/$pagesize);           
+        $data['pagesize']=$pagesize;            
+        $data['pages']=$paginas;
         $data['total_filtrado']=$dataProvider->totalCount;
         $data['success']=(count($coleccion_area_entrenamiento)>0)?true:false;
         $data['resultado']=$coleccion_area_entrenamiento;
