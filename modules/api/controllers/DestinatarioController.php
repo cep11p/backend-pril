@@ -7,7 +7,6 @@ use Yii;
 use yii\base\Exception;
 /**Models**/
 use app\models\Destinatario;
-use app\models\PersonaForm;
 
 class DestinatarioController extends ActiveController{
     

@@ -228,6 +228,7 @@ class DestinatarioSearch extends Destinatario
             foreach ($coleccion_persona as $persona) {
                 if(isset($destinatario['personaid']) && isset($persona['id']) && $destinatario['personaid']==$persona['id']){                    
                     $destinatario['persona'] = $persona;
+                    $destinatario['persona']['ultimo_estudio'] = $this->getUltimoEstudio($persona['estudios']);
                     $coleccion_destinatario[$i] = $destinatario;
                 }
             }
@@ -237,6 +238,25 @@ class DestinatarioSearch extends Destinatario
         return $coleccion_destinatario;
     }
     
+    /**
+     * Devolvemos el ultimo estudio realizado
+     * @param array $estudios
+     */
+    private function getUltimoEstudio($estudios){
+        $primera_vez = true;
+        $ultimo = array();
+        foreach ($estudios as $value) {
+            if($primera_vez){
+                $ultimo = $value;
+                $primera_vez = false;
+            }
+            $ultimo = (intval($ultimo['anio'])>intval($value['anio']))?$ultimo:$value;
+        }
+        
+        return $ultimo;
+    }
+
+
     /**
      * Se obtienen las persoans que están vinculados a la lista de destinatarios
      * @param array $coleccion_destinatario
