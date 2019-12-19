@@ -136,18 +136,8 @@ class AmbienteTrabajoSearch extends AmbienteTrabajo
             }
             
             //buscamos en nombre de ambiente trabajo
-            $query->andFilterWhere(['like', 'nombre', $global_params]);
+            $query->orFilterWhere(['like', 'nombre', $global_params]);
         }
-        
-        
-        /**** Se filtran los ambiente de trabajo *********/
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'calificacion' => $this->calificacion,
-            'personaid' => $this->personaid,
-            'tipo_ambiente_trabajoid' => $this->tipo_ambiente_trabajoid,
-            'lugarid' => $this->lugarid,
-        ]);
         
         #filtramos por ids de personas
         if(count($lista_personaid)>0){
