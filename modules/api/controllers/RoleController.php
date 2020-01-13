@@ -4,7 +4,8 @@ namespace app\modules\api\controllers;
 use yii\rest\ActiveController;
 use yii\web\Response;
 
-class RolesController extends ActiveController{
+use app\models\Role;
+class RoleController extends ActiveController{
     
     public $modelClass = 'app\models\Role';
     
@@ -50,10 +51,8 @@ class RolesController extends ActiveController{
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['create']);
-//        unset($actions['index']);
+
         $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
-        unset($actions['update']);
         unset($actions['view']);
         return $actions;
     
@@ -65,6 +64,6 @@ class RolesController extends ActiveController{
         $resultado = $searchModel->search(\Yii::$app->request->queryParams);
         
         return $resultado;
-    }
-    
+    }    
+         
 }

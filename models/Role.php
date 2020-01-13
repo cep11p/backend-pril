@@ -11,6 +11,10 @@ use yii\helpers\ArrayHelper;
  */
 class Role extends BaseRole
 {
+    /**
+     * @var INT Es el tipo de auth_item, en este caso el tipo es 1 = Role
+     */
+    const TYPE = 1;
 
     public function behaviors()
     {
@@ -30,5 +34,10 @@ class Role extends BaseRole
                 # custom validation rules
             ]
         );
+    }
+    
+    public function setAttributes($values, $safeOnly = true) {
+        $this->type = $this::TYPE;
+        parent::setAttributes($values, $safeOnly);
     }
 }
