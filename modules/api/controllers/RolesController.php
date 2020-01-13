@@ -46,16 +46,25 @@ class RolesController extends ActiveController{
 
         return $behaviors;
     }
-    
+       
     public function actions()
     {
         $actions = parent::actions();
         unset($actions['create']);
 //        unset($actions['index']);
+        $actions['index']['prepareDataProvider'] = [$this, 'prepareDataProvider'];
         unset($actions['update']);
         unset($actions['view']);
         return $actions;
     
+    }
+    
+    public function prepareDataProvider() 
+    {
+        $searchModel = new \app\models\RolesSearch();
+        $resultado = $searchModel->search(\Yii::$app->request->queryParams);
+        
+        return $resultado;
     }
     
 }
