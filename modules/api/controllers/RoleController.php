@@ -4,7 +4,6 @@ namespace app\modules\api\controllers;
 use yii\rest\ActiveController;
 use yii\web\Response;
 
-use app\models\Role;
 class RoleController extends ActiveController{
     
     public $modelClass = 'app\models\Role';
