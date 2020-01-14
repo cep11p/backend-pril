@@ -59,7 +59,7 @@ class RoleController extends ActiveController{
     
     public function prepareDataProvider() 
     {
-        $searchModel = new \app\models\RolesSearch();
+        $searchModel = new \app\models\RoleSearch();
         $resultado = $searchModel->search(\Yii::$app->request->queryParams);
         
         return $resultado;

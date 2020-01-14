@@ -10,7 +10,7 @@ use app\models\Role;
 /**
 * RolesSearch represents the model behind the search form about `app\models\Role`.
 */
-class RolesSearch extends Role
+class RoleSearch extends Role
 {
     /**
     * @inheritdoc
