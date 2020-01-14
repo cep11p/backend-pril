@@ -149,6 +149,10 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/role'
                 ],
+                [   
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/permiso'
+                ],
             ],
         ],
         
