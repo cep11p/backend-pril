@@ -27,14 +27,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
         $this->_client = $guzzleClient;
     }
    
-    /**
-     *
-     * @param string $legajo
-     * @param string $organismo
-     * @param string $fiscalAnterior
-     * @param string $fiscalActual
-     * @return string $id Es el id de la persona
-     */
+    
     public function crearPersona($data)
     {
         $client =   $this->_client;
@@ -49,6 +42,33 @@ class ServicioRegistral extends Component implements IServicioRegistral
              
             \Yii::error($respuesta);
             return $respuesta['data']['id'];
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return $resultado;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    public function crearOficio($data)
+    {
+        $client =   $this->_client;
+        try{
+            \Yii::error(json_encode($data));
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
+           ];
+            
+            $response = $client->request('POST', \Yii::$app->params['URL_REGISTRAL'].'/api/oficios', ['json' => $data,'headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            
+            \Yii::error($respuesta);
+            return $respuesta;
         } catch (\GuzzleHttp\Exception\BadResponseException $e) {
                 $resultado = json_decode($e->getResponse()->getBody()->getContents());
                 \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));

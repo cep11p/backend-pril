@@ -70,4 +70,13 @@ class OficioController extends ActiveController{
         
         return $resultado;
     }   
+    
+    public function actionCreate() 
+    {
+        $param = Yii::$app->request->queryParams;
+        
+        $resultado = \Yii::$app->registral->crearOficio($param);
+        
+        return $resultado;
+    }   
 }
