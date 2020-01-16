@@ -54,7 +54,7 @@ class ServicioRegistral extends Component implements IServicioRegistral
         }
        
     }
-    
+    /************************ OFICIO ***********************/
     public function crearOficio($data)
     {
         $client =   $this->_client;
@@ -65,6 +65,92 @@ class ServicioRegistral extends Component implements IServicioRegistral
            ];
             
             $response = $client->request('POST', \Yii::$app->params['URL_REGISTRAL'].'/api/oficios', ['json' => $data,'headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            
+            \Yii::error($respuesta);
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return $resultado;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    /**
+     * Se reciben parametros y se realiza la interoperabilidad
+     * @param array $data
+     * @return boolean
+     */
+    public function modificarOficio($data)
+    {
+        $client =   $this->_client;
+        try{
+            \Yii::error(json_encode($data));
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
+           ];
+            
+            $response = $client->request('PUT', \Yii::$app->params['URL_REGISTRAL']."/api/oficios/".$data['id'], ['json' => $data,'headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            
+            \Yii::error($respuesta);
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return $resultado;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    public function verOficio($id)
+    {
+        $client =   $this->_client;
+        try{
+            \Yii::error(json_encode($id));
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
+           ];
+            
+            $response = $client->request('GET', \Yii::$app->params['URL_REGISTRAL']."/api/oficios/$id", ['headers' => $headers]);
+            $respuesta = json_decode($response->getBody()->getContents(), true);
+            
+            \Yii::error($respuesta);
+            return $respuesta;
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
+                $resultado = json_decode($e->getResponse()->getBody()->getContents());
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e->getResponse()->getBody()));
+                \Yii::error('Error de integración:'.$e->getResponse()->getBody(), $category='apioj');
+                return $resultado;
+        } catch (Exception $e) {
+                \Yii::$app->getModule('audit')->data('catchedexc', \yii\helpers\VarDumper::dumpAsString($e));
+                \Yii::error('Error inesperado: se produjo:'.$e->getMessage(), $category='apioj');
+                return false;
+        }
+       
+    }
+    
+    public function borrarOficio($id)
+    {
+        $client =   $this->_client;
+        try{
+            \Yii::error(json_encode($id));
+            $headers = [
+                'Authorization' => 'Bearer ' .\Yii::$app->params['JWT_REGISTRAL'], 
+           ];
+            
+            $response = $client->request('DELETE', \Yii::$app->params['URL_REGISTRAL']."/api/oficios/$id", ['headers' => $headers]);
             $respuesta = json_decode($response->getBody()->getContents(), true);
             
             \Yii::error($respuesta);

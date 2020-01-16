@@ -73,10 +73,33 @@ class OficioController extends ActiveController{
     
     public function actionCreate() 
     {
-        $param = Yii::$app->request->queryParams;
+        $param = Yii::$app->request->post();
         
         $resultado = \Yii::$app->registral->crearOficio($param);
         
         return $resultado;
-    }   
+    }
+    
+    public function actionView($id) 
+    {        
+        $resultado = \Yii::$app->registral->verOficio($id);
+        
+        return $resultado;
+    }
+    
+    public function actionUpdate($id) 
+    {        
+        $param = Yii::$app->request->post();
+        $param['id'] = $id;
+        $resultado = \Yii::$app->registral->modificarOficio($param);
+        
+        return $resultado;
+    }
+    
+    public function actionDelete($id) 
+    {        
+        $resultado = \Yii::$app->registral->borrarOficio($id);
+        
+        return $resultado;
+    }
 }
