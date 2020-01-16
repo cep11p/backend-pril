@@ -69,5 +69,37 @@ class ProfesionController extends ActiveController{
         $resultado = \Yii::$app->registral->buscarProfesion($param);
         
         return $resultado;
-    }   
+    }
+    
+    public function actionCreate() 
+    {
+        $param = Yii::$app->request->post();
+        
+        $resultado = \Yii::$app->registral->crearProfesion($param);
+        
+        return $resultado;
+    }
+    
+    public function actionView($id) 
+    {        
+        $resultado = \Yii::$app->registral->verProfesion($id);
+        
+        return $resultado;
+    }
+    
+    public function actionUpdate($id) 
+    {        
+        $param = Yii::$app->request->post();
+        $param['id'] = $id;
+        $resultado = \Yii::$app->registral->modificarProfesion($param);
+        
+        return $resultado;
+    }
+    
+    public function actionDelete($id) 
+    {        
+        $resultado = \Yii::$app->registral->borrarProfesion($id);
+        
+        return $resultado;
+    }
 }
